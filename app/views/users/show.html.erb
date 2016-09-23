@@ -3,9 +3,12 @@
   
   <% if @user.ideas %>
     <% @user.ideas.each do |idea| %>
-      <div class="row well col-md-6 col-md-offset-3">
+      <div class="row well col-md-10 col-md-offset-1">
         <p class="idea-text">
           <%= idea.text %>
+        </p>
+        <p class="idea-details" align="center">
+          <small>Created by <%= idea.user.email %> | Created <%=   time_ago_in_words(idea.created_at) %> ago  |  Last updated <%= time_ago_in_words(idea.updated_at) %> ago </small>
         </p>
         <div align="center" class="idea-actions">
           <%= link_to "Edit Idea", edit_idea_path(idea), class: "btn btn-md btn-warning" %>

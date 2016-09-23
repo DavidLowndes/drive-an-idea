@@ -1,8 +1,16 @@
 /* Site-wide */
 
 body {
-  background-color: lighten(#3071A9, 50%);
+  background-color: lighten(#3071A9, 50%) !important;
   margin: 0px !important;
+}
+
+.btn-warning {
+  color: #EEE !important;
+}
+
+.btn-danger {
+  color: #EEE !important;
 }
 
 /* Navbar */
@@ -31,11 +39,18 @@ body {
   margin: 5px;
 }
 
+.idea-details {
+  margin: 10px 0px 0px 0px;
+  border-top: 1px solid;
+  padding-top: 5px;
+}
+
 .idea-actions {
-  margin-top: 20px;
+  margin-top: 5px;
   border-top: 1px solid;
   padding-top: 10px;
 }
+
 /* Footer */
 
 footer {
