@@ -5,9 +5,10 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="#">Drive An Idea</a>
+    <%= link_to 'Drive An Idea', root_path, id: 'logo', class: "navbar-brand" %>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
       <ul class="nav navbar-nav">
+        <li><%= link_to 'My Ideas', my_ideas_path %>
         <li><%= link_to "Sign up", new_user_registration_path %></li>
         <li><%= link_to "Sign in", new_user_session_path %></li>
         <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
