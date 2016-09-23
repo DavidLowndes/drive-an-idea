@@ -1,0 +1,36 @@
+/* Site-wide */
+
+body {
+  background-color: lighten(#3071A9, 50%);
+}
+
+/* Navbar */
+
+.navbar-default {
+    background-color: lighten(#3071A9, 30%);
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #555;
+}
+
+#logo {
+  color: #555;
+  letter-spacing: 0px;
+  font-weight: bold;
+}
+
+/* Home Page */
+
+
+
+/* Footer */
+
+footer {
+  color: #777;
+  margin-top: 20px;
+  border-top: 1px solid #777;
+  .footer-text {
+    margin-top: 10px;
+  }
+}
