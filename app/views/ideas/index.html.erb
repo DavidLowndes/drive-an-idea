@@ -14,7 +14,7 @@
         </p>
         <div align="center" class="idea-actions">
           <%= link_to "Edit Idea", edit_idea_path(idea), class: "btn btn-md btn-warning" %>
-          <%= link_to "Delete Idea", edit_idea_path(idea), method: :delete, class: "btn btn-md btn-danger" %>
+          <%= link_to "Delete Idea", idea_path(idea), method: :delete, class: "btn btn-md btn-danger" %>
         </div>
       </div>
     <% end %>
