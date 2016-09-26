@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   
   has_many :ideas   
+  has_many :comments
          
   def full_name
    return "#{first_name} #{last_name}".strip if (first_name || last_name)
