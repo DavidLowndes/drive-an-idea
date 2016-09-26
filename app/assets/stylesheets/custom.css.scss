@@ -30,7 +30,10 @@ body {
 }
 
 a.dropdown-toggle {
-  
+  &:hover {
+    color: #333;
+    background-color: transparent !important;
+  }
 }
 
 li.dropdown {
