@@ -1,16 +1,14 @@
-<p id="notice"><%= notice %></p>
-
 <div class="container col-md-offset-1 col-md-10">
-  <h1 align="center">All Ideas</h1>
+  <h1 align="center">My Ideas</h1>
   
-  <% if @ideas %>
-    <% @ideas.each do |idea| %>
+  <% if @user.ideas %>
+    <% @user.ideas.each do |idea| %>
       <div class="row well col-md-10 col-md-offset-1">
         <p class="idea-text">
           <%= idea.text %>
         </p>
         <p class="idea-details" align="center">
-          <small>Created by <%= idea.user.email %> | Created <%=   time_ago_in_words(idea.created_at) %> ago | Last updated <%= time_ago_in_words(idea.updated_at) %> ago </small>
+          <small>Created by <%= idea.user.email %> | Created <%=   time_ago_in_words(idea.created_at) %> ago  |  Last updated <%= time_ago_in_words(idea.updated_at) %> ago </small>
         </p>
         <div align="center" class="idea-actions">
           <%= link_to "Edit Idea", edit_idea_path(idea), class: "btn btn-md btn-warning" %>

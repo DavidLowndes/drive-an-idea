@@ -10,14 +10,14 @@
     </button>
     
     <div class="navbar-collapse collapse navbar-responsive-collapse">
-      <ul class="nav navbar-nav">
-
-        <li><%= link_to 'My Ideas', my_ideas_path %></li>
-        <li><%= link_to 'All Ideas', ideas_path %></li>
-		<li><%= link_to "My Profile", edit_registration_path(current_user) %></li>
-      </ul>
+    	<ul class="nav navbar-nav">
+			<li><%= link_to "My Profile", edit_registration_path(current_user) %></li>
+	        <li><%= link_to 'My Ideas', my_ideas_path %></li>
+	        <li><%= link_to 'All Ideas', ideas_path %></li>
+	        <li><%= link_to 'New Idea', new_idea_path %></li>
+		</ul>
 	  <ul class ="nav navbar-right col-md-4">
-	 <li class="col-md 8 user-name text-left">
+	 <li class="col-md-8 user-name text-right">
 		 <i class ="fa fa-user"></i>
 		 <%= current_user.full_name.present? ? current_user.full_name : current_user.email %> 
 	 </li>

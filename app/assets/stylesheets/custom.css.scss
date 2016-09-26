@@ -1,8 +1,16 @@
 /* Site-wide */
 
 body {
-  background-color: lighten(#3071A9, 50%);
+  background-color: lighten(#3071A9, 50%) !important;
   margin: 0px !important;
+}
+
+.btn-warning {
+  color: #EEE !important;
+}
+
+.btn-danger {
+  color: #EEE !important;
 }
 
 /* Navbar */
@@ -21,9 +29,34 @@ body {
   font-weight: bold;
 }
 
+.user-name {
+  margin-top: 15px;
+}
+.logout {
+  margin-top: 4px;
+}
+
 /* Home Page */
 
 
+/* Ideas */
+
+.idea-text {
+  font-size: 1.5em;
+  margin: 5px;
+}
+
+.idea-details {
+  margin: 10px 0px 0px 0px;
+  border-top: 1px solid;
+  padding-top: 5px;
+}
+
+.idea-actions {
+  margin-top: 5px;
+  border-top: 1px solid;
+  padding-top: 10px;
+}
 
 /* Footer */
 
