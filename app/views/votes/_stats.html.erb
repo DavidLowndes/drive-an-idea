@@ -1,0 +1,43 @@
+<div class="row well col-md-offset-1 col-md-10 voting-stats">
+  <h4>Voting Stats</h4>
+  <% if @idea.votes.any? %>
+    <% case @idea.voting_style 
+       when 'Binary' %>
+         
+      <% stats = @idea.binary_voting_stats %>
+      
+      <ul>
+        <li><strong>Overall score: </strong><%= stats[0].round(2) %>%</li>
+        <li><strong>Positive votes: </strong><%= stats[1] %></li>
+        <li><strong>Negative votes: </strong><%= stats[2] %></li>
+      </ul>
+      
+    <% when '1-10' %>
+    
+      1-10 voting stats
+      
+    <% when '5 Stars' %>
+    
+      <% stats = @idea.five_stars_voting_stats %>
+      <ul>
+        <li><strong>Average stars: </strong><%= stats[0].round(2) %></li>
+        <li><strong>1 star votes: </strong><%= stats[1] %></li>
+        <li><strong>2 star votes: </strong><%= stats[2] %></li>
+        <li><strong>3 star votes: </strong><%= stats[3] %></li>
+        <li><strong>4 star votes: </strong><%= stats[4] %></li>
+        <li><strong>5 star votes: </strong><%= stats[5] %></li>
+      </ul>
+      
+      
+      
+    <% when 'Fibonacci' %>
+      Fibonacci voting stats
+    <% else %>
+      Unrecognisable voting style, please edit your idea's voting style.
+    <% end %>
+  <% else %>
+    No votes! Please vote on this idea.
+  <% end %>
+  
+  
+</div>

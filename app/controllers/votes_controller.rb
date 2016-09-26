@@ -1,5 +1,6 @@
 class VotesController < ApplicationController
   def create
+    
     @vote = Vote.new(value: params[:value])
     @vote.user = current_user
     @vote.idea = Idea.find(params[:idea_id])

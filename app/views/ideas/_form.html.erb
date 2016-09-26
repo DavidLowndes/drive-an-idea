@@ -16,11 +16,16 @@
     <%= f.text_area :text %>
   </div>
   
-  <div class="field">
-    <%= f.label :voting_style %>
-    <%= f.select :voting_style, ['Binary', '1-10', '5 Stars', 'Fibonacci'] %>
-  </div>
-
+  <!-- Voting Style probably shouldn't be edited, 
+       only show field if creating-->
+    
+  <% if params[:action] == 'new' %>
+    <div class="field">
+      <%= f.label :voting_style %>
+      <%= f.select :voting_style, ['Binary', '1-10', '5 Stars', 'Fibonacci'] %>
+    </div>
+  <% end %>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

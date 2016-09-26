@@ -12,39 +12,12 @@
     <strong>Voting Style:</strong>
     <%= @idea.voting_style %>
   </p>
-
+  
   <%= link_to 'Edit', edit_idea_path(@idea) %> |
-  <%= link_to 'Back', ideas_path %>
-</div>
+  <%= link_to 'Delete', idea_path(@idea), method: :delete %>
 
+</div>
+  
+<%= render 'votes/form', obj: @idea %>
 
-<div class="row well col-md-offset-1 col-md-10 voting-stats">
-  <h4>Voting stats</h4>
-  <% if @idea.votes.any? %>
-    <% case @idea.voting_style 
-       when 'Binary' %>
-      <% stats = @idea.binary_voting_stats %>
-      <p>
-        <strong>Overall score: </strong><%= stats[0] %>%<br>
-        <strong>Positive votes: </strong><%= stats[1] %><br>
-        <strong>Negative votes: </strong><%= stats[2] %><br>
-      </p>
-    <% when '1-10' %>  
-      1-10 voting stats
-    <% when '5 Stars' %>
-      5 Stars voting stats
-    <% when 'Fibonacci' %>
-      Fibonacci voting stats
-    <% else %>
-      Unrecognisable voting style, please edit your idea's voting style.
-    <% end %>
-  <% else %>
-    No votes! Please vote on this idea.
-  <% end %>
-  
-  
-</div>
-  
-<div class="row">
-  <%= render 'votes/form', obj: @idea %>
-</div>
+<%= render 'votes/stats' %>
