@@ -1,0 +1,50 @@
+<% @idea = obj %>
+
+<div class="row well col-md-offset-1 col-md-10">
+  <h4>Voting Form</h4>
+
+  <% case @idea.voting_style 
+     when 'Binary' %>
+       
+    <%= form_for([@idea, Vote.new]) do |f| %>
+      <div class="form-group">
+        <%= f.submit name: 'value', value: 1,
+                           class: 'btn btn-md btn-success' %>
+        <%= f.submit name: 'value', value: 0, 
+                           class: 'btn btn-md btn-danger' %>
+      </div>
+    <% end %>
+  
+  <% when '1-10' %>  
+  
+    1-10 voting form here
+    
+  <% when '5 Stars' %>
+    <%= form_for([@idea, Vote.new]) do |f| %>
+      <div class="form-group">
+        <%= f.submit '1', name: 'value', value: 1, 
+                                    class: 'btn btn-md btn-default' %>
+        
+        <%= f.submit '2', name: 'value', value: 2, 
+                                    class: 'btn btn-md btn-default' %>
+        
+        <%= f.submit '3', name: 'value', value: 3,
+                                    class: 'btn btn-md btn-default' %>
+        
+        <%= f.submit '4', name: 'value', value: 4,
+                                    class: 'btn btn-md btn-default' %>
+        
+        <%= f.submit '5', name: 'value', value: 5,
+                                    class: 'btn btn-md btn-default' %>
+      </div>
+    <% end %>
+  <% when 'Fibonacci' %>
+  
+    Fibonacci voting form here
+    
+  <% else %>
+  
+    <h2>Unrecognisable voting style, please edit your idea's voting style.</h2>
+    
+  <% end %>
+</div>

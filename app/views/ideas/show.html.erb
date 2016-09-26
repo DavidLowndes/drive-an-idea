@@ -1,19 +1,28 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p> -->
+<div class="row">
+  <p>
+    <strong>Text:</strong>
+    <%= @idea.text %>
+  </p>
+  <p>
+    <strong>User:</strong>
+    <%= @idea.user.full_name %>
+  </p>
+  <p>
+    <strong>Voting Style:</strong>
+    <%= @idea.voting_style %>
+  </p>
+  
+  <%= link_to 'Edit', edit_idea_path(@idea) %> |
+  <%= link_to 'Delete', idea_path(@idea), method: :delete %>
 
-<p>
-  <strong>Text:</strong>
-  <%= @idea.text %>
-</p>
-<p>
-  <strong>User:</strong>
-  <%= @idea.user.full_name %>
-</p>
+</div>
+  
+<%= render 'votes/form', obj: @idea %>
+<%= render 'votes/stats' %>
 
 <h2>Comments</h2>
 <%= render @idea.comments %>
  
 <h2>Add a comment:</h2>
 <%= render 'comments/form' %>
-
-<%= link_to 'Edit', edit_idea_path(@idea) %> |
-<%= link_to 'Back', ideas_path %>
