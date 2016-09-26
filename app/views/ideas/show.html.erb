@@ -8,6 +8,10 @@
   <strong>User:</strong>
   <%= @idea.user.full_name %>
 </p>
+<p>
+  <strong>Voting Style:</strong>
+  <%= @idea.voting_style %>
+</p>
 
 <%= link_to 'Edit', edit_idea_path(@idea) %> |
 <%= link_to 'Back', ideas_path %>

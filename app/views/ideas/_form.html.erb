@@ -15,6 +15,11 @@
     <%= f.label :text %>
     <%= f.text_area :text %>
   </div>
+  
+  <div class="field">
+    <%= f.label :voting_style %>
+    <%= f.select :voting_style, ['Binary', '1-10', '5 Stars', 'Fibonacci'] %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>
