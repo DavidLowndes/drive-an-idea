@@ -4,7 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   
-  has_many :ideas   
+  has_many :ideas
+  has_many :votes   
          
   def full_name
    return "#{first_name} #{last_name}".strip if (first_name || last_name)
