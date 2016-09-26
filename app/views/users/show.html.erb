@@ -1,7 +1,7 @@
 <div class="container col-md-offset-1 col-md-10">
   <h1 align="center">My Ideas</h1>
   
-  <% if @user.ideas %>
+  <% if @user.ideas.any? %>
     <% @user.ideas.each do |idea| %>
       <div class="row well col-md-10 col-md-offset-1">
         <p class="idea-text">
@@ -17,7 +17,7 @@
       </div>
     <% end %>
   <% else %>
-    <p>
+    <p align="center">
       You have no ideas!
     </p>
   <% end %>

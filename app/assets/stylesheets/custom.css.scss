@@ -20,13 +20,17 @@ body {
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: #555;
+    color: #444;
 }
 
 #logo {
   color: #555;
   letter-spacing: 0px;
   font-weight: bold;
+}
+
+li.dropdown {
+  margin-top: 5px;
 }
 
 .user-name {
