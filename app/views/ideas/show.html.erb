@@ -1,22 +1,5 @@
 <!-- <p id="notice"><%= notice %></p> -->
-<div class="row">
-  <p>
-    <strong>Text:</strong>
-    <%= @idea.text %>
-  </p>
-  <p>
-    <strong>User:</strong>
-    <%= @idea.user.full_name %>
-  </p>
-  <p>
-    <strong>Voting Style:</strong>
-    <%= @idea.voting_style %>
-  </p>
-  
-  <%= link_to 'Edit', edit_idea_path(@idea) %> |
-  <%= link_to 'Delete', idea_path(@idea), method: :delete %>
-
-</div>
+<%= render 'idea', obj: @idea %>
 
 <!-- Show voting form -->
 <%= render 'votes/form', obj: @idea %>
