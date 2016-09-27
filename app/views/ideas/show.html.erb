@@ -1,40 +1,5 @@
 <!-- <p id="notice"><%= notice %></p> -->
-<div class="row">
-  <p>
-    <strong>Text:</strong>
-    <%= @idea.text %>
-  </p>
-  <p>
-    <strong>User:</strong>
-    <%= @idea.user.full_name %>
-  </p>
-  <p>
-    <strong>Voting Style:</strong>
-    <%= @idea.voting_style %>
-  </p>
-  
-  <%= link_to 'Edit', edit_idea_path(@idea) %> |
-  <%= link_to 'Delete', idea_path(@idea), method: :delete %>
-
-</div>
-<div class ="voting">
-	<%= render 'votes/form', obj: @idea %>
-	<%= render 'votes/stats' %>
-</div>
-<div class ="scroller">
-	<h4 align="center">
-		<div class="container-fluid">
-			<div class="col-md-offset-1 col-md-6 comments-container">
-				<div class="row-fluid well col-md-10 col-md-offset-1">
-					<strong>Comments</strong>
-					<p class = "comment-text">
-						<%= render @idea.comments %>
-					</p>
-				</div>
-			</div>
-		</div>
-	</h4>
- </div>
+<%= render 'idea', obj: @idea %>
  <div class ="container-fluid">
 	 <div class = "scroller">
 		<h4 align="center">

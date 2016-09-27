@@ -28,37 +28,55 @@ class Idea < ApplicationRecord
              negative_votes ]
   end
   
+  def one_to_ten_voting_stats
+    #Init vars
+    running_total = 0
+    vote_counts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    
+    votes.each do |vote|
+      vote_counts[vote.value - 1] += 1
+      running_total += vote.value
+    end
+    average = running_total.to_f / votes.count
+    return [average, vote_counts]
+  end
+  
   def five_stars_voting_stats
     #Init vars
-    one_star_votes = 0
-    two_star_votes = 0
-    three_star_votes = 0
-    four_star_votes = 0
-    five_star_votes = 0
     running_total = 0
+    vote_counts = [0, 0, 0, 0, 0]
+    
+    votes.each do |vote|
+      vote_counts[vote.value - 1] += 1
+      running_total += vote.value
+    end
+    
+    average = running_total.to_f / votes.count
+    return [average, vote_counts]
+  end
+  
+  def fibonacci_voting_stats
+    # Init couting vars
+    running_total = 0
+    vote_counts = [0, 0, 0, 0, 0, 0, 0]
     
     votes.each do |vote|
       case vote.value
-      when 1
-        one_star_votes += 1
-      when 2
-        two_star_votes += 1
-      when 3
-        three_star_votes += 1
-      when 4
-        four_star_votes += 1
+      when 1..3
+        vote_counts[vote.value - 1] += 1
       when 5
-        five_star_votes += 1
+        vote_counts[3] += 1
+      when 8
+        vote_counts[4] += 1
+      when 13
+        vote_counts[5] += 1
+      when 21
+        vote_counts[6] += 1
       end
-      running_total += vote.value        
+      running_total += vote.value
     end
-    average_score = running_total.to_f / votes.count 
-    return [ average_score, 
-             one_star_votes,
-             two_star_votes, 
-             three_star_votes,
-             four_star_votes,
-             five_star_votes ]
+    average = running_total.to_f / votes.count
+    return [average, vote_counts]
   end
    
 end
