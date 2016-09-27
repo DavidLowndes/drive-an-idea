@@ -8,9 +8,9 @@
        
     <%= form_for([@idea, Vote.new]) do |f| %>
       <div class="form-group">
-        <%= f.submit name: 'value', value: 1,
+        <%= f.submit '1', name: 'value', value: 1,
                            class: 'btn btn-md btn-success' %>
-        <%= f.submit name: 'value', value: 0, 
+        <%= f.submit '0', name: 'value', value: 0, 
                            class: 'btn btn-md btn-danger' %>
       </div>
     <% end %>
