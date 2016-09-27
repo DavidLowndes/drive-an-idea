@@ -17,8 +17,10 @@
   <%= link_to 'Delete', idea_path(@idea), method: :delete %>
 
 </div>
-  
+
+<!-- Show voting form -->
 <%= render 'votes/form', obj: @idea %>
+<!-- Show voting stats -->
 <%= render 'votes/stats' %>
 
 <h2>Comments</h2>

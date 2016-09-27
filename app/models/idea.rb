@@ -28,14 +28,28 @@ class Idea < ApplicationRecord
              negative_votes ]
   end
   
+  def one_to_ten_voting_stats
+    #Init vars
+    running_total = 0
+    vote_counts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    
+    votes.each do |vote|
+      vote_counts[vote.value - 1] += 1
+      running_total += vote.value
+    end
+    average = running_total.to_f / votes.count
+    return [average, vote_counts]
+    
+  end
+  
   def five_stars_voting_stats
     #Init vars
+    running_total = 0
     one_star_votes = 0
     two_star_votes = 0
     three_star_votes = 0
     four_star_votes = 0
     five_star_votes = 0
-    running_total = 0
     
     votes.each do |vote|
       case vote.value
@@ -52,8 +66,8 @@ class Idea < ApplicationRecord
       end
       running_total += vote.value        
     end
-    average_score = running_total.to_f / votes.count 
-    return [ average_score, 
+    average = running_total.to_f / votes.count 
+    return [ average, 
              one_star_votes,
              two_star_votes, 
              three_star_votes,
