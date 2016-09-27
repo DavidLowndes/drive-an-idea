@@ -21,8 +21,24 @@
 <%= render 'votes/form', obj: @idea %>
 <%= render 'votes/stats' %>
 
-<h2>Comments</h2>
-<%= render @idea.comments %>
+	<h3 align="center">
+		<div class="col-md-offset-1 col-md-6 vcenter">
+			<div class="row well col-md-10 col-md-offset-1">
+				<strong>Comments</strong>
+				<p class = "comment-text">
+					<%= render @idea.comments %>
+				</p>
+			</div>
+		</div>
+	</h3>
  
-<h2>Add a comment:</h2>
-<%= render 'comments/form' %>
+	<h2 align="center">
+		<div class="col-md-offset-1 col-md-6 vcenter">
+			<div class ="row well col-md-10 col-md-offset-1">
+				<strong>Add a comment:</strong>
+				<%= render 'comments/form' %>
+			</div>
+		</div>
+	</h2>
+
+

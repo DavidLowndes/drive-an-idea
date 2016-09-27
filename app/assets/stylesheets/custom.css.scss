@@ -87,3 +87,22 @@ footer {
 .left-padding {
 	padding-left: 15px !important;
 }
+
+/* Comments */
+
+.comment-text {
+	font-size: 1.5em;
+	margin: 5px;
+	border-top: 1px solid #777;	
+}
+
+.delete-comment {
+	border-bottom: 1px solid #777;
+	padding-bottom: 10px;
+}
+
+.vcenter {
+	display: inline-block;
+	vertical-align: middle;
+	float: none;
+}
