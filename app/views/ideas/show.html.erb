@@ -1,7 +1,25 @@
 <!-- <p id="notice"><%= notice %></p> -->
 <%= render 'idea', obj: @idea %>
- <div class ="container-fluid">
-	 <div class = "scroller">
+
+<!-- Show voting form -->
+<%= render 'votes/form', obj: @idea %>
+<!-- Show voting stats -->
+<%= render 'votes/stats' %>
+
+
+<h4 align="center">
+	<div class="col-md-offset-1 col-md-6 comments-container">
+		<div class="row well col-md-10 col-md-offset-1">
+			<strong>Comments</strong>
+			<p class = "comment-text">
+				<%= render @idea.comments %>
+			</p>
+		</div>
+	</div>
+</h4>
+
+<div class ="container-fluid">
+	<div class = "scroller">
 		<h4 align="center">
 			<div class="col-md-offset-1 col-md-6 comments-input">
 				<div class ="row-fluid well col-md-10 col-md-offset-1">
@@ -12,4 +30,3 @@
 		</h4>
 	</div>
 </div>
-
