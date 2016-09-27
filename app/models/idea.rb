@@ -3,19 +3,19 @@ class Idea < ApplicationRecord
 
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
-  
+
   validates :text, presence: true, length: { minimum: 3 }
-  
+
   def anonymous_comments?
     anonymous_comments == 1
   end
-  
+
   def binary_voting_stats
-    #Initialize vars
+    # Initialize vars
     running_total = 0
     positive_votes = 0
     negative_votes = 0
-    
+
     votes.each do |vote|
       if vote.value == 1
         positive_votes += 1
@@ -23,47 +23,45 @@ class Idea < ApplicationRecord
       else
         negative_votes += 1
       end
-      
+
     end
     percent_score = running_total.to_f / votes.count * 100
     
-    return [ percent_score,
-             positive_votes,
-             negative_votes ]
+    [percent_score, positive_votes, negative_votes]
   end
-  
+
   def one_to_ten_voting_stats
-    #Init vars
+    # Init vars
     running_total = 0
     vote_counts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    
+
     votes.each do |vote|
       vote_counts[vote.value - 1] += 1
       running_total += vote.value
     end
     average = running_total.to_f / votes.count
-    return [average, vote_counts]
+    [average, vote_counts]
   end
-  
+
   def five_stars_voting_stats
-    #Init vars
+    # Init vars
     running_total = 0
     vote_counts = [0, 0, 0, 0, 0]
-    
+
     votes.each do |vote|
       vote_counts[vote.value - 1] += 1
       running_total += vote.value
     end
-    
+
     average = running_total.to_f / votes.count
-    return [average, vote_counts]
+    [average, vote_counts]
   end
-  
+
   def fibonacci_voting_stats
     # Init couting vars
     running_total = 0
     vote_counts = [0, 0, 0, 0, 0, 0, 0]
-    
+
     votes.each do |vote|
       case vote.value
       when 1..3
@@ -80,7 +78,6 @@ class Idea < ApplicationRecord
       running_total += vote.value
     end
     average = running_total.to_f / votes.count
-    return [average, vote_counts]
+    [average, vote_counts]
   end
-   
 end

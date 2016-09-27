@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
     @idea = Idea.find(params[:idea_id])
     @comment = @idea.comments.find(params[:id])
     @comment.destroy
-    flash[:notice] = "Comment was successfully deleted"
+    flash[:notice] = 'Comment was successfully deleted'
     redirect_to idea_path(@idea)
   end
 
