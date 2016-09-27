@@ -15,11 +15,11 @@
     <%= f.label :text %>
     <%= f.text_area :text %>
   </div>
-  
-  <!-- Voting Style probably shouldn't be edited, 
-       only show field if creating-->
-    
+
+  <%# Voting Style probably shouldn't be edited,
+      only show this field if creating %>
   <% if params[:action] == 'new' %>
+    <%# show voting style field %>
     <div class="field">
       <%= f.label :voting_style %>
       <%= f.select :voting_style, ['Binary', '1-10', '5 Stars', 'Fibonacci'] %>
