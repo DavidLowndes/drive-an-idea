@@ -3,7 +3,7 @@
   <%# ideas/show view %>
   <div class="row well col-md-10 col-md-offset-1">
     <p class="idea-text">
-      <%= link_to idea.text, idea_path(idea) %>
+      <%= idea.text %>
     </p>
     <p class="idea-details" align="center">
       <small>Created by <%= idea.user.email %> | Voting Style: <%= idea.voting_style %> | Created <%=   time_ago_in_words(idea.created_at) %> ago | Last updated <%= time_ago_in_words(idea.updated_at) %> ago </small>

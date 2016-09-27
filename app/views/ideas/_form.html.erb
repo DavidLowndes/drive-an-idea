@@ -1,32 +1,60 @@
-<%= form_for(idea) do |f| %>
-  <% if idea.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(idea.errors.count, "error") %> prohibited this idea from being saved:</h2>
+<div class="row well well-lg col-md-offset-1 col-md-10">
+  
+  <%= form_for(idea) do |f| %>
+    <%# Error Messages %>
+    <% if idea.errors.any? %>
+      <div align="center" id="error_explanation">
+        <h2><%= pluralize(idea.errors.count, "error") %> prohibited this idea from being saved:</h2>
 
-      <ul>
-      <% idea.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% idea.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="row form-group">
+      <div class="control-label col-sm-2">
+        <%= f.label :text, class: 'text-right' %>
+      </div>
+      <div class="col-sm-8">
+        <%= f.text_area :text, rows: 8, class: "form-control", placeholder: "Body of article", autofocus: true %>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :text %>
-    <%= f.text_area :text %>
-  </div>
-
-  <%# Voting Style probably shouldn't be edited,
-      only show this field if creating %>
-  <% if params[:action] == 'new' %>
-    <%# show voting style field %>
-    <div class="field">
-      <%= f.label :voting_style %>
-      <%= f.select :voting_style, ['Binary', '1-10', '5 Stars', 'Fibonacci'] %>
+    <%# Voting Style probably shouldn't be edited,
+        only show this field if creating %>
+    <% if params[:action] != 'edit' %>
+    
+      <%# Show voting style field %>
+      <div class="row form-group">
+        <div class="control-label col-sm-2">
+          <%= f.label :voting_style, class: 'text-right' %>
+        </div>
+        <div class="col-sm-8">
+          <%= f.select :voting_style, ['Binary', '1-10', '5 Stars', 'Fibonacci'], class: 'select form-control' %>
+        </div>
+      </div>
+      
+    <% end %>
+  
+    <%# Buttons %>
+    <div class="row form-group">
+      <div class="col-sm-offset-2 col-sm-10 actions">
+        <%= f.submit class: 'btn btn-md btn-primary'%>
+        <% if params[:action] == 'edit' %>
+          <%# If editing idea, cancel should send back to show %>
+          <%= link_to 'Cancel', idea_path(idea),
+                                class: 'btn btn-md btn-danger' %>
+        <% else %>
+          <%# Otherwise, send back to index %>
+          <%= link_to 'Cancel', ideas_path, class: 'btn btn-md btn-danger' %>
+        <% end %>
+      </div>
     </div>
+    
   <% end %>
   
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
+
