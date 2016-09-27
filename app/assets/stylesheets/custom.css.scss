@@ -115,22 +115,22 @@ footer {
 .comments-container {
 	display: inline-block;
 	vertical-align: middle;
-	float: none;
+	float: left;
 
+	
 }
 
 .comments-input {
 	display: inline-block;
-	vertical-align: middle;
-	float: none;
+	float: left;
+	border-top: 15px;
 
 }
 
 .scroller{
 
 	overflow: auto;
-	float: left;
-
+	float: middle;
 	max-height: 300px;
 }
 
@@ -139,5 +139,5 @@ footer {
 	display: inline-block;
 	vertical-align: right;
 	float: right;
-	clear: none;
+
 }
