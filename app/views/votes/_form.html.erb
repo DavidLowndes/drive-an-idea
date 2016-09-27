@@ -21,7 +21,7 @@
       <% values = (1..10).to_a %>
       <div class="form-group">
         <% values.each do |value| %>
-        <%= f.submit "#{value}", name: 'value', value: value, 
+          <%= f.submit "#{value}", name: 'value', value: value, 
                                  class: 'btn btn-md btn-default' %>
         <% end %>
       </div>
@@ -34,7 +34,7 @@
       <% values = (1..5).to_a %>
       <div class="form-group">
         <% values.each do |value| %>
-        <%= f.submit "#{value}", name: 'value', value: value, 
+          <%= f.submit "#{value}", name: 'value', value: value, 
                                  class: 'btn btn-md btn-default' %>
                                            
         <% end %>
