@@ -24,7 +24,7 @@
     </div>
 
     <%# Voting Style probably shouldn't be edited,
-        only show this field if creating %>
+        don't show these fields if editing %>
     <% if params[:action] != 'edit' %>
     
       <%# Show voting style field %>
@@ -35,6 +35,17 @@
         <div class="col-sm-8">
           <%= f.select :voting_style, ['Binary', '1-10', '5 Stars', 'Fibonacci'], class: 'select form-control' %>
         </div>
+      </div>
+      
+      <div class="row form-check">
+        <div class="form-check-label col-md-2">
+          <%= f.label :anonymous_comments, class: 'text-right' %>
+        </div>
+        <div class="form-check-input col-md-8">
+          <%= f.check_box :anonymous_comments %>
+          
+        </div>
+
       </div>
       
     <% end %>
