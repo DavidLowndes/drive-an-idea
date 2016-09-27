@@ -8,19 +8,16 @@
 
 
 <h4 align="center">
-	<div class="col-md-offset-1 col-md-6 comments-container">
-		<div class="scroller">
-			<div class="row well col-md-10 col-md-offset-1">
-				<strong>Comments</strong>
-				<p class = "comment-text">
-					<%= render @idea.comments %>
-				</p>
+	<div class="row well col-md-offset-1 col-md-10 comments-container">
+		<div class="row well col-md-5 col-md-offset-1">
+			<div class="scroller">
+			<strong>Comments</strong>
+			<p class = "comment-text">
+				<%= render @idea.comments %>
+			</p>
 			</div>
 		</div>
+		<%= render 'comments/form' %>
 	</div>
 </h4>
 
-
-
-
-<%= render 'comments/form' %>
