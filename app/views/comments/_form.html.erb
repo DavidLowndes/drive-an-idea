@@ -1,20 +1,14 @@
-<h4 align ="center">
-	<div class ="container-fluid">	
-		<div class="col-md-offset-1 col-md-10 comments-input">
-			<div class ="row well col-md-10 col-md-offset-0">
-				<div class = "scroller">
-					<strong>Add a comment:</strong>
-					<%= form_for([@idea, @idea.comments.build]) do |f| %>
-						<p>
-							<%= f.text_area :body %>
-						</p>
-						<p>
-							<%= f.submit %>
-						</p>
-					<% end %>
-				</div>
-			</div>
-		</div>
+<h4 align ="center">	
+	<div class = "scroller">
+		<strong>Add a comment:</strong>
+		<%= form_for([@idea, @idea.comments.build]) do |f| %>
+			<p>
+				<%= f.text_area :body %>
+			</p>
+			<p>
+				<%= f.submit %>
+			</p>
+		<% end %>
 	</div>
 </h4>
 

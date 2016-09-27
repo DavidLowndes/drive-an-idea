@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20160927143747) do
     t.integer  "user_id"
     t.index ["idea_id"], name: "index_comments_on_idea_id"
   end
-  
+
   create_table "ideas", force: :cascade do |t|
     t.string   "text"
     t.datetime "created_at",                            null: false
