@@ -1,6 +1,6 @@
 <p>
 	<strong>From:</strong>
-	<%= comment.user.first_name %>
+	<%= @idea.anonymous_comments? ? 'Anonymous' : comment.user.first_name %>
 </p>
 
 <p>
