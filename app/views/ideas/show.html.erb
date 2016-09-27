@@ -17,28 +17,34 @@
   <%= link_to 'Delete', idea_path(@idea), method: :delete %>
 
 </div>
-  
-<%= render 'votes/form', obj: @idea %>
-<%= render 'votes/stats' %>
-
-	<h3 align="center">
-		<div class="col-md-offset-1 col-md-6 comments-container">
-			<div class="row well col-md-10 col-md-offset-1">
-				<strong>Comments</strong>
-				<p class = "comment-text">
-					<%= render @idea.comments %>
-				</p>
+<div class ="voting">
+	<%= render 'votes/form', obj: @idea %>
+	<%= render 'votes/stats' %>
+</div>
+<div class ="scroller">
+	<h4 align="center">
+		<div class="container-fluid">
+			<div class="col-md-offset-1 col-md-6 comments-container">
+				<div class="row-fluid well col-md-10 col-md-offset-1">
+					<strong>Comments</strong>
+					<p class = "comment-text">
+						<%= render @idea.comments %>
+					</p>
+				</div>
 			</div>
 		</div>
-	</h3>
- 
-	<h2 align="center">
-		<div class="col-md-offset-1 col-md-6 comments-input">
-			<div class ="row well col-md-10 col-md-offset-1">
-				<strong>Add a comment:</strong>
-				<%= render 'comments/form' %>
+	</h4>
+ </div>
+ <div class ="container-fluid">
+	 <div class = "scroller">
+		<h4 align="center">
+			<div class="col-md-offset-1 col-md-6 comments-input">
+				<div class ="row-fluid well col-md-10 col-md-offset-1">
+					<strong>Add a comment:</strong>
+					<%= render 'comments/form' %>
+				</div>
 			</div>
-		</div>
-	</h2>
-
+		</h4>
+	</div>
+</div>
 

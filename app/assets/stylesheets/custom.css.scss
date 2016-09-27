@@ -104,13 +104,29 @@ footer {
 .comments-container {
 	display: inline-block;
 	vertical-align: middle;
-	float: left;
+	float: none;
 
 }
 
 .comments-input {
 	display: inline-block;
 	vertical-align: middle;
-	float: left;
+	float: none;
 
+}
+
+.scroller{
+	width: auto;
+	height: auto;
+	overflow: auto;
+
+	max-height: 300px;
+}
+
+/* Votes */
+.voting {
+	display: inline-block;
+	vertical-align: right;
+	float: right;
+	clear: none;
 }
