@@ -18,55 +18,41 @@
   <% when '1-10' %>  
     
     <%= form_for([@idea, Vote.new]) do |f| %>
+      <% values = (1..10).to_a %>
       <div class="form-group">
-        <%= f.submit '1', name: 'value', value: 1, 
-                                         class: 'btn btn-md btn-default' %>
-        <%= f.submit '2', name: 'value', value: 2, 
-                                         class: 'btn btn-md btn-default' %>
-        <%= f.submit '3', name: 'value', value: 3,
-                                         class: 'btn btn-md btn-default' %>
-        <%= f.submit '4', name: 'value', value: 4,
-                                         class: 'btn btn-md btn-default' %>
-        <%= f.submit '5', name: 'value', value: 5,
-                                         class: 'btn btn-md btn-default' %>
-        <%= f.submit '6', name: 'value', value: 6, 
-                                         class: 'btn btn-md btn-default' %>
-        <%= f.submit '7', name: 'value', value: 7, 
-                                         class: 'btn btn-md btn-default' %>
-        <%= f.submit '8', name: 'value', value: 8,
-                                         class: 'btn btn-md btn-default' %>
-        <%= f.submit '9', name: 'value', value: 9,
-                                         class: 'btn btn-md btn-default' %>
-        <%= f.submit '10', name: 'value', value: 10,
-                                         class: 'btn btn-md btn-default' %>
+        <% values.each do |value| %>
+        <%= f.submit "#{value}", name: 'value', value: value, 
+                                 class: 'btn btn-md btn-default' %>
+        <% end %>
       </div>
     <% end %>
     
   <% when '5 Stars' %>
   
     <%= form_for([@idea, Vote.new]) do |f| %>
+    
+      <% values = (1..5).to_a %>
       <div class="form-group">
-        <%= f.submit '1', name: 'value', value: 1, 
-                                         class: 'btn btn-md btn-default' %>
-        
-        <%= f.submit '2', name: 'value', value: 2, 
-                                         class: 'btn btn-md btn-default' %>
-        
-        <%= f.submit '3', name: 'value', value: 3,
-                                         class: 'btn btn-md btn-default' %>
-                                      
-        <%= f.submit '4', name: 'value', value: 4,
-                                         class: 'btn btn-md btn-default' %>
-        
-        <%= f.submit '5', name: 'value', value: 5,
-                                         class: 'btn btn-md btn-default' %>
+        <% values.each do |value| %>
+        <%= f.submit "#{value}", name: 'value', value: value, 
+                                 class: 'btn btn-md btn-default' %>
+                                           
+        <% end %>
       </div>
     <% end %>
     
   <% when 'Fibonacci' %>
   
-    Fibonacci voting form here
-    
+    <%= form_for([@idea, Vote.new]) do |f| %>
+      <% values = [1, 2, 3, 5, 8, 13, 21] %>
+      <div class="form-group">
+        <% values.each do |value| %>
+        <%= f.submit "#{value}", name: 'value', value: value, 
+                                 class: 'btn btn-md btn-default' %>
+                                           
+        <% end %>
+      </div>
+    <% end %>    
   <% else %>
   
     <h2>Unrecognisable voting style, please edit your idea's voting style.</h2>
