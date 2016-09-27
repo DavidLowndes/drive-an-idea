@@ -6,6 +6,10 @@ class Idea < ApplicationRecord
   
   validates :text, presence: true, length: { minimum: 3 }
   
+  def anonymous_comments?
+    anonymous_comments == 1
+  end
+  
   def binary_voting_stats
     #Initialize vars
     running_total = 0
