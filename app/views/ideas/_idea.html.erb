@@ -12,9 +12,11 @@
           Created by: <%= idea.user.full_name.present? ? idea.user.full_name
                                                        : idea.user.email %><br>
           Voting Style: <%= idea.voting_style %><br>
-          Anonymous comments: <%= idea.anonymous_comments? ? 'On' : 'Off' %><br>
-          Show votes: <%= idea.show_votes? ? 'Yes' : 'No' %><br>
-          Anonymous votes: <%= idea.anonymous_comments? ? 'On' : 'Off' %><br>
+          Anonymous Comments: <%= idea.anonymous_comments? ? 'On' : 'Off' %><br>
+          Reveal Current Votes: <%= idea.reveal_current_votes? ? 'Yes'
+                                                               : 'No' %><br>
+          Reveal Voter Details: <%= idea.reveal_voter_details? ? 'On'
+                                                               : 'Off' %><br>
         </div>
         <div class="col-md-6">
           Created on: <%= idea.created_at.to_date %><br>
@@ -50,7 +52,7 @@
           Active? <%= idea.active? ? 'Yes' : 'No' %><br>
           Voting style: <%= idea.voting_style %> | 
           Anonymous comments: <%= idea.anonymous_comments? ? 'On' : 'Off' %> |
-          Show votes: <%= idea.show_votes? ? 'Yes' : 'No' %> | 
+          Show votes: <%= idea.reveal_current_votes? ? 'Yes' : 'No' %> | 
           Anonymous votes: <%= idea.anonymous_comments? ? 'On' : 'Off' %>
         </small>
       </p>

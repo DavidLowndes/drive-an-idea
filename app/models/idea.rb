@@ -25,12 +25,12 @@ class Idea < ApplicationRecord
     closing_date.past?
   end
   
-  def anonymous_votes?
-    anonymous_votes == 1
+  def reveal_voter_details?
+    reveal_voter_details == 1
   end
   
-  def show_votes?
-    show_votes == 1
+  def reveal_current_votes?
+    reveal_current_votes == 1
   end
   
   def anonymous_comments?

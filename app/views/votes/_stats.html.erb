@@ -1,13 +1,14 @@
 <h4 align="center">Voting Stats</h4>
 
-<% if @idea.show_votes? || @idea.user == current_user || @idea.closed? %>
+<% if @idea.reveal_current_votes? || @idea.closed?
+                                  || @idea.user == current_user %>
 
   <% if @idea.votes.any? %>
     <%# Display votes trends %>
     <%= render 'votes/trends' %>
     
     <%# If votes aren't anonymous %>
-    <% if !@idea.anonymous_votes? %>
+    <% if !@idea.reveal_voter_details? %>
       <br>
       <%= render 'votes/details' %>
     <% end %>
@@ -15,7 +16,7 @@
   <% else %>
     <%# There are no votes yet %>
     <p class="text-center">
-      No votes! Please vote on this idea.
+      There are no votes to show.
     </p>
   <% end %>
   
