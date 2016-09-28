@@ -1,5 +1,6 @@
 <% if obj.instance_of? Idea %>
   <% idea = obj %>
+
   <%# ideas/show view %>
   <div class="row well col-md-10 col-md-offset-1">
     <p class="idea-text">
@@ -7,10 +8,12 @@
     </p>
     <p class="idea-details" align="center">
       <small>
-        Created by <%= idea.user.email %><br>
+        Created by: <%= idea.user.full_name %><br>
         Voting Style: <%= idea.voting_style %><br>
         Anonymous comments: <%= idea.anonymous_comments? ? 'On' : 'Off' %><br>
-        Created <%= time_ago_in_words(idea.created_at) %> ago<br>
+        Show votes: <%= idea.show_votes? ? 'Yes' : 'No' %><br>
+        Anonymous votes: <%= idea.anonymous_comments? ? 'On' : 'Off' %><br>
+        Created <%= time_ago_in_words(idea.created_at) %> ago |
         Last updated <%= time_ago_in_words(idea.updated_at) %> ago
       </small>
     </p>
@@ -23,13 +26,22 @@
   </div>
 <% else %>
   <% obj.each do |idea| %>
+
     <%# ideas/index view %>
     <div class="row well col-md-10 col-md-offset-1">
       <p class="idea-text">
         <%= link_to idea.text, idea_path(idea) %>
       </p>
       <p class="idea-details" align="center">
-        <small>Created by <%= idea.user.email %> | Voting Style: <%= idea.voting_style %> | Anonymous comments: <%= idea.anonymous_comments? ? 'On' : 'Off' %> | Created <%=   time_ago_in_words(idea.created_at) %> ago | Last updated <%= time_ago_in_words(idea.updated_at) %> ago </small>
+        <small>
+          Created by <%= idea.user.email %> | 
+          Created <%=   time_ago_in_words(idea.created_at) %> ago | 
+          Last updated <%= time_ago_in_words(idea.updated_at) %> ago<br>
+          Voting Style: <%= idea.voting_style %> | 
+          Anonymous comments: <%= idea.anonymous_comments? ? 'On' : 'Off' %> |
+          Show votes: <%= idea.show_votes? ? 'Yes' : 'No' %> | 
+          Anonymous votes: <%= idea.anonymous_comments? ? 'On' : 'Off' %>
+        </small>
       </p>
       <div align="center" class="idea-actions">
         <%= link_to "Edit Idea", edit_idea_path(idea),

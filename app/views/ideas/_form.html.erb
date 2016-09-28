@@ -23,8 +23,7 @@
       </div>
     </div>
 
-    <%# Voting Style probably shouldn't be edited,
-        don't show these fields if editing %>
+    <%# Don't show these fields if editing %>
     <% if params[:action] != 'edit' %>
     
       <%# Show voting style field %>
@@ -36,20 +35,38 @@
           <%= f.select :voting_style, ['Binary', '1-10', '5 Stars', 'Fibonacci'], class: 'select form-control' %>
         </div>
       </div>
-      
-      <div class="row form-check">
-        <div class="form-check-label col-md-2">
-          <%= f.label :anonymous_comments, class: 'text-right' %>
+
+      <!-- Check boxes -->
+      <div class="row">
+        <div class="form-check">
+          <div class="form-check-label col-md-2">
+            <%= f.label :anonymous_comments, class: 'text-right' %>
+          </div>
+          <div class="form-check-input col-md-2">
+            <%= f.check_box :anonymous_comments %>
+          </div>
         </div>
-        <div class="form-check-input col-md-8">
-          <%= f.check_box :anonymous_comments %>
-          
+        <div class="form-check">
+          <div class="form-check-label col-md-1">
+            <%= f.label :show_votes, class: 'text-right' %>
+          </div>
+          <div class="form-check-input col-md-2">
+            <%= f.check_box :show_votes %>
+          </div>
+        </div>
+        <div class="form-check">
+          <div class="form-check-label col-md-2">
+            <%= f.label :anonymous_votes, class: 'text-right' %>
+          </div>
+          <div class="form-check-input col-md-2">
+            <%= f.check_box :anonymous_votes %>
+          </div>
         </div>
 
       </div>
-      
+
     <% end %>
-  
+
     <%# Buttons %>
     <div class="row form-group">
       <div class="col-sm-offset-2 col-sm-10 actions">

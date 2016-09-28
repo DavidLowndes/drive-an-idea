@@ -6,10 +6,6 @@ class Idea < ApplicationRecord
 
   validates :text, presence: true, length: { minimum: 3 }
 
-  def anonymous_comments?
-    anonymous_comments == 1
-  end
-
   def binary_voting_stats
     # Initialize vars
     running_total = 0
@@ -26,7 +22,7 @@ class Idea < ApplicationRecord
 
     end
     percent_score = running_total.to_f / votes.count * 100
-    
+
     [percent_score, positive_votes, negative_votes]
   end
 
