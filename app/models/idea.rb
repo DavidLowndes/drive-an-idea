@@ -5,6 +5,8 @@ class Idea < ApplicationRecord
   has_many :votes, dependent: :destroy
 
   validates :text, presence: true, length: { minimum: 3 }
+  validates :active_days, presence: true,
+                          numericality: { greater_than: 0, less_than: 7 }
 
   def binary_voting_stats
     # Initialize vars

@@ -14,7 +14,8 @@
         Show votes: <%= idea.show_votes? ? 'Yes' : 'No' %><br>
         Anonymous votes: <%= idea.anonymous_comments? ? 'On' : 'Off' %><br>
         Created <%= time_ago_in_words(idea.created_at) %> ago |
-        Last updated <%= time_ago_in_words(idea.updated_at) %> ago
+        Last updated <%= time_ago_in_words(idea.updated_at) %> ago<br>
+        Active days: <%= idea.active_days %>
       </small>
     </p>
     <div align="center" class="idea-actions">

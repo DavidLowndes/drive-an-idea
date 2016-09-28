@@ -79,6 +79,6 @@ class IdeasController < ApplicationController
   # only allow the white list through.
   def idea_params
     params.require(:idea).permit(:text, :user_id, :voting_style,                                                 :anonymous_comments, :show_votes,
-                                 :anonymous_votes)
+                                 :anonymous_votes, :active_days)
   end
 end
