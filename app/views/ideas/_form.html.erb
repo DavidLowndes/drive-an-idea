@@ -31,8 +31,18 @@
         <div class="control-label col-sm-2">
           <%= f.label :voting_style, class: 'text-right' %>
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-2">
           <%= f.select :voting_style, ['Binary', '1-10', '5 Stars', 'Fibonacci'], class: 'select form-control' %>
+        </div>
+      </div>
+
+      <%# Active Days field %>
+      <div class="row form-group">
+        <div class="control-label col-sm-2">
+          <%= f.label :active_days, class: 'text-right' %>
+        </div>
+        <div class="col-sm-2">
+          <%= f.number_field :active_days, class: 'form-control' %>
         </div>
       </div>
 
