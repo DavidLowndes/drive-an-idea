@@ -16,8 +16,25 @@ class Idea < ApplicationRecord
   end
 
   def active?
-    # Is the closing date in the future?
+    # Is the closing date in the future? Idea is still active.
     closing_date.future?
+  end
+  
+  def closed?
+    # Is the closing date already past? Idea is closed.
+    closing_date.past?
+  end
+  
+  def anonymous_votes?
+    anonymous_votes == 1
+  end
+  
+  def show_votes?
+    show_votes == 1
+  end
+  
+  def anonymous_comments?
+    anonymous_comments == 1
   end
 
   def binary_voting_stats
