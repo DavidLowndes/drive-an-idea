@@ -10,53 +10,77 @@
       <% stats = @idea.binary_voting_stats %>
     
       <ul>
-        <li><strong>Overall score: </strong><%= stats[0].round(2) %>%</li>
         <li><strong>Positive votes: </strong><%= stats[1] %></li>
         <li><strong>Negative votes: </strong><%= stats[2] %></li>
+        <li><strong>Percent score: </strong><%= stats[0].round(2) %></li>
       </ul>
 
     <% when '1-10' %>
 
       <% stats =  @idea.one_to_ten_voting_stats %>
-      <ul>
-        <li><strong>Average: </strong><%= stats[0].round(2) %></li>
-        <li><strong>1 votes: </strong><%= stats[1][0] %></li>
-        <li><strong>2 votes: </strong><%= stats[1][1] %></li>
-        <li><strong>3 votes: </strong><%= stats[1][2] %></li>
-        <li><strong>4 votes: </strong><%= stats[1][3] %></li>
-        <li><strong>5 votes: </strong><%= stats[1][4] %></li>
-        <li><strong>6 votes: </strong><%= stats[1][5] %></li>
-        <li><strong>7 votes: </strong><%= stats[1][6] %></li>
-        <li><strong>8 votes: </strong><%= stats[1][7] %></li>
-        <li><strong>9 votes: </strong><%= stats[1][8] %></li>
-        <li><strong>10 votes: </strong><%= stats[1][9] %></li>
-      </ul>
+      <% values = (1..10).to_a %>
+      <div align="center">
+        <table class="table">
+          <tr>
+            <th>Vote value</th>
+            <% values.each do |value| %>
+              <td><%= value %></td>
+            <% end %>
+          </tr>
+          <tr>
+            <th>Vote count</th>
+            <% values.each do |value| %>
+              <td><%= stats[1][value-1] %></td>
+            <% end %>
+        </table>
+    
+        <strong>Average: </strong><%= stats[0].round(2) %>
+      </div>
+      
 
     <% when '5 Stars' %>
 
       <% stats = @idea.five_stars_voting_stats %>
-      <ul>
-        <li><strong>Average stars: </strong><%= stats[0].round(2) %></li>
-        <li><strong>1 star votes: </strong><%= stats[1][0] %></li>
-        <li><strong>2 star votes: </strong><%= stats[1][1] %></li>
-        <li><strong>3 star votes: </strong><%= stats[1][2] %></li>
-        <li><strong>4 star votes: </strong><%= stats[1][3] %></li>
-        <li><strong>5 star votes: </strong><%= stats[1][4] %></li>
-      </ul>
+      <% values = (1..5).to_a %>
+      <div align="center">
+        <table class="table table-sm">
+          <tr>
+            <th>Vote value</th>
+            <% values.each do |value| %>
+              <td><%= value %></td>
+            <% end %>
+          </tr>
+          <tr>
+            <th>Vote count</th>
+            <% values.each do |value| %>
+              <td><%= stats[1][value-1] %></td>
+            <% end %>
+        </table>
+    
+        <strong>Average: </strong><%= stats[0].round(2) %>
+      </div>
 
     <% when 'Fibonacci' %>
 
       <% stats = @idea.fibonacci_voting_stats %>
-      <ul>
-        <li><strong>Average: </strong><%= stats[0].round(2) %></li>
-        <li><strong>1 votes: </strong><%= stats[1][0] %></li>
-        <li><strong>2 votes: </strong><%= stats[1][1] %></li>
-        <li><strong>3 votes: </strong><%= stats[1][2] %></li>
-        <li><strong>5 votes: </strong><%= stats[1][3] %></li>
-        <li><strong>8 votes: </strong><%= stats[1][4] %></li>
-        <li><strong>13 votes: </strong><%= stats[1][5] %></li>
-        <li><strong>21 votes: </strong><%= stats[1][6] %></li>
-      </ul>
+      <% values = [1, 2, 3, 5, 8, 13, 21] %>
+      <div align="center">
+        <table class="table table-sm">
+          <tr>
+            <th>Vote value</th>
+            <% values.each do |value| %>
+              <td><%= value %></td>
+            <% end %>
+          </tr>
+          <tr>
+            <th>Vote count</th>
+            <% (0..6).each do |value| %>
+              <td><%= stats[1][value] %></td>
+            <% end %>
+        </table>
+    
+        <strong>Average: </strong><%= stats[0].round(2) %>
+      </div>
 
     <% else %>
       Unrecognisable voting style, this should never happen. 

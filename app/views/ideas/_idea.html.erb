@@ -16,7 +16,7 @@
           Anonymous votes: <%= idea.anonymous_comments? ? 'On' : 'Off' %><br>
         </div>
         <div class="col-md-6">
-          Created at <%= idea.created_at %><br>
+          Created on: <%= idea.created_at.to_date %><br>
           Last updated <%= time_ago_in_words(idea.updated_at) %> ago<br>
           Active days: <%= idea.active_days %><br>
           Closing time: <%= idea.closing_date %><br>
