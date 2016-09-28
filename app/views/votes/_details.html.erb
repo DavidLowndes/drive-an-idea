@@ -1,0 +1,14 @@
+<h5 align="center">- Details -</h5>
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Vote</th>
+  </tr>
+  <% @idea.votes.each do |vote| %>
+    <tr>
+      <td><%= vote.user.full_name.present? ? vote.user.full_name
+                                           : vote.user.email %></td>
+      <td><%= vote.value %></td>
+    </tr>
+  <% end %>
+</table>

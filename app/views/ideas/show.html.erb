@@ -2,21 +2,21 @@
 <%= render 'idea', obj: @idea %>
 
 <div class="row col-md-offset-1 col-md-10 no-padding">
+  
   <div class="well col-md-6 vote-form">
     <!-- Show voting form -->
     <%= render 'votes/form', obj: @idea %>
   </div>
+  
   <div class="well col-md-6 vote-stats">
     <!-- Show voting stats -->
     <%= render 'votes/stats' %>
   </div>
 </div>
 
-
-
 <h4 align="center">
 	<div class="row well col-md-offset-1 col-md-10 comments-container">
-		<div class="row well col-md-5 col-md-offset-1">
+		<div class="well col-md-6 ">
 			<div class="scroller">
   			<strong>Comments</strong>
   			<p class = "comment-text">
@@ -24,7 +24,8 @@
   			</p>
 			</div>
 		</div>
-		<%= render 'comments/form' %>
+    <div class="well col-md-6">
+      <%= render 'comments/form' %>
+    </div>
 	</div>
 </h4>
-
