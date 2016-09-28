@@ -1,10 +1,17 @@
 <!-- <p id="notice"><%= notice %></p> -->
 <%= render 'idea', obj: @idea %>
 
-<!-- Show voting form -->
-<%= render 'votes/form', obj: @idea %>
-<!-- Show voting stats -->
-<%= render 'votes/stats' %>
+<div class="row col-md-offset-1 col-md-10 no-padding">
+  <div class="well col-md-6 vote-form">
+    <!-- Show voting form -->
+    <%= render 'votes/form', obj: @idea %>
+  </div>
+  <div class="well col-md-6 vote-stats">
+    <!-- Show voting stats -->
+    <%= render 'votes/stats' %>
+  </div>
+</div>
+
 
 
 <h4 align="center">

@@ -1,61 +1,59 @@
 <% @idea = obj %>
 
-<div class="row well col-md-offset-1 col-md-10">
-  <h4>Voting Form</h4>
+<h4 align="center">Voting Form</h4>
 
-  <% case @idea.voting_style 
-     when 'Binary' %>
-       
-    <%= form_for([@idea, Vote.new]) do |f| %>
-      <div class="form-group">
-        <%= f.submit '1', name: 'value', value: 1,
-                           class: 'btn btn-md btn-success' %>
-        <%= f.submit '0', name: 'value', value: 0, 
-                           class: 'btn btn-md btn-danger' %>
-      </div>
-    <% end %>
-  
-  <% when '1-10' %>  
-    
-    <%= form_for([@idea, Vote.new]) do |f| %>
-      <% values = (1..10).to_a %>
-      <div class="form-group">
-        <% values.each do |value| %>
-          <%= f.submit "#{value}", name: 'value', value: value, 
-                                 class: 'btn btn-md btn-default' %>
-        <% end %>
-      </div>
-    <% end %>
-    
-  <% when '5 Stars' %>
-  
-    <%= form_for([@idea, Vote.new]) do |f| %>
-    
-      <% values = (1..5).to_a %>
-      <div class="form-group">
-        <% values.each do |value| %>
-          <%= f.submit "#{value}", name: 'value', value: value, 
-                                 class: 'btn btn-md btn-default' %>
-                                           
-        <% end %>
-      </div>
-    <% end %>
-    
-  <% when 'Fibonacci' %>
-  
-    <%= form_for([@idea, Vote.new]) do |f| %>
-      <% values = [1, 2, 3, 5, 8, 13, 21] %>
-      <div class="form-group">
-        <% values.each do |value| %>
-        <%= f.submit "#{value}", name: 'value', value: value, 
-                                 class: 'btn btn-md btn-default' %>
-                                           
-        <% end %>
-      </div>
-    <% end %>    
-  <% else %>
-  
-    <h2>Unrecognisable voting style, please edit your idea's voting style.</h2>
-    
+<% case @idea.voting_style 
+   when 'Binary' %>
+     
+  <%= form_for([@idea, Vote.new]) do |f| %>
+    <div align="center" class="form-group">
+      <%= f.submit '1', name: 'value', value: 1,
+                         class: 'btn btn-md btn-success' %>
+      <%= f.submit '0', name: 'value', value: 0, 
+                         class: 'btn btn-md btn-danger' %>
+    </div>
   <% end %>
-</div>
+
+<% when '1-10' %>  
+  
+  <%= form_for([@idea, Vote.new]) do |f| %>
+    <% values = (1..10).to_a %>
+    <div class="form-group">
+      <% values.each do |value| %>
+        <%= f.submit "#{value}", name: 'value', value: value, 
+                               class: 'btn btn-sm btn-default' %>
+      <% end %>
+    </div>
+  <% end %>
+  
+<% when '5 Stars' %>
+
+  <%= form_for([@idea, Vote.new]) do |f| %>
+  
+    <% values = (1..5).to_a %>
+    <div align="center" class="form-group">
+      <% values.each do |value| %>
+        <%= f.submit "#{value}", name: 'value', value: value, 
+                               class: 'btn btn-md btn-default' %>
+                                         
+      <% end %>
+    </div>
+  <% end %>
+  
+<% when 'Fibonacci' %>
+
+  <%= form_for([@idea, Vote.new]) do |f| %>
+    <% values = [1, 2, 3, 5, 8, 13, 21] %>
+    <div align="center" class="form-group">
+      <% values.each do |value| %>
+      <%= f.submit "#{value}", name: 'value', value: value, 
+                               class: 'btn btn-md btn-default' %>
+                                         
+      <% end %>
+    </div>
+  <% end %>    
+<% else %>
+
+  <h2>Unrecognisable voting style, please delete and resubmit your idea.</h2>
+  
+<% end %>

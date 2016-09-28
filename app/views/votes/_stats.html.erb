@@ -1,20 +1,22 @@
-<div class="row well col-md-offset-1 col-md-10 voting-stats">
-  <h4>Voting Stats</h4>
+<h4 align="center">Voting Stats</h4>
+
+<% if @idea.show_votes? || @idea.user == current_user %>
+  <%# Display votes %>
   <% if @idea.votes.any? %>
-  
+
     <% case @idea.voting_style 
        when 'Binary' %>
-         
+       
       <% stats = @idea.binary_voting_stats %>
-      
+    
       <ul>
         <li><strong>Overall score: </strong><%= stats[0].round(2) %>%</li>
         <li><strong>Positive votes: </strong><%= stats[1] %></li>
         <li><strong>Negative votes: </strong><%= stats[2] %></li>
       </ul>
-      
+
     <% when '1-10' %>
-    
+
       <% stats =  @idea.one_to_ten_voting_stats %>
       <ul>
         <li><strong>Average: </strong><%= stats[0].round(2) %></li>
@@ -29,9 +31,9 @@
         <li><strong>9 votes: </strong><%= stats[1][8] %></li>
         <li><strong>10 votes: </strong><%= stats[1][9] %></li>
       </ul>
-      
+
     <% when '5 Stars' %>
-    
+
       <% stats = @idea.five_stars_voting_stats %>
       <ul>
         <li><strong>Average stars: </strong><%= stats[0].round(2) %></li>
@@ -41,8 +43,9 @@
         <li><strong>4 star votes: </strong><%= stats[1][3] %></li>
         <li><strong>5 star votes: </strong><%= stats[1][4] %></li>
       </ul>
-      
+
     <% when 'Fibonacci' %>
+
       <% stats = @idea.fibonacci_voting_stats %>
       <ul>
         <li><strong>Average: </strong><%= stats[0].round(2) %></li>
@@ -54,13 +57,21 @@
         <li><strong>13 votes: </strong><%= stats[1][5] %></li>
         <li><strong>21 votes: </strong><%= stats[1][6] %></li>
       </ul>
-      
+
     <% else %>
-      Unrecognisable voting style, please edit your idea's voting style.
+      Unrecognisable voting style, this should never happen. 
+      Try to delete, then resubmit your idea/
     <% end %>
   <% else %>
-    No votes! Please vote on this idea.
+    <p class="text-center">
+      No votes! Please vote on this idea.
+    </p>
   <% end %>
-  
-  
-</div>
+<% else %>
+  <p class="text-center">
+    [ Votes are hidden for this idea ]
+  </p>
+<% end %>
+
+
+
