@@ -1,31 +1,43 @@
 <!-- <p id="notice"><%= notice %></p> -->
 <%= render 'idea', obj: @idea %>
 
-<div class="row col-md-offset-1 col-md-10 no-padding">
-  
-  <div class="well col-md-6 vote-form">
-    <!-- Show voting form -->
-    <%= render 'votes/form', obj: @idea %>
+<div class="row col-md-12">
+  <%# Whole thing %>
+  <div class="col-md-6">
+    <%# Left side %>
+    <div class="well col-md-12">
+      <%# Top left %>
+      <%# Voting form %>
+      <%= render 'votes/form', obj: @idea %>
+    </div>
+    <div class="well col-md-12">
+      <%# Bottom left %>
+      <%# Voting stats %>
+      <%= render 'votes/stats' %>
+    </div>
   </div>
   
-  <div class="well col-md-6 vote-stats">
-    <!-- Show voting stats -->
-    <%= render 'votes/stats' %>
-  </div>
-</div>
-
-<h4 align="center">
-	<div class="row well col-md-offset-1 col-md-10 comments-container">
-		<div class="well col-md-6 ">
+	<div align="center" class="col-md-6">
+    <%# Right side %>
+    
+    <div class="well col-md-12">
+      <%# Top right %>
+      <%= render 'comments/form' %>
+    </div>
+    
+		<div class="well col-md-12">
+      <%# Bottom right %>
 			<div class="scroller">
-  			<strong>Comments</strong>
+  			<h4>Comments</h4>
   			<p class = "comment-text">
   				<%= render @idea.comments %>
   			</p>
 			</div>
 		</div>
-    <div class="well col-md-6">
-      <%= render 'comments/form' %>
-    </div>
+    
+    
+    
 	</div>
-</h4>
+  
+</div>
+
