@@ -8,6 +8,17 @@ class Idea < ApplicationRecord
   validates :active_days, presence: true,
                           numericality: { greater_than: 0, less_than: 7 }
 
+  def closing_date
+    # Get the date created, advance it by the specified number of days
+    # and move the timer to the end of the day (23:59:59)
+    created_at.advance(:days => active_days).end_of_day
+  end
+  
+  def active?
+    # Is the closing date in the future?
+    closing_date.future?
+  end
+
   def binary_voting_stats
     # Initialize vars
     running_total = 0

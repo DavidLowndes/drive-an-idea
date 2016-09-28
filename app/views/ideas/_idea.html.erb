@@ -6,23 +6,29 @@
     <p class="idea-text text-center">
       <%= idea.text %>
     </p>
-    <p class="idea-details" align="center">
+    <div class="row idea-details" align="center">
       <small>
-        Created by: <%= idea.user.full_name %><br>
-        Voting Style: <%= idea.voting_style %><br>
-        Anonymous comments: <%= idea.anonymous_comments? ? 'On' : 'Off' %><br>
-        Show votes: <%= idea.show_votes? ? 'Yes' : 'No' %><br>
-        Anonymous votes: <%= idea.anonymous_comments? ? 'On' : 'Off' %><br>
-        Created <%= time_ago_in_words(idea.created_at) %> ago |
-        Last updated <%= time_ago_in_words(idea.updated_at) %> ago<br>
-        Active days: <%= idea.active_days %>
+        <div class="col-md-6">
+          Created by: <%= idea.user.full_name %><br>
+          Voting Style: <%= idea.voting_style %><br>
+          Anonymous comments: <%= idea.anonymous_comments? ? 'On' : 'Off' %><br>
+          Show votes: <%= idea.show_votes? ? 'Yes' : 'No' %><br>
+          Anonymous votes: <%= idea.anonymous_comments? ? 'On' : 'Off' %><br>
+        </div>
+        <div class="col-md-6">
+          Created at <%= idea.created_at %><br>
+          Last updated <%= time_ago_in_words(idea.updated_at) %> ago<br>
+          Active days: <%= idea.active_days %><br>
+          Closing time: <%= idea.closing_date %><br>
+          Active? <%= idea.active? ? 'Yes' : 'No' %>
+        </div>
       </small>
-    </p>
-    <div align="center" class="idea-actions">
+    </div>
+    <div align="center" class="row idea-actions">
       <%= link_to "Edit Idea", edit_idea_path(idea),
-                                       class: "btn btn-md btn-warning" %>
+                               class: "btn btn-md btn-warning" %>
       <%= link_to "Delete Idea", idea_path(idea), method: :delete,
-                                       class: "btn btn-md btn-danger" %>
+                                 class: "btn btn-md btn-danger" %>
     </div>
   </div>
 <% else %>
@@ -30,15 +36,18 @@
 
     <%# ideas/index view %>
     <div class="row well col-md-10 col-md-offset-1">
-      <p class="idea-text">
+      <p class="idea-text text-center">
         <%= link_to idea.text, idea_path(idea) %>
       </p>
       <p class="idea-details" align="center">
         <small>
           Created by <%= idea.user.email %> | 
-          Created <%=   time_ago_in_words(idea.created_at) %> ago | 
+          Created <%= time_ago_in_words(idea.created_at) %> ago | 
           Last updated <%= time_ago_in_words(idea.updated_at) %> ago<br>
-          Voting Style: <%= idea.voting_style %> | 
+          Active days: <%= idea.active_days %> | 
+          Closing day: <%= idea.closing_date.to_date %> |
+          Active? <%= idea.active? ? 'Yes' : 'No' %><br>
+          Voting style: <%= idea.voting_style %> | 
           Anonymous comments: <%= idea.anonymous_comments? ? 'On' : 'Off' %> |
           Show votes: <%= idea.show_votes? ? 'Yes' : 'No' %> | 
           Anonymous votes: <%= idea.anonymous_comments? ? 'On' : 'Off' %>
