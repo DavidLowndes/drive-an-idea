@@ -13,6 +13,13 @@ body {
   color: #EEE !important;
 }
 
+.idea-text {
+  a:hover {
+    color: black !important;
+    background-color: transparent;
+  }
+}
+
 /* Navbar */
 
 .navbar-default {
@@ -34,6 +41,15 @@ a.dropdown-toggle {
     color: #333;
     background-color: transparent !important;
   }
+  &:focus {
+    color: #333;
+    background-color: transparent !important;
+    &:active {
+      color: #333;
+      background-color: transparent !important;
+    }
+  }
+  
 }
 
 li.dropdown {
