@@ -1,4 +1,7 @@
-<h5 align="center">[ Voting has closed for this idea ]</h5>
+<% if @idea.closed? %>
+  <h6 align="center">[ This idea is closed, and can no longer be voted on ]</h6>
+<% end %>
+
 <h4 align="center">Voting Stats</h4>
 
 <% if @idea.reveal_current_votes? || @idea.closed? || @idea.user == current_user %>
@@ -7,8 +10,8 @@
     <%# Display votes trends %>
     <%= render 'votes/trends' %>
     
-    <%# If votes aren't anonymous %>
-    <% if !@idea.reveal_voter_details? %>
+    <%# If votes aren't anonymous, reveal them %>
+    <% if @idea.reveal_voter_details? %>
       <br>
       <%= render 'votes/details' %>
     <% end %>

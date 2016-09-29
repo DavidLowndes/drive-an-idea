@@ -1,34 +1,46 @@
-<!-- <p id="notice"><%= notice %></p> -->
+<%# Idea view at top %>
 <%= render 'idea', obj: @idea %>
 
+<%# Entire vote and comment section %>
 <div class="row col-md-12">
-  <%# Whole thing %>
+  
+  <%# Left side %>
   <div class="col-md-6">
-    <%# Left side %>
+    
+    <%# Top left %>
+    <%# Voting form, is hidden when idea is closed %>
     <% if @idea.active? %>
       <div class="well col-md-12">
-        <%# Top left %>
-        <%# Voting form %>
         <%= render 'votes/form', obj: @idea %>
       </div>
     <% end %>
+    
+    <%# Bottom left %>
+    <%# Voting stats %>
     <div class="well col-md-12">
-      <%# Bottom left %>
-      <%# Voting stats %>
       <%= render 'votes/stats' %>
     </div>
   </div>
   
+  <%# Right side %>
 	<div align="center" class="col-md-6">
-    <%# Right side %>
     
-    <div class="well col-md-12">
-      <%# Top right %>
-      <%= render 'comments/form' %>
-    </div>
+    <%# Top right %>
+    <%# Comment form, hidden when idea is closed %>
+    <% if @idea.active? %>
+      <div class="well col-md-12">
+        <%= render 'comments/form' %>
+      </div>
+    <% end %>
     
+    <%# Bottom right %>
+    <%# Comments %>
 		<div class="well col-md-12">
-      <%# Bottom right %>
+      <% if @idea.closed? %>
+        <h6 align="center">
+          [This idea is closed, and can no longer be commented on ]
+        </h6>
+      <% end %>
 			<div class="scroller">
   			<h4>Comments</h4>
   			<p class = "comment-text">
@@ -36,10 +48,5 @@
   			</p>
 			</div>
 		</div>
-    
-    
-    
 	</div>
-  
 </div>
-
