@@ -19,6 +19,7 @@ class IdeasController < ApplicationController
 
   # GET /ideas/1/edit
   def edit
+    authorize! :update, @idea
   end
 
   # POST /ideas
@@ -43,6 +44,7 @@ class IdeasController < ApplicationController
   # PATCH/PUT /ideas/1
   # PATCH/PUT /ideas/1.json
   def update
+    authorize! :update, @idea
     respond_to do |format|
       if @idea.update(idea_params)
         format.html {
@@ -59,6 +61,7 @@ class IdeasController < ApplicationController
   # DELETE /ideas/1
   # DELETE /ideas/1.json
   def destroy
+    authorize! :destroy, @idea
     @idea.destroy
     respond_to do |format|
       format.html {

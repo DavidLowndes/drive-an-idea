@@ -8,6 +8,9 @@
 	<%= comment.body %>
 </p>
 
-<p class = "delete-comment">
-	<%= link_to "Delete Comment", [comment.idea, comment], method: :delete, class: "btn btn-xs btn-danger" %>
-</p>
+<div align="center" class = "row comment-actions">
+
+<% if can? :destroy, comment %>
+<%= link_to "Delete Comment", [comment.idea, comment], method: :delete, class: "btn btn-xs btn-danger" %>
+<% end %>
+</div>

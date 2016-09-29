@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
+  load_and_authorize_resource param_method: :my_sanitizer
+  load_and_authorize_resource :through => :current_user
   def create
     @idea = Idea.find(params[:idea_id])
     @comment = @idea.comments.create(comment_params)
@@ -22,5 +25,9 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:commenter, :body)
+  end
+  
+  def my_sanitizer
+    params.require(:comment).permit(:body)
   end
 end

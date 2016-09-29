@@ -24,11 +24,16 @@
         </div>
       </small>
     </div>
+	
     <div align="center" class="row idea-actions">
-      <%= link_to "Edit Idea", edit_idea_path(idea),
+		<% if can? :update, @idea %>
+      	<%= link_to "Edit Idea", edit_idea_path(idea),
                                class: "btn btn-md btn-warning" %>
-      <%= link_to "Delete Idea", idea_path(idea), method: :delete,
+		<% end %>
+		<% if can? :destroy, @idea %>
+     	 <%= link_to "Delete Idea", idea_path(idea), method: :delete,
                                  class: "btn btn-md btn-danger" %>
+		<% end %>
     </div>
   </div>
 <% else %>
