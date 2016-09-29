@@ -1,17 +1,15 @@
-<h4 align ="center">	
-	<div class = "scroller">
-		<strong>Add a comment:</strong>
+<div align ="center">	
+		<h4>Add a comment:</h4>
 		<%= form_for([@idea, @idea.comments.build]) do |f| %>
-			<p>
-				<%= f.text_area :body %>
-			</p>
-			<p>
-				<%= f.submit %>
-			</p>
+      <div class="form-group">
+        <p class="col-md-10 col-md-offset-1">
+  				<%= f.text_area :body, class: 'form-control', rows: 3 %>
+        </p>
+        <p>
+  			<%= f.submit class: 'btn btn-md btn-primary' %>
+        </p>
+      </div>
+			
 		<% end %>
-	</div>
-</h4>
 
-
-
-
+</div>
