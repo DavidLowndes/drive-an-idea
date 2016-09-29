@@ -1,7 +1,12 @@
 <% if comment.id.present? %>
   <p>
   	<strong>From:</strong>
-  	<%= @idea.anonymous_comments? ? 'Anonymous' : comment.user.full_name %>
+  	<% if @idea.anonymous_comments? %>
+      Anonymous
+    <% else %>
+      <%= comment.user.full_name.present? ? comment.user.full_name
+                                          : comment.user.email %>
+    <% end %>
   </p>
 
   <p>
