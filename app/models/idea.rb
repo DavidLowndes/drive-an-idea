@@ -9,7 +9,7 @@ class Idea < ApplicationRecord
                           numericality: { greater_than_or_equal_to: 0,
                                           less_than: 7 }
 
-  def reveal_time
+  def closing_time
     # Get the date created, advance it by the specified number of days
     # and move the timer to the end of the day (23:59:59)
     created_at.advance(:days => active_days).end_of_day
@@ -17,12 +17,12 @@ class Idea < ApplicationRecord
 
   def active?
     # Is the closing date in the future? Idea is still active.
-    reveal_time.future?
+    closing_time.future?
   end
   
   def closed?
     # Is the closing date already past? Idea is closed.
-    reveal_time.past?
+    closing_time.past?
   end
   
   def reveal_voter_details?
