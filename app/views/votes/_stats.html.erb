@@ -1,7 +1,7 @@
+<h5 align="center">[ Voting has closed for this idea ]</h5>
 <h4 align="center">Voting Stats</h4>
 
-<% if @idea.reveal_current_votes? || @idea.closed?
-                                  || @idea.user == current_user %>
+<% if @idea.reveal_current_votes? || @idea.closed? || @idea.user == current_user %>
 
   <% if @idea.votes.any? %>
     <%# Display votes trends %>

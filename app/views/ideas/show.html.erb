@@ -5,11 +5,13 @@
   <%# Whole thing %>
   <div class="col-md-6">
     <%# Left side %>
-    <div class="well col-md-12">
-      <%# Top left %>
-      <%# Voting form %>
-      <%= render 'votes/form', obj: @idea %>
-    </div>
+    <% if @idea.active? %>
+      <div class="well col-md-12">
+        <%# Top left %>
+        <%# Voting form %>
+        <%= render 'votes/form', obj: @idea %>
+      </div>
+    <% end %>
     <div class="well col-md-12">
       <%# Bottom left %>
       <%# Voting stats %>
