@@ -8,19 +8,37 @@
     </p>
     <div class="row idea-details" align="center">
       <small>
+        <%# Left meta-details %>
         <div class="col-md-6">
-          Created by: <%= idea.user.full_name %><br>
-          Voting Style: <%= idea.voting_style %><br>
-          Anonymous comments: <%= idea.anonymous_comments? ? 'On' : 'Off' %><br>
-          Show votes: <%= idea.show_votes? ? 'Yes' : 'No' %><br>
-          Anonymous votes: <%= idea.anonymous_comments? ? 'On' : 'Off' %><br>
+          Created by: <%= idea.user.full_name.present? ? idea.user.full_name
+                                                       : idea.user.email %>
+          <br>
+          Voting Style: <%= idea.voting_style %>
+          <br>
+          Anonymous Comments are <%= idea.anonymous_comments? ? 'on'
+                                                              : 'off' %>
+          <br>
+          Real-time votes are <%= idea.reveal_current_votes? ? 'on'
+                                                             : 'off' %>
+          <br>
+          Voter Details are <%= idea.reveal_voter_details? ? 'on'
+                                                           : 'off' %>
         </div>
+        <%# Right meta-details %>
         <div class="col-md-6">
-          Created at <%= idea.created_at %><br>
-          Last updated <%= time_ago_in_words(idea.updated_at) %> ago<br>
-          Active days: <%= idea.active_days %><br>
-          Closing time: <%= idea.closing_date %><br>
-          Active? <%= idea.active? ? 'Yes' : 'No' %>
+          Created <%= time_ago_in_words(idea.created_at) %> ago
+          <br>
+          Last updated <%= time_ago_in_words(idea.updated_at) %> ago
+          <br>
+          Exact closing time: <%= idea.closing_time %>
+          <br>
+          <% if idea.active? %>
+            Idea will close in <%= time_ago_in_words(idea.closing_time) %>
+          <% else %>
+            Idea closed about <%= time_ago_in_words(idea.closing_time) %> ago
+          <% end %>
+          <br>
+          Currently active? <%= idea.active? ? 'Yes' : 'No' %>
         </div>
       </small>
     </div>
@@ -50,11 +68,11 @@
           Created <%= time_ago_in_words(idea.created_at) %> ago | 
           Last updated <%= time_ago_in_words(idea.updated_at) %> ago<br>
           Active days: <%= idea.active_days %> | 
-          Closing day: <%= idea.closing_date.to_date %> |
+          Closing day: <%= idea.closing_time.to_date %> |
           Active? <%= idea.active? ? 'Yes' : 'No' %><br>
           Voting style: <%= idea.voting_style %> | 
           Anonymous comments: <%= idea.anonymous_comments? ? 'On' : 'Off' %> |
-          Show votes: <%= idea.show_votes? ? 'Yes' : 'No' %> | 
+          Show votes: <%= idea.reveal_current_votes? ? 'Yes' : 'No' %> | 
           Anonymous votes: <%= idea.anonymous_comments? ? 'On' : 'Off' %>
         </small>
       </p>

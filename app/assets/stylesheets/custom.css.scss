@@ -72,10 +72,9 @@ li.dropdown {
 
 /* Votes */
 
-//.vote-form {
-//  padding: 0px 0px 0px 0px;
-//  margin-right:10px;
-//}
+.table {
+  margin-bottom: 10px;
+}
 
 /* Forms */
 
@@ -89,7 +88,7 @@ li.dropdown {
 
 footer {
   color: #777;
-  margin-top: 20px;
+  margin: 20px 0px;
   border-top: 1px solid #777;
   .footer-text {
     margin-top: 10px;
@@ -125,8 +124,6 @@ footer {
 	display: inline-block;
 	vertical-align: middle;
 	float: left;
-
-	
 }
 
 .comments-input {
@@ -140,7 +137,7 @@ footer {
 
 	overflow: auto;
 	float: middle;
-	max-height: 300px;
+	max-height: 360px;
 }
 
 /* Votes */

@@ -1,77 +1,31 @@
-<h4 align="center">Voting Stats</h4>
-
-<% if @idea.show_votes? || @idea.user == current_user %>
-  <%# Display votes %>
-  <% if @idea.votes.any? %>
-
-    <% case @idea.voting_style 
-       when 'Binary' %>
-       
-      <% stats = @idea.binary_voting_stats %>
-    
-      <ul>
-        <li><strong>Overall score: </strong><%= stats[0].round(2) %>%</li>
-        <li><strong>Positive votes: </strong><%= stats[1] %></li>
-        <li><strong>Negative votes: </strong><%= stats[2] %></li>
-      </ul>
-
-    <% when '1-10' %>
-
-      <% stats =  @idea.one_to_ten_voting_stats %>
-      <ul>
-        <li><strong>Average: </strong><%= stats[0].round(2) %></li>
-        <li><strong>1 votes: </strong><%= stats[1][0] %></li>
-        <li><strong>2 votes: </strong><%= stats[1][1] %></li>
-        <li><strong>3 votes: </strong><%= stats[1][2] %></li>
-        <li><strong>4 votes: </strong><%= stats[1][3] %></li>
-        <li><strong>5 votes: </strong><%= stats[1][4] %></li>
-        <li><strong>6 votes: </strong><%= stats[1][5] %></li>
-        <li><strong>7 votes: </strong><%= stats[1][6] %></li>
-        <li><strong>8 votes: </strong><%= stats[1][7] %></li>
-        <li><strong>9 votes: </strong><%= stats[1][8] %></li>
-        <li><strong>10 votes: </strong><%= stats[1][9] %></li>
-      </ul>
-
-    <% when '5 Stars' %>
-
-      <% stats = @idea.five_stars_voting_stats %>
-      <ul>
-        <li><strong>Average stars: </strong><%= stats[0].round(2) %></li>
-        <li><strong>1 star votes: </strong><%= stats[1][0] %></li>
-        <li><strong>2 star votes: </strong><%= stats[1][1] %></li>
-        <li><strong>3 star votes: </strong><%= stats[1][2] %></li>
-        <li><strong>4 star votes: </strong><%= stats[1][3] %></li>
-        <li><strong>5 star votes: </strong><%= stats[1][4] %></li>
-      </ul>
-
-    <% when 'Fibonacci' %>
-
-      <% stats = @idea.fibonacci_voting_stats %>
-      <ul>
-        <li><strong>Average: </strong><%= stats[0].round(2) %></li>
-        <li><strong>1 votes: </strong><%= stats[1][0] %></li>
-        <li><strong>2 votes: </strong><%= stats[1][1] %></li>
-        <li><strong>3 votes: </strong><%= stats[1][2] %></li>
-        <li><strong>5 votes: </strong><%= stats[1][3] %></li>
-        <li><strong>8 votes: </strong><%= stats[1][4] %></li>
-        <li><strong>13 votes: </strong><%= stats[1][5] %></li>
-        <li><strong>21 votes: </strong><%= stats[1][6] %></li>
-      </ul>
-
-    <% else %>
-      Unrecognisable voting style, this should never happen. 
-      Try to delete, then resubmit your idea/
-    <% end %>
-  <% else %>
-    <p class="text-center">
-      No votes! Please vote on this idea.
-    </p>
-  <% end %>
-<% else %>
-  <p class="text-center">
-    [ Votes are hidden for this idea ]
-  </p>
+<% if @idea.closed? %>
+  <h6 align="center">[ This idea is closed, and can no longer be voted on ]</h6>
 <% end %>
 
+<h4 align="center">Voting Stats</h4>
 
+<% if @idea.reveal_current_votes? || @idea.closed? || @idea.user == current_user %>
 
+  <% if @idea.votes.any? %>
+    <%# Display votes trends %>
+    <%= render 'votes/trends' %>
+    
+    <%# If votes aren't anonymous, reveal them %>
+    <% if @idea.reveal_voter_details? %>
+      <br>
+      <%= render 'votes/details' %>
+    <% end %>
+    
+  <% else %>
+    <%# There are no votes yet %>
+    <p class="text-center">
+      There are no votes to show.
+    </p>
+  <% end %>
+  
+<% else %>
+  <%# Votes are hidden %>
+  <p class="text-center">
+    [ Votes are currently hidden for this idea ]
+  </p>
+<% end %>
