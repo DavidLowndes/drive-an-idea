@@ -1,25 +1,29 @@
 <% if comment.id.present? %>
-  <p>
-  	<strong>From:</strong>
-  	<% if @idea.anonymous_comments? %>
-      Anonymous
-    <% else %>
-      <%= comment.user.full_name.present? ? comment.user.full_name
-                                          : comment.user.email %>
+  <tr>
+    <% if @idea.anonymous_comments? %>
+        
+                                            
     <% end %>
-  </p>
-
-  <p>
-  	<strong>Comment:</strong>
-  	<%= comment.body %>
-  </p>
-
-  <div align="center" class="row comment-actions">
+    <td>
+      <%= comment.body %>
+      <% if !@idea.anonymous_comments? %>
+        <small> - 
+          <strong>
+            <%= comment.user.full_name.present? ?                                               comment.user.full_name : comment.user.email %>
+          </strong>
+        </small>
+      <% end %>
+    </td>
     <% if can? :destroy, comment %>
-      <%= link_to "Delete Comment", [comment.idea, comment],
-                                    method: :delete,
-                                    class: "btn btn-xs btn-danger" %>
+      <td>
+        <div class="row">
+            <%= link_to "Delete", [comment.idea, comment],
+                                          method: :delete,
+                                          class: "btn btn-xs btn-danger" %>
+        </div>
+      </td>
     <% end %>
-  </div>
+  </tr>
+  
 <% end %>
 

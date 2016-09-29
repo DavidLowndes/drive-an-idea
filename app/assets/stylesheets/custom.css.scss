@@ -129,9 +129,9 @@ footer {
 }
 
 .comment-actions {
-    margin-top: 5px;
+  margin-top: 5px;
 	border-bottom: 1px solid;
-    padding-top: 10px;
+  padding-top: 10px;
 	padding-bottom: 10px;
 }
 
@@ -141,17 +141,9 @@ footer {
 	float: left;
 }
 
-.comments-input {
-	display: inline-block;
-	float: left;
-	border-top: 15px;
-
-}
-
 .scroller {
 	overflow: auto;
-	float: middle;
-	max-height: 360px;
+  max-height: 360px;
 }
 
 /* Votes */
