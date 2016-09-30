@@ -31,12 +31,12 @@
       <small>
         <%# Left meta-details %>
         <div class="col-md-6">
-          Created by 
-          <%= idea.user.full_name.present? ? idea.user.full_name
-                                           : idea.user.email %>,
+          This idea was created by
+          <strong><%= idea.user.full_name.present? ? idea.user.full_name
+                                             : idea.user.email %></strong>,
           <%= time_ago_in_words(idea.created_at) %> ago. 
           <br>
-          This idea was last edited
+          This idea was last changed
           <%= time_ago_in_words(idea.updated_at) %> ago.
           <br>
           This idea is currently
@@ -52,16 +52,20 @@
         </div>
         <%# Right meta-details %>
         <div class="col-md-6">
-          The voting style is <%= idea.voting_style %>.
+          This idea's voting style is <%= idea.voting_style %>.
           <br>
-          Comments are <%= 'NOT' if !idea.anonymous_comments? %> anonymous.
+          Comments
+          <strong>
+            ARE <%= 'NOT' if !idea.anonymous_comments? %>
+          </strong>
+          anonymous.
           <br>
           Votes will be revealed
           <%= idea.real_time_voting? ? 'as they come in'
                                      : 'when the idea closes' %>.
           <br>
-          Voter names and vote choices WILL 
-            <%= 'NOT' if !idea.reveal_voter_details? %>
+          Voter names and vote choices
+          <strong>WILL <%= 'NOT' if !idea.reveal_voter_details? %></strong>
           be displayed.
         </div>
       </small>
