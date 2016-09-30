@@ -7,7 +7,7 @@ class Idea < ApplicationRecord
   validates :text, presence: true, length: { minimum: 3 }
   validates :open_days, presence: true,
                         numericality: { greater_than_or_equal_to: 0,
-                                        less_than: 7 }
+                                        less_than_or_equal_to: 31 }
 
   def closing_time
     # Get the date created, advance it by the specified number of days
@@ -66,8 +66,8 @@ class Idea < ApplicationRecord
       vote_counts[vote.value - 1] += 1
       running_total += vote.value
     end
-    average = running_total.to_f / votes.count
-    [average, vote_counts]
+    percentage_score = running_total.to_f / votes.count * 10
+    [percentage_score, vote_counts]
   end
 
   def five_stars_voting_stats
@@ -104,7 +104,8 @@ class Idea < ApplicationRecord
       end
       running_total += vote.value
     end
-    average = running_total.to_f / votes.count
-    [average, vote_counts]
+    maximum_score = votes.count * 21
+    percent_score = running_total.to_f / maximum_score * 100
+    [[running_total, maximum_score, percent_score], vote_counts]
   end
 end

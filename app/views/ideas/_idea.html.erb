@@ -11,7 +11,9 @@
           <i class="fa fa-chevron-down fa-2x" aria-hidden="true"></i>
         </a>
         <ul class="dropdown-menu dropdown-menu-right">
-          <li><%= link_to "Edit Idea", edit_idea_path(idea) %></li>
+          <% if idea.open? %>
+            <li><%= link_to "Edit Idea", edit_idea_path(idea) %></li>
+          <% end %>
           <li><%= link_to "Delete Idea", idea_path(idea),
                                          method: :delete %></li>
         </ul>
@@ -29,35 +31,38 @@
       <small>
         <%# Left meta-details %>
         <div class="col-md-6">
-          Created by: <%= idea.user.full_name.present? ? idea.user.full_name
-                                                       : idea.user.email %>
+          Created by 
+          <%= idea.user.full_name.present? ? idea.user.full_name
+                                           : idea.user.email %>,
+          <%= time_ago_in_words(idea.created_at) %> ago. 
           <br>
-          Voting Style: <%= idea.voting_style %>
+          This idea was last edited
+          <%= time_ago_in_words(idea.updated_at) %> ago.
           <br>
-          Anonymous Comments are <%= idea.anonymous_comments? ? 'on'
-                                                              : 'off' %>
+          This idea is currently
+          <strong><%= idea.open? ? 'OPEN' : 'CLOSED' %></strong>.
           <br>
-          Real-time votes are <%= idea.real_time_voting? ? 'on'
-                                                             : 'off' %>
+          <% if idea.open? %>
+            This idea will close in <%= time_ago_in_words(idea.closing_time) %>.
+          <% else %>
+            This idea closed about
+            <%= time_ago_in_words(idea.closing_time) %> ago.
+          <% end %>
           <br>
-          Voter Details are <%= idea.reveal_voter_details? ? 'on'
-                                                           : 'off' %>
         </div>
         <%# Right meta-details %>
         <div class="col-md-6">
-          Created <%= time_ago_in_words(idea.created_at) %> ago
+          The voting style is <%= idea.voting_style %>.
           <br>
-          Last updated <%= time_ago_in_words(idea.updated_at) %> ago
+          Comments are <%= 'NOT' if !idea.anonymous_comments? %> anonymous.
           <br>
-          Exact closing time: <%= idea.closing_time %>
+          Votes will be revealed
+          <%= idea.real_time_voting? ? 'as they come in'
+                                     : 'when the idea closes' %>.
           <br>
-          <% if idea.open? %>
-            Idea will close in <%= time_ago_in_words(idea.closing_time) %>
-          <% else %>
-            Idea closed about <%= time_ago_in_words(idea.closing_time) %> ago
-          <% end %>
-          <br>
-          Currently open? <%= idea.open? ? 'Yes' : 'No' %>
+          Voter names and vote choices WILL 
+            <%= 'NOT' if !idea.reveal_voter_details? %>
+          be displayed.
         </div>
       </small>
     </div>

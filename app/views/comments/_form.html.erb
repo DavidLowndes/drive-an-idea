@@ -1,7 +1,7 @@
 <h4 align="center">Add a comment:</h4>
 <%= form_for([@idea, @idea.comments.build]) do |f| %>
   <div class="form-group">
-    <p class="col-md-10 col-md-offset-1">
+    <p class="idea-body col-md-10 col-md-offset-1">
 			<%= f.trix_editor :body %>
     </p>
     <p>
