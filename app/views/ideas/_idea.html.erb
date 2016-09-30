@@ -4,7 +4,7 @@
   <%# SHOW VIEW %>
   <div class="row well col-md-10 col-md-offset-1">
     <p class="idea-text text-center">
-      <%= idea.text %>
+      <%= idea.text.html_safe %>
     </p>
     <div class="row idea-details" align="center">
       <small>
@@ -60,7 +60,7 @@
     <%# INDEX VIEW %>
     <div class="row well col-md-10 col-md-offset-1">
       <p class="idea-text text-center">
-        <%= link_to idea.text, idea_path(idea) %>
+        <%= link_to idea.text.html_safe, idea_path(idea) %>
       </p>
       <p class="idea-details" align="center">
         <small>
