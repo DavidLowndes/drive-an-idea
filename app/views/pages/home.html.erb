@@ -1,1 +1,11 @@
-<h1 align="center">This is the Home Page</h1>
+<div class ="jumbotron">
+	<h1><strong>Drive An Idea</strong></h1>
+	<p>We know how important it is for businesses to discuss ideas.</p>
+	<% if @user = !current_user %> <!-- If user isn't signed in, show sign up button. -->
+	<%= link_to 'Sign up', new_user_registration_path, class: "btn btn-danger btn-lg btn-xlarge" %>
+	<% end %>
+</div>
+
+
+
+
