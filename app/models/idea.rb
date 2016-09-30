@@ -7,7 +7,7 @@ class Idea < ApplicationRecord
   validates :text, presence: true, length: { minimum: 3 }
   validates :open_days, presence: true,
                         numericality: { greater_than_or_equal_to: 0,
-                                        less_than: 7 }
+                                        less_than_or_equal_to: 31 }
 
   def closing_time
     # Get the date created, advance it by the specified number of days
