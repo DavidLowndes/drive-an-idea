@@ -15,7 +15,7 @@ class Idea < ApplicationRecord
     created_at.advance(:days => active_days).end_of_day
   end
 
-  def active?
+  def open?
     # Is the closing date in the future? Idea is still active.
     closing_time.future?
   end

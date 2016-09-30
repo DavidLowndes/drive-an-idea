@@ -18,9 +18,9 @@
     <% if can? :destroy, comment %>
       <td>
         <div class="row">
-            <%= link_to "Delete", [comment.idea, comment],
-                                  method: :delete,
-                                  class: "btn btn-xs btn-danger" %>
+          <%= link_to "Delete", [comment.idea, comment],
+                                method: :delete,
+                                class: "btn btn-xs btn-danger" %>
         </div>
       </td>
     <% end %>
