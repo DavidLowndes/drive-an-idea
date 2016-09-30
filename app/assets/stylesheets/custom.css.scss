@@ -67,7 +67,7 @@ a.dropdown-toggle {
 
 .top-right {
   position: absolute;
-  top: 20px;
+  top: 13px;
   right: 15px;
 }
 
@@ -84,8 +84,9 @@ p.idea-text {
   }
 }
 
-.right-padding {
-  padding-right: 20px !important;
+.idea-body {
+  margin-right: 25px !important;
+  margin-left: 25px !important;
 }
 
 .idea-details {

@@ -3,12 +3,23 @@
 
   <%# SHOW VIEW %>
   <div class="row well col-md-10 col-md-offset-1">
-    <div class="top-right">
-      <i class="fa fa-cog fa-2x" aria-hidden="true"></i>
+    
+    <%# Dropdown menu %>
+    <div class="top-right dropdown">
+      <a class="dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-chevron-down fa-2x" aria-hidden="true"></i>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-right">
+        <li><%= link_to "Edit Idea", edit_idea_path(idea) %></li>
+        <li><%= link_to "Delete Idea", idea_path(idea), method: :delete %></li>
+      </ul>
     </div>
-    <div class="right-padding">
+    
+    <%# Idea body %>
+    <div class="idea-body">
       <%= idea.text.html_safe %>
     </div>
+    
     <div class="row idea-details" align="center">
       <small>
         <%# Left meta-details %>
@@ -44,17 +55,6 @@
           Currently active? <%= idea.active? ? 'Yes' : 'No' %>
         </div>
       </small>
-    </div>
-	
-    <div align="center" class="row idea-actions">
-		<% if can? :update, @idea %>
-      	<%= link_to "Edit Idea", edit_idea_path(idea),
-                                 class: "btn btn-md btn-warning" %>
-		<% end %>
-		<% if can? :destroy, @idea %>
-     	 <%= link_to "Delete Idea", idea_path(idea), method: :delete,
-                                  class: "btn btn-md btn-danger" %>
-		<% end %>
     </div>
   </div>
 <% else %>
