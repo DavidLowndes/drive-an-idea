@@ -1,11 +1,10 @@
 <% if comment.id.present? %>
   <tr>
-    <% if @idea.anonymous_comments? %>
-        
-                                            
-    <% end %>
     <td>
+      <%# Comment text %>
       <%= comment.body.html_safe %>
+      
+      <%# Commenter name/email, if not anonymous %>
       <% if !@idea.anonymous_comments? %>
         <small> - 
           <strong>
@@ -14,12 +13,14 @@
         </small>
       <% end %>
     </td>
+    
+    <%# Delete button %>
     <% if can? :destroy, comment %>
       <td>
         <div class="row">
             <%= link_to "Delete", [comment.idea, comment],
-                                          method: :delete,
-                                          class: "btn btn-xs btn-danger" %>
+                                  method: :delete,
+                                  class: "btn btn-xs btn-danger" %>
         </div>
       </td>
     <% end %>

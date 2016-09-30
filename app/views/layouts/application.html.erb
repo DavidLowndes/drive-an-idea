@@ -37,13 +37,17 @@
     <![endif]-->
   </head>
   <body>
-
+    
+    <%# Navbar %>
     <%= render 'layouts/navigation' %>
 
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
+          <%# Error messages %>
           <%= bootstrap_flash %>
+
+          <%# Body %>
           <%= yield %>
         </div>
       </div><!--/row-->

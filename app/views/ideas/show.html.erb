@@ -36,17 +36,23 @@
     <%# Bottom right %>
     <%# Comments %>
 		<div class="well col-md-12">
-      <% if @idea.closed? %>
-        <h6 align="center">
-          [ This idea is closed, and can no longer be commented on ]
-        </h6>
+      <% if @idea.comments.count > 1 %>
+      
+        <% if @idea.closed? %>
+          <h6 align="center">
+            [ This idea is closed, and can no longer be commented on ]
+          </h6>
+        <% end %>
+  			<h4>Comments</h4>
+  			<div class="comment-text">
+          <table class="table table-striped">
+    				<%= render @idea.comments %>
+          </table>
+  			</div>
+      <% else %>
+        <h5>There are no comments! Be the first!</h5>
       <% end %>
-			<h4>Comments</h4>
-			<div class="comment-text">
-        <table class="table table-striped">
-  				<%= render @idea.comments %>
-        </table>
-			</div>
 		</div>
+    
 	</div>
 </div>
