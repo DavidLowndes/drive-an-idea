@@ -75,7 +75,7 @@
           Created by <%= idea.user.email %> | 
           Created <%= time_ago_in_words(idea.created_at) %> ago | 
           Last updated <%= time_ago_in_words(idea.updated_at) %> ago<br>
-          Active days: <%= idea.active_days %> | 
+          Active days: <%= idea.open_days %> | 
           Closing day: <%= idea.closing_time.to_date %> |
           Active? <%= idea.open? ? 'Yes' : 'No' %><br>
           Voting style: <%= idea.voting_style %> | 
