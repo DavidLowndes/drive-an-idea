@@ -4,11 +4,11 @@
   <%# SHOW VIEW %>
   <div class="row well col-md-10 col-md-offset-1">
     <div class="top-right">
-      <i class="fa fa-chevron-down fa-2x" aria-hidden="true"></i>
+      <i class="fa fa-cog fa-2x" aria-hidden="true"></i>
     </div>
-    <p class="idea-text text-center right-padding">
+    <div class="right-padding">
       <%= idea.text.html_safe %>
-    </p>
+    </div>
     <div class="row idea-details" align="center">
       <small>
         <%# Left meta-details %>
@@ -63,7 +63,7 @@
     <%# INDEX VIEW %>
     <div class="row well col-md-10 col-md-offset-1">
       <p class="idea-text text-center">
-        <%= link_to idea.text, idea_path(idea) %>
+        <%= link_to idea.text.html_safe, idea_path(idea) %>
       </p>
       <p class="idea-details" align="center">
         <small>

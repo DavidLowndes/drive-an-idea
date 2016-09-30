@@ -5,6 +5,11 @@ body {
   margin: 0px !important;
 }
 
+h1 {
+  font-size: 2em;
+  margin: 0px 0px 10px 0px;
+}
+
 .btn-warning {
   color: #EEE !important;
 }
@@ -62,7 +67,7 @@ a.dropdown-toggle {
 
 .top-right {
   position: absolute;
-  top: 27px;
+  top: 20px;
   right: 15px;
 }
 
@@ -77,9 +82,10 @@ p.idea-text {
       background-color: transparent;
     }
   }
-  .right-padding {
-    padding-right: 18px !important;
-  }
+}
+
+.right-padding {
+  padding-right: 20px !important;
 }
 
 .idea-details {
