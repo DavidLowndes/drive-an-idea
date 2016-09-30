@@ -4,20 +4,25 @@
   <%# SHOW VIEW %>
   <div class="row well col-md-10 col-md-offset-1">
     
-    <%# Dropdown menu %>
-    <div class="top-right dropdown">
-      <a class="dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fa fa-chevron-down fa-2x" aria-hidden="true"></i>
-      </a>
-      <ul class="dropdown-menu dropdown-menu-right">
-        <li><%= link_to "Edit Idea", edit_idea_path(idea) %></li>
-        <li><%= link_to "Delete Idea", idea_path(idea), method: :delete %></li>
-      </ul>
-    </div>
+    <% if idea.user == current_user %>
+      <%# Dropdown menu %>
+      <div class="top-right dropdown">
+        <a class="dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-chevron-down fa-2x" aria-hidden="true"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li><%= link_to "Edit Idea", edit_idea_path(idea) %></li>
+          <li><%= link_to "Delete Idea", idea_path(idea),
+                                         method: :delete %></li>
+        </ul>
+      </div>
+    <% end %>
     
     <%# Idea body %>
-    <div class="idea-body">
-      <%= idea.text.html_safe %>
+    <div class="side-margins">
+      <div class="idea-body">
+        <%= idea.text.html_safe %>
+      </div>
     </div>
     
     <div class="row idea-details" align="center">
@@ -79,12 +84,6 @@
           Anonymous votes: <%= idea.anonymous_comments? ? 'On' : 'Off' %>
         </small>
       </p>
-      <div align="center" class="idea-actions">
-        <%= link_to "Edit Idea", edit_idea_path(idea),
-                                         class: "btn btn-md btn-warning" %>
-        <%= link_to "Delete Idea", idea_path(idea), method: :delete,
-                                         class: "btn btn-md btn-danger" %>
-      </div>
     </div>
 
   <% end %>

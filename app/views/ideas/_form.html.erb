@@ -19,12 +19,12 @@
         <%= f.label :text, class: 'text-right' %>
       </div>
       <div class="col-sm-8">
-        <%= f.trix_editor :text, placeholder: "Body of article", autofocus: true %>
+        <%= f.trix_editor :text, placeholder: "Body of article", autofocus: true, class: 'idea-body' %>
       </div>
     </div>
 
     <%# Don't show these fields if editing %>
-    <% if params[:action] != 'edit' %>
+    <% if params[:action] == 'new' %>
     
       <%# Show voting style field %>
       <div class="row form-group">
