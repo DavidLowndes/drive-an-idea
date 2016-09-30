@@ -9,7 +9,7 @@
     
     <%# Top left %>
     <%# Voting form, is hidden when idea is closed %>
-    <% if @idea.active? %>
+    <% if @idea.open? %>
       <div class="well col-md-12">
         <%= render 'votes/form', obj: @idea %>
       </div>
@@ -27,7 +27,7 @@
     
     <%# Top right %>
     <%# Comment form, hidden when idea is closed %>
-    <% if @idea.active? %>
+    <% if @idea.open? %>
       <div class="well col-md-12">
         <%= render 'comments/form' %>
       </div>
@@ -36,7 +36,7 @@
     <%# Bottom right %>
     <%# Comments %>
 		<div class="well col-md-12">
-      <% if @idea.comments.count > 1 %>
+      <% if @idea.comments.count > 0 %>
       
         <% if @idea.closed? %>
           <h6 align="center">
