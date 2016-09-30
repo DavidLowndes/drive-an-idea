@@ -3,7 +3,7 @@
 	<%= form_for([@idea, @idea.comments.build]) do |f| %>
     <div class="form-group">
       <p class="col-md-10 col-md-offset-1">
-				<%= f.text_area :body, class: 'form-control', rows: 3 %>
+				<%= f.trix_editor :body %>
       </p>
       <p>
 			<%= f.submit class: 'btn btn-md btn-primary' %>

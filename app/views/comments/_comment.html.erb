@@ -5,7 +5,7 @@
                                             
     <% end %>
     <td>
-      <%= comment.body %>
+      <%= comment.body.html_safe %>
       <% if !@idea.anonymous_comments? %>
         <small> - 
           <strong>
