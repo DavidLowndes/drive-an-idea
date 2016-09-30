@@ -37,7 +37,7 @@
           Anonymous Comments are <%= idea.anonymous_comments? ? 'on'
                                                               : 'off' %>
           <br>
-          Real-time votes are <%= idea.reveal_current_votes? ? 'on'
+          Real-time votes are <%= idea.real_time_voting? ? 'on'
                                                              : 'off' %>
           <br>
           Voter Details are <%= idea.reveal_voter_details? ? 'on'
@@ -80,7 +80,7 @@
           Active? <%= idea.open? ? 'Yes' : 'No' %><br>
           Voting style: <%= idea.voting_style %> | 
           Anonymous comments: <%= idea.anonymous_comments? ? 'On' : 'Off' %> |
-          Show votes: <%= idea.reveal_current_votes? ? 'Yes' : 'No' %> | 
+          Show votes: <%= idea.real_time_voting? ? 'Yes' : 'No' %> | 
           Anonymous votes: <%= idea.anonymous_comments? ? 'On' : 'Off' %>
         </small>
       </p>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160930135427) do
+ActiveRecord::Schema.define(version: 20160930135941) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "commenter"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20160930135427) do
     t.integer  "user_id"
     t.string   "voting_style",         default: "Binary"
     t.integer  "anonymous_comments",   default: 0
-    t.integer  "reveal_current_votes"
+    t.integer  "real_time_voting"
     t.integer  "reveal_voter_details"
     t.integer  "open_days"
   end

@@ -6,8 +6,8 @@ class Idea < ApplicationRecord
 
   validates :text, presence: true, length: { minimum: 3 }
   validates :open_days, presence: true,
-                          numericality: { greater_than_or_equal_to: 0,
-                                          less_than: 7 }
+                        numericality: { greater_than_or_equal_to: 0,
+                                        less_than: 7 }
 
   def closing_time
     # Get the date created, advance it by the specified number of days
@@ -29,8 +29,8 @@ class Idea < ApplicationRecord
     reveal_voter_details == 1
   end
   
-  def reveal_current_votes?
-    reveal_current_votes == 1
+  def real_time_voting?
+    real_time_voting == 1
   end
   
   def anonymous_comments?
