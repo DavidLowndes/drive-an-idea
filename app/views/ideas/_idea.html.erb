@@ -67,9 +67,9 @@
 
     <%# INDEX VIEW %>
     <div class="row well col-md-10 col-md-offset-1">
-      <p class="idea-text text-center">
+      <div class="idea-body">
         <%= link_to idea.text.html_safe, idea_path(idea) %>
-      </p>
+      </div>
       <p class="idea-details" align="center">
         <small>
           Created by <%= idea.user.email %> | 

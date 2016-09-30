@@ -15,20 +15,19 @@
     <% end %>
 
     <div class="row form-group">
-      <div class="control-label col-sm-2">
-        <%= f.label :text, class: 'text-right' %>
+      <div class="control-label col-sm-1">
+        <%= f.label :text, class: 'text-right hidden' %>
       </div>
-      <div class="col-sm-8">
+      <div class="col-sm-10">
         <%= f.trix_editor :text, placeholder: "Body of article", autofocus: true, class: 'idea-body' %>
       </div>
     </div>
 
-    <%# Don't show these fields if editing %>
-    <% if params[:action] == 'new' %>
-    
+    <%# Only show these fields if editing %>
+    <% if params[:action] != 'edit' %>
       <%# Show voting style field %>
       <div class="row form-group">
-        <div class="control-label col-sm-2">
+        <div class="control-label col-sm-3">
           <%= f.label :voting_style, class: 'text-right' %>
         </div>
         <div class="col-sm-2">
@@ -38,41 +37,45 @@
 
       <%# Active Days field %>
       <div class="row form-group">
-        <div class="control-label col-sm-2">
+        <div class="control-label col-sm-3">
           <%= f.label :active_days, class: 'text-right' %>
         </div>
         <div class="col-sm-2">
           <%= f.number_field :active_days, class: 'form-control' %>
         </div>
+        How many full days do you want this idea to be open for?<br>
+        <em>Choose a number between 0 and 7</em>
       </div>
 
       <!-- Check boxes -->
-      <div class="row">
-        <div class="form-check">
-          <div class="form-check-label col-md-2">
-            <%= f.label :anonymous_comments, class: 'text-right' %>
-          </div>
-          <div class="form-check-input col-md-1">
-            <%= f.check_box :anonymous_comments %>
-          </div>
+      <div class="row form-check">
+        <div class="form-check-label col-md-3">
+          <%= f.label :anonymous_comments, class: 'text-right' %>
         </div>
-        <div class="form-check">
-          <div class="form-check-label col-md-3">
-            <%= f.label :reveal_current_votes, class: 'text-right' %>
-          </div>
-          <div class="form-check-input col-md-1">
-            <%= f.check_box :reveal_current_votes %>
-          </div>
+        <div class="form-check-input col-md-2">
+          <%= f.check_box :anonymous_comments, { checked: true } %>
         </div>
-        <div class="form-check">
-          <div class="form-check-label col-md-2">
-            <%= f.label :reveal_voter_details, class: 'text-right' %>
-          </div>
-          <div class="form-check-input col-md-2">
-            <%= f.check_box :reveal_voter_details %>
-          </div>
+        If on, comments will be anonymous
+      </div>
+      
+      <div class="row form-check">
+        <div class="form-check-label col-md-3">
+          <%= f.label :reveal_current_votes, class: 'text-right' %>
         </div>
+        <div class="form-check-input col-md-2">
+          <%= f.check_box :reveal_current_votes %>
+        </div>
+        If on, voting results will be revealed in real time
+      </div>
 
+      <div class="row form-check">
+        <div class="form-check-label col-md-3">
+          <%= f.label :reveal_voter_details, class: 'text-right' %>
+        </div>
+        <div class="form-check-input col-md-2">
+          <%= f.check_box :reveal_voter_details %>
+        </div>
+        If on, voter names and vote choices will be public
       </div>
 
     <% end %>
