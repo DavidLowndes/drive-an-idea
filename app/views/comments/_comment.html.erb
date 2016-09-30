@@ -2,7 +2,7 @@
   <tr>
     <td>
       <%# Comment text %>
-      <%= comment.body %>
+      <%= comment.body.html_safe %>
       
       <%# Commenter name/email, if not anonymous %>
       <% if !@idea.anonymous_comments? %>
