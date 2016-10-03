@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :votes
   end
   devise_for :users, :controllers => { :registrations => 'user/registrations' }
+  resources :user_options, only: [:edit]
 
   root 'pages#home'
   get 'my_ideas', to: 'users#show'
