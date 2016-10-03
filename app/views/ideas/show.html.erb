@@ -28,24 +28,26 @@
     <%# Top right %>
     <%# Comment form, hidden when idea is closed %>
     <% if @idea.open? %>
-	<button type ="button" class="btn btn-default" data-toggle="modal" data-target="#createComment">Create a comment</button>
+    	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#createComment">Create a comment</button>
 	
-	<div class ="modal fade" id="createComment">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<br>
-					<div class="modal-body">
-				        <div class="well col-md-12">
-				          <%= render 'comments/form' %>
-				        </div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<% end %>
+    	<div class="modal fade" id="createComment">
+    		<div class="modal-dialog">
+    			<div class="modal-content">
+    				<div class="modal-header">
+    					<button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+    					<br>
+    					<div class="modal-body">
+    				    <div class="well col-md-12">
+    				      <%= render 'comments/form' %>
+    				    </div>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+	  <% end %>
     
     <%# Bottom right %>
     <%# Comments %>
@@ -57,6 +59,7 @@
             [ This idea is closed, and can no longer be commented on ]
           </h6>
         <% end %>
+
 			<div class="scroller">
 	 			<div class="row well col-md-10 col-md-offset-1">
 	 				<h4>Comments</h4>
@@ -67,6 +70,7 @@
 	 				</div>
 	 			</div>
 			  </div>
+
       <% else %>
         <h5>There are no comments! Be the first!</h5>
       <% end %>

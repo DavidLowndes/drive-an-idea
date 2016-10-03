@@ -1,5 +1,3 @@
-<h5 align="center">- Trends -</h5>
-
 <%# Find what voting style is being used and react accordingly %>
 <% case @idea.voting_style 
    when 'Binary' %>
@@ -76,8 +74,9 @@
         <% end %>
     </table>
     
-    <strong>Total Score: </strong><%= stats[0][0] %>/<%= stats[0][1] %><br>
-    <strong>Percent Score: </strong><%= stats[0][2].round(2) %>%
+    <strong>Total Score: </strong><%= stats[0][1] %><br>
+    <small>Minimum Score: <%= stats[0][0] %> - Maximum: <%= stats[0][2] %></small><br>
+    <strong>Percent Score: </strong><%= stats[0][3].round(2) %>%
   </div>
 
 <% else %>
