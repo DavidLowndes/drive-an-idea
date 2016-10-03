@@ -58,7 +58,8 @@
             [ This idea is closed, and can no longer be commented on ]
           </h6>
         <% end %>
-    	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#viewComment">View Comments</button>
+    	
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#viewComment">View Comments</button>
 	
 <div class="modal fade" id="viewComment">
 	<div class="modal-dialog">
@@ -70,16 +71,14 @@
 				<br>
 				<div class="modal-body">
 			    <div class="well col-md-12">
-	  			<div class="scroller">
-	  	 			<div class="row well col-md-10 col-md-offset-1">
+		  			<div class="scroller">
 	  	 				<h4>Comments</h4>
 	  	 				<div class = "comment-text">
 	  						<table class ="table table-striped">
 	  	 					<%= render @idea.comments %>
 	  						</table>
 	  	 				</div>
-	  	 			</div>
-	  			  </div>
+		  			</div>
 			    </div>
 				</div>
 			</div>
