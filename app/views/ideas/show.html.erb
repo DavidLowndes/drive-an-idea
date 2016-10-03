@@ -59,13 +59,18 @@
             [ This idea is closed, and can no longer be commented on ]
           </h6>
         <% end %>
-  			<h4>Comments</h4>
-  			<div class="idea-text">
-          <table class="table table-striped">
-    				<%= render @idea.comments, data: { toggle: "modal",
-                                               target: "#ajax-modal" } %>
-          </table>
-  			</div>
+
+			<div class="scroller">
+	 			<div class="row well col-md-10 col-md-offset-1">
+	 				<h4>Comments</h4>
+	 				<div class = "comment-text">
+						<table class ="table table-striped">
+	 					<%= render @idea.comments %>
+						</table>
+	 				</div>
+	 			</div>
+			  </div>
+
       <% else %>
         <h5>There are no comments! Be the first!</h5>
       <% end %>
