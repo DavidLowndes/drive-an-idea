@@ -1,3 +1,4 @@
+# Ideas Controller
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
 
@@ -81,7 +82,8 @@ class IdeasController < ApplicationController
   # Never trust parameters from the scary internet,
   # only allow the white list through.
   def idea_params
-    params.require(:idea).permit(:text, :user_id, :voting_style,                                                 :anonymous_comments, :real_time_voting,
+    params.require(:idea).permit(:text, :user_id, :voting_style,
+                                 :anonymous_comments, :real_time_voting,
                                  :reveal_voter_details, :open_days)
   end
 end

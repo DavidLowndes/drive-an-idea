@@ -1,15 +1,14 @@
+#
 class User::RegistrationsController < Devise::RegistrationsController
   before_filter :configure_permitted_parameters
-  #after_create :build_user_options
-  
+
   def after_sign_up_path_for(resource)
-      build_user_options
-      request.env['omniauth.origin'] || stored_location_for(resource) || root_path
-      
+    build_user_options
+    request.env['omniauth.origin'] || stored_location_for(resource) || root_path
   end
-  
+
   private
-  
+
   def build_user_options
     opts = UserOption.new(user: current_user)
     current_user.user_option = opts

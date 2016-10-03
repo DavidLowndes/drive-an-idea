@@ -1,3 +1,4 @@
+# Idea model
 class Idea < ApplicationRecord
   belongs_to :user
 
@@ -19,20 +20,20 @@ class Idea < ApplicationRecord
     # Is the closing date in the future? Idea is still active.
     closing_time.future?
   end
-  
+
   def closed?
     # Is the closing date already past? Idea is closed.
     closing_time.past?
   end
-  
+
   def reveal_voter_details?
     reveal_voter_details == 1
   end
-  
+
   def real_time_voting?
     real_time_voting == 1
   end
-  
+
   def anonymous_comments?
     anonymous_comments == 1
   end
@@ -50,7 +51,6 @@ class Idea < ApplicationRecord
       else
         negative_votes += 1
       end
-
     end
     percent_score = running_total.to_f / votes.count * 100
 

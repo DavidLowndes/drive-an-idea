@@ -1,3 +1,4 @@
+# Votes Controller
 class VotesController < ApplicationController
   def create
     # Initialise vars

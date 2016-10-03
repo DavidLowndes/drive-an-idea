@@ -19,7 +19,7 @@
         <%= f.label :text, class: 'text-right hidden' %>
       </div>
       <div class="col-sm-10">
-        <%= f.trix_editor :text, placeholder: "Write your idea here!", autofocus: true, class: 'idea-body' %>
+        <%= f.trix_editor :text, placeholder: "Write your idea here!",                                           autofocus: true, class: 'idea-body' %>
       </div>
     </div>
 
@@ -31,7 +31,9 @@
           <%= f.label :voting_style, class: 'text-right' %>
         </div>
         <div class="col-sm-2">
-          <%= f.select :voting_style, ['Binary', '1-10', '5 Stars', 'Fibonacci'], class: 'select form-control' %>
+          <%= f.select :voting_style, ['Binary', '1-10', '5 Stars',
+                                       'Fibonacci'],
+                                      class: 'select form-control' %>
         </div>
       </div>
 
