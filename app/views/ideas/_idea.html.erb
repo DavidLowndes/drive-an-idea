@@ -32,8 +32,9 @@
         <%# Left meta-details %>
         <div class="col-md-6">
           This idea was created by
-          <strong><%= idea.user.full_name.present? ? idea.user.full_name
-                                             : idea.user.email %></strong>,
+          <strong>
+            <%= idea.user.full_name.present? ? idea.user.full_name                                                           : idea.user.email %>,
+          </strong>
           <%= time_ago_in_words(idea.created_at) %> ago. 
           <br>
           This idea was last changed

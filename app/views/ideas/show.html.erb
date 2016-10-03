@@ -34,7 +34,9 @@
     		<div class="modal-dialog">
     			<div class="modal-content">
     				<div class="modal-header">
-    					<button type="button" class="close" data-dismiss="modal">&times;</button>
+    					<button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
     					<br>
     					<div class="modal-body">
     				    <div class="well col-md-12">
@@ -58,9 +60,10 @@
           </h6>
         <% end %>
   			<h4>Comments</h4>
-  			<div class="comment-text">
+  			<div class="idea-text">
           <table class="table table-striped">
-    				<%= render @idea.comments, data: {toggle: "modal", target: "#ajax-modal" } %>
+    				<%= render @idea.comments, data: { toggle: "modal",
+                                               target: "#ajax-modal" } %>
           </table>
   			</div>
       <% else %>
