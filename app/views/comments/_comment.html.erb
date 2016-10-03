@@ -3,7 +3,7 @@
     <td>
 		<% if comment.user == current_user %>	<%# If the comment user is logged in %>
 		<td class="success">					<%# Display a green background on their comment %>
-			<div class = "success-comment">		
+			<div class="success-comment">		
       <%# Comment text %>
       <%= comment.body.html_safe %>
 		      <% if !@idea.anonymous_comments? %>
