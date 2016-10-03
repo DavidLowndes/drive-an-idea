@@ -38,7 +38,7 @@
       <%# Active Days field %>
       <div class="row form-group">
         <div class="control-label col-sm-3">
-          <%= f.label :open_days, class: 'text-right' %>
+          <%= f.label :open_days, 'Number of days open', class: 'text-right' %>
         </div>
         <div class="col-sm-2">
           <%= f.number_field :open_days, class: 'form-control' %>
@@ -48,14 +48,17 @@
       </div>
 
       <!-- Check boxes -->
+      <% opts = current_user.user_option %>
+      
       <div class="row form-check">
         <div class="form-check-label col-md-3">
           <%= f.label :anonymous_comments, class: 'text-right' %>
         </div>
         <div class="form-check-input col-md-2">
-          <%= f.check_box :anonymous_comments, { checked: true } %>
+          <%= f.check_box :anonymous_comments,
+                          { checked: opts.anonymous_comments_default? } %>
         </div>
-        If on, comments will be anonymous
+        If on, comments on this idea will be anonymous
       </div>
       
       <div class="row form-check">
@@ -63,9 +66,10 @@
           <%= f.label :real_time_voting, class: 'text-right' %>
         </div>
         <div class="form-check-input col-md-2">
-          <%= f.check_box :real_time_voting %>
+          <%= f.check_box :real_time_voting,
+                          { checked: opts.real_time_voting_default? }%>
         </div>
-        If on, voting results will be displayed in real time
+        If on, voting results on this idea will be displayed in real time
       </div>
 
       <div class="row form-check">
@@ -73,9 +77,10 @@
           <%= f.label :reveal_voter_details, class: 'text-right' %>
         </div>
         <div class="form-check-input col-md-2">
-          <%= f.check_box :reveal_voter_details %>
+          <%= f.check_box :reveal_voter_details,
+                          { checked: opts.reveal_voter_details_default? }%>
         </div>
-        If on, voter names and their vote choices will be public
+        If on, voter names and their vote choices on this idea will be displayed publicly
       </div>
 
     <% end %>
