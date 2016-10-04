@@ -2,7 +2,7 @@
 
 <% case @idea.voting_style 
    when 'Binary' %>
-     
+
   <%= form_for([@idea, Vote.new]) do |f| %>
     <div align="center" class="form-group">
       <%= f.submit '0', name: 'value', value: 0, 
@@ -34,11 +34,10 @@
       <% values.each do |value| %>
         <%= f.submit "#{value}", name: 'value', value: value, 
                                class: 'btn btn-md btn-info' %>
-                                         
       <% end %>
     </div>
   <% end %>
-  
+
 <% when 'Fibonacci' %>
 
   <%= form_for([@idea, Vote.new]) do |f| %>
@@ -47,12 +46,11 @@
       <% values.each do |value| %>
       <%= f.submit "#{value}", name: 'value', value: value, 
                                class: 'btn btn-md btn-info' %>
-                                         
       <% end %>
     </div>
   <% end %>    
 <% else %>
 
   <h2>Unrecognisable voting style, please delete and resubmit your idea.</h2>
-  
+
 <% end %>

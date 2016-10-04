@@ -2,30 +2,30 @@
   <% idea = obj %>
 
   <%# SHOW VIEW %>
-  <div class="row well col-md-10 col-md-offset-1">
-    
-    <% if idea.user == current_user %>
-      <%# Dropdown menu %>
-      <div class="top-right dropdown">
-        <a class="dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-chevron-down fa-2x" aria-hidden="true"></i>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-right">
-          <% if idea.open? %>
-            <li><%= link_to "Edit Idea", edit_idea_path(idea) %></li>
-          <% end %>
-          <li><%= link_to "Delete Idea", idea_path(idea),
-                                         method: :delete %></li>
-        </ul>
-      </div>
-    <% end %>
+  <div class="row well col-md-10 col-md-offset-1"><!-- idea -->
     
     <%# Idea body %>
-    <div class="add-side-margins">
-      <div class="idea-body">
+    <div class="body-and-options">
+      <div class="idea-body add-side-margins">
         <%= idea.text.html_safe %>
       </div>
-    </div>
+      <% if idea.user == current_user %>
+        <%# Dropdown menu %>
+        <div class="top-right dropdown">
+          <a class="dropdown-toggle" href="#" id="dropdownMenuLink"
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-chevron-down fa-2x" aria-hidden="true"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right">
+            <% if idea.open? %>
+              <li><%= link_to "Edit Idea", edit_idea_path(idea) %></li>
+            <% end %>
+            <li><%= link_to "Delete Idea", idea_path(idea),
+                                           method: :delete %></li>
+          </ul>
+        </div>
+      <% end %>
+    </div><!-- /idea-body-->
     
     <div class="row idea-details" align="center">
       <small>
@@ -41,7 +41,7 @@
           <%= time_ago_in_words(idea.updated_at) %> ago.
           <br>
           This idea is currently
-          <strong><%= idea.open? ? 'OPEN' : 'CLOSED' %></strong>.
+          <strong><%= idea.open? ? 'OPEN' : 'CLOSED' %>.</strong>
           <br>
           <% if idea.open? %>
             This idea will close in <%= time_ago_in_words(idea.closing_time) %>.
@@ -122,9 +122,9 @@
         </div><!-- /content -->
       </div>
     </div><!-- /voting-stats modal -->
+    <!-- /modals -->
 
   </div><!-- /idea -->
-  
 <% else %>
   <% obj.each do |idea| %>
 

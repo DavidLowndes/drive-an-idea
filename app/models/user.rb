@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :votes, dependent: :destroy
 
   def full_name
-    return "#{first_name} #{last_name}".strip if first_name || last_name
+    return "#{first_name} #{last_name}".strip if first_name.present? || last_name.present?
     'Anonymous' # If no name is entered then 'Anonymous' is displayed
   end
 end
