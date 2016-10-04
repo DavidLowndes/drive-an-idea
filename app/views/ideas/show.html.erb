@@ -1,50 +1,38 @@
 <%# Idea view at top %>
 <%= render 'idea', obj: @idea %>
 
-<%# Entire vote and comment section %>
-<div class="row col-md-12">
-  
-  <%# Right side %>
-	<div class="col-md-6">
-    
-    <%# Bottom right %>
-    <%# Comments %>
-      <% if @idea.comments.count > 0 %>
-      
-        <% if @idea.closed? %>
-          <h6 align="center">
-            [ This idea is closed, and can no longer be commented on ]
-          </h6>
-        <% end %>
-				
-        <%# Modal Button %>
-        <button type="button" class="btn btn-success" data-toggle="modal"
-                data-target="#viewComment">View Comments</button>
-          <%# Modal %>       
-        <div class="modal fade" id="viewComment" role="dialog">
-          <div class="modal-dialog">
-						<%# Modal content %>
-            <div class="modal-content">
-              <div class="modal-header">
-								<strong>Comments</strong>
-                <button type="button" class="close" data-dismiss="modal">
-                  &times;
-                </button>
-              </div>
-              <div class="modal-body">
-                  <div class="scroller">                                 
-                      <table class ="table table-striped">
-                        <%= render @idea.comments.order(created_at: :desc) %>
-                      </table>                    
-                  </div>
-              </div>
+<%# Comment Section %>
+<div class="row well col-md-offset-1 col-md-10">
+
+  <%# Comments %>
+  <% if @idea.comments.count > 0 %>
+
+    <%# Modal Button %>
+    <button type="button" class="btn btn-success" data-toggle="modal"
+            data-target="#viewComment">View Comments</button>
+    <%# Modal %>
+    <div class="modal fade" id="viewComment" role="dialog">
+      <div class="modal-dialog">
+        <%# Modal content %>
+        <div class="modal-content">
+          <div class="modal-header">
+            <strong>Comments</strong>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="scroller">
+              <table class ="table table-striped">
+                <%= render @idea.comments.order(created_at: :desc) %>
+              </table>
             </div>
           </div>
         </div>
+      </div>
+    </div>
 
-      <% else %>
-        <h5>There are no comments! Be the first!</h5>
-      <% end %>
-    
-	</div>
+  <% else %>
+    <h5>There are no comments! Be the first!</h5>
+  <% end %>
 </div>
