@@ -1,20 +1,5 @@
-<div class ="container-fluid">	
- 	<h4 align="center">
- 		<div class="col-md-offset-1 col-md-6 comments-input">
- 			<div class ="row well col-md-6 col-md-offset-1">
- 				<div class = "scroller">
- 					<strong>Add a comment:</strong>
- 					<%= form_for([@idea, @idea.comments.build]) do |f| %>
-					<p>
-						<%= f.trix_editor :body %>
-					</p>
-					<p>
-						<%= f.submit class: 'btn btn-md btn-primary' %>
-						</p>
-					<% end %>
-				</div>
-			</div>
- 		</div>
- 	</h4>
-</div> 
-
+<%= form_for([@idea, @idea.comments.build]) do |f| %>
+  <%= f.trix_editor :body %>
+  <br>
+  <%= f.submit class: 'btn btn-md btn-primary' %>
+<% end %>

@@ -23,26 +23,27 @@
   </div>
   
   <%# Right side %>
-	<div align="center" class="col-md-6">
+	<div class="col-md-6">
     
     <%# Top right %>
     <%# Comment form, hidden when idea is closed %>
     <% if @idea.open? %>
-    	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#createComment">Create a comment</button>
-	
-    	<div class="modal fade" id="createComment">
+      <%# Modal Button %>
+      <button type="button" class="btn btn-success" data-toggle="modal"
+              data-target="#createComment">Create a comment</button>
+      <%# Modal %>
+    	<div class="modal fade" id="createComment" role="dialog">
     		<div class="modal-dialog">
+          <%# Modal Content %>
     			<div class="modal-content">
     				<div class="modal-header">
+     					<strong>Add a comment:</strong>
     					<button type="button" class="close" data-dismiss="modal">
                 &times;
               </button>
-    					<br>
-    					<div class="modal-body">
-    				    <div class="well col-md-12">
-    				      <%= render 'comments/form' %>
-    				    </div>
-    					</div>
+            </div>
+    				<div class="modal-body">
+  				    <%= render 'comments/form' %>
     				</div>
     			</div>
     		</div>
@@ -58,33 +59,34 @@
             [ This idea is closed, and can no longer be commented on ]
           </h6>
         <% end %>
-    	
-			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#viewComment">View Comments</button>
-	
-<div class="modal fade" id="viewComment">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">
-        &times;
-      </button>
-				<br>
-				<div class="modal-body">
-			    <div class="well col-md-12">
-		  			<div class="scroller">
-	  	 				<h4>Comments</h4>
-	  	 				<div class = "comment-text">
-	  						<table class ="table table-striped">
-	  	 					<%= render @idea.comments %>
-	  						</table>
-	  	 				</div>
-		  			</div>
-			    </div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+        
+        <button type="button" class="btn btn-success" data-toggle="modal"
+                  data-target="#viewComment">View Comments</button>
+                  
+        <div class="modal fade" id="viewComment">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                  &times;
+                </button>
+              </div>
+              <br>
+              <div class="modal-body">
+                <div class="well col-md-12">
+                  <div class="scroller">
+                    <h4>Comments</h4>
+                    <div class = "comment-text">
+                      <table class ="table table-striped">
+                        <%= render @idea.comments %>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
       <% else %>
         <h5>There are no comments! Be the first!</h5>

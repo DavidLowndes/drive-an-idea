@@ -2,8 +2,12 @@
 class User::RegistrationsController < Devise::RegistrationsController
   before_filter :configure_permitted_parameters
 
+  # This is the method that automatically creates the user options for a 
+  # user after the sign up for the first time
   def after_sign_up_path_for(resource)
+    # Create options
     build_user_options
+    # This line means 'redirect to where you'd usually go after you sign up'
     request.env['omniauth.origin'] || stored_location_for(resource) || root_path
   end
 

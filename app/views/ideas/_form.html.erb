@@ -1,5 +1,5 @@
 <div class="row well well-lg col-md-offset-1 col-md-10">
-  
+
   <%= form_for(idea) do |f| %>
     <%# Error Messages %>
     <% if idea.errors.any? %>
@@ -82,7 +82,8 @@
           <%= f.check_box :reveal_voter_details,
                           { checked: opts.reveal_voter_details_default? }%>
         </div>
-        If on, voter names and their vote choices on this idea will be displayed publicly
+        If on, voter names and their vote choices on this
+        idea will be displayed publicly
       </div>
 
     <% end %>
@@ -101,8 +102,6 @@
         <% end %>
       </div>
     </div>
-    
   <% end %>
-  
 </div>
 
