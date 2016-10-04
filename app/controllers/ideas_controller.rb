@@ -5,7 +5,8 @@ class IdeasController < ApplicationController
   # GET /ideas
   # GET /ideas.json
   def index
-    @ideas = Idea.all
+    @search = Idea.ransack(params[:q])
+    @ideas = @search.result
   end
 
   # GET /ideas/1
