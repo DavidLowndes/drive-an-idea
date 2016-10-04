@@ -5,7 +5,7 @@
 <%# Check if votes should be displayed %>
 <% if @idea.real_time_voting? || @idea.closed? || @idea.user == current_user %>
 
-  <h4 align="center">Voting Stats</h4>
+  <h5 align="center">- Trends -</h5>
   <% if @idea.votes.any? %>
     <%# Display votes trends %>
     <%= render 'votes/results' %>

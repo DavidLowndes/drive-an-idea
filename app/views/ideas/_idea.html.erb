@@ -71,18 +71,25 @@
         </div>
       </small>
     </div><!-- /idea-details -->
-    <br>
     
     <!-- Modal Buttons -->
-    <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#vote-form">Vote on this idea</button>
-    
-    <!-- Modal -->
+    <% if idea.open? %>
+      <button type="button" class="btn btn-info btn-md" data-toggle="modal"
+              data-target="#vote-form">Vote on this idea</button>
+    <% end %>
+    <button type="button" class="btn btn-info btn-md" data-toggle="modal"
+            data-target="#voting-results">Voting Results</button>
+            
+    <!-- Modals -->
+    <!-- vote-form modal -->
     <div id="vote-form" class="modal fade" role="dialog">
       <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
             <h4 class="modal-title">Vote form</h4>
           </div>
           <div class="modal-body">
@@ -90,7 +97,25 @@
           </div>
         </div><!-- /content -->
       </div>
-    </div><!-- /modal -->
+    </div><!-- /vote-form modal -->
+
+    <!-- voting-results modal -->
+    <div id="voting-results" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+            <h4 class="modal-title">Voting Results</h4>
+          </div>
+          <div class="modal-body">
+            <%= render 'votes/stats', obj: @idea %>
+          </div>
+        </div><!-- /content -->
+      </div>
+    </div><!-- /voting-stats modal -->
 
   </div><!-- /idea -->
   

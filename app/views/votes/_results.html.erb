@@ -4,11 +4,21 @@
    
   <% stats = @idea.binary_voting_stats %>
 
-  <ul>
-    <li><strong>Positive votes: </strong><%= stats[1] %></li>
-    <li><strong>Negative votes: </strong><%= stats[2] %></li>
-    <li><strong>Percent score: </strong><%= stats[0].round(2) %></li>
-  </ul>
+  <table class="table">
+    <tr>
+      <th>Vote Value</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Vote Count</th>
+      <td><%= stats[2] %></td>
+      <td><%= stats[1] %></td>
+    </tr>
+  </table>
+  <div align="center">
+    <strong>Percent score: </strong><%= stats[0].round(2) %>%
+  </div>
 
 <% when '1-10' %>
 
