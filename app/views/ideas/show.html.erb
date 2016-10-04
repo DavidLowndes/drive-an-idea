@@ -60,7 +60,7 @@
                     <h4>Comments</h4>
                     <div class = "comment-text">
                       <table class ="table table-striped">
-                        <%= render @idea.comments %>
+                        <%= render @idea.comments.order(created_at: :desc) %>
                       </table>
                     </div>
                   </div>
