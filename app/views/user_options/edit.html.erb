@@ -1,11 +1,11 @@
 <div class="row well well-lg col-md-offset-1 col-md-10">
   <h3 align="center">Editing User Options</h3>
-  <h4 align="center"><small>
-    (These settings can tweaked whenever you create an idea)
-  </small></h4>
-  
+  <h4 align="center">
+    <small>(These settings can tweaked whenever you create an idea)</small>
+  </h4>
+
   <%= form_for(@user_options) do |f| %>
-  
+
     <div class="row form-check">
       <div class="form-check-label col-xs-4">
         <%= f.label :anonymous_comments_default, 'Anonymous comments', class: 'text-right' %>
@@ -17,7 +17,7 @@
         If on, comments on ideas you create will be anonymous by default.
       </div>
     </div>
-    
+
     <div class="row form-check">
       <div class="form-check-label col-xs-4">
         <%= f.label :real_time_voting_default, 'Real-time voting', class: 'text-right' %>
@@ -30,7 +30,7 @@
         default (if off, votes will revealed when the idea closes)
       </div>
     </div>
-    
+
     <div class="row form-check">
       <div class="form-check-label col-xs-4">
         <%= f.label :reveal_voter_details_default, 'Reveal voter details', class: 'text-right' %>
@@ -42,7 +42,7 @@
         If on, voter names and their vote choices will be public by default
       </div>
     </div>
-  
+
     <div class="row form-group">
       <div class="col-sm-offset-2 col-xs-8 actions">
         <%= f.submit 'Update Options', class: 'btn btn-md btn-primary'%>
