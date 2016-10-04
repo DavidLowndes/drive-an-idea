@@ -1,23 +1,25 @@
 <button type="button" class="btn btn-warning" data-toggle="modal"
-          			data-target="#searchIdeas">Search Ideas</button>
-	
+        data-target="#searchIdeas">Search Ideas</button>
+
 <div class="modal fade" id="searchIdeas">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-				<strong>Search</strong>
+        <strong>Search</strong>
         <button type="button" class="close" data-dismiss="modal">
           &times;
         </button>
       </div>
-      <div class="modal-body">        
-					<%= search_form_for @search do |f| %>
-						<div class="field">
-							<%= f.label :text_cont, "Text Contains" %>
-							<%= f.text_field :text_cont %>
-						</div>
-						<div class="actions"><%= f.submit "Search" %></div>
-					<% end %>        
+      <div class="modal-body">
+        <%= search_form_for @search do |f| %>
+          <div class="field">
+            <%= f.label :text_cont, "Text Contains" %>
+            <%= f.text_field :text_cont %>
+          </div>
+          <div class="actions">
+            <%= f.submit "Search" %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
