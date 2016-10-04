@@ -21,7 +21,7 @@
     <% end %>
     
     <%# Idea body %>
-    <div class="side-margins">
+    <div class="add-side-margins">
       <div class="idea-body">
         <%= idea.text.html_safe %>
       </div>
@@ -70,8 +70,30 @@
           be displayed.
         </div>
       </small>
-    </div>
-  </div>
+    </div><!-- /idea-details -->
+    <br>
+    
+    <!-- Modal Buttons -->
+    <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#vote-form">Vote on this idea</button>
+    
+    <!-- Modal -->
+    <div id="vote-form" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Vote form</h4>
+          </div>
+          <div class="modal-body">
+            <%= render 'votes/form', obj: @idea %>
+          </div>
+        </div><!-- /content -->
+      </div>
+    </div><!-- /modal -->
+
+  </div><!-- /idea -->
+  
 <% else %>
   <% obj.each do |idea| %>
 

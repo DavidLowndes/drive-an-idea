@@ -1,7 +1,5 @@
 <% @idea = obj %>
 
-<h4 align="center">Voting Form</h4>
-
 <% case @idea.voting_style 
    when 'Binary' %>
      
@@ -21,7 +19,7 @@
     <div align="center" class="form-group">
       <% values.each do |value| %>
         <%= f.submit "#{value}", name: 'value', value: value, 
-                                 class: 'btn btn-sm btn-info' %>
+                                 class: 'btn btn-md btn-info' %>
       <% end %>
     </div>
   <% end %>
