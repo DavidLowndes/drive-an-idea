@@ -7,14 +7,6 @@
   <%# Left side %>
   <div class="col-md-6">
     
-    <%# Top left %>
-    <%# Voting form, is hidden when idea is closed %>
-    <% if @idea.open? %>
-      <div class="well col-md-12">
-        <%= render 'votes/form', obj: @idea %>
-      </div>
-    <% end %>
-    
     <%# Bottom left %>
     <%# Voting stats %>
     <div class="well col-md-12">
@@ -61,7 +53,7 @@
         <% end %>
         
         <button type="button" class="btn btn-success" data-toggle="modal"
-                  data-target="#viewComment">View Comments</button>
+                data-target="#viewComment">View Comments</button>
                   
         <div class="modal fade" id="viewComment">
           <div class="modal-dialog">
