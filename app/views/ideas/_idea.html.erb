@@ -29,7 +29,7 @@
     
     <div class="row idea-details" align="center">
       <small>
-        <%# Left meta-details %>
+        <%# Left idea-details %>
         <div class="col-md-6">
           This idea was created by
           <strong>
@@ -51,7 +51,7 @@
           <% end %>
           <br>
         </div>
-        <%# Right meta-details %>
+        <%# Right idea-details %>
         <div class="col-md-6">
           This idea's voting style is <%= idea.voting_style %>.
           <br>
@@ -77,9 +77,15 @@
       <button type="button" class="btn btn-info btn-md" data-toggle="modal"
               data-target="#vote-form">Vote on this idea</button>
     <% end %>
-    <button type="button" class="btn btn-info btn-md" data-toggle="modal"
-            data-target="#voting-results">Voting Results</button>
-            
+    <% if idea.results_viewable? %>
+      <button type="button" class="btn btn-info btn-md" data-toggle="modal"
+              data-target="#voting-results">Voting Results</button>
+    <% else %>
+      <button type="button" class="btn btn-info btn-sm disabled">
+        Results currently unavailable
+      </button>
+    <% end %>
+
     <!-- Modals -->
     <!-- vote-form modal -->
     <div id="vote-form" class="modal fade" role="dialog">
@@ -111,7 +117,7 @@
             <h4 class="modal-title">Voting Results</h4>
           </div>
           <div class="modal-body">
-            <%= render 'votes/stats', obj: @idea %>
+            <%= render 'votes/results', obj: @idea %>
           </div>
         </div><!-- /content -->
       </div>
