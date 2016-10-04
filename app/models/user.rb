@@ -12,6 +12,6 @@ class User < ApplicationRecord
 
   def full_name
     return "#{first_name} #{last_name}".strip if first_name.present? || last_name.present?
-    'Anonymous' # If no name is entered then 'Anonymous' is displayed
+    email # If no name is entered then their email is returned instead
   end
 end

@@ -11,14 +11,14 @@ class VotesController < ApplicationController
     if votes.empty?
       # If not, save as normal
       if @vote.save
-        flash[:success] = 'Thanks for voting!'
+        flash[:success] = 'Your vote has been registered! Thanks for voting!'
         redirect_to idea_path(@vote.idea)
       end
     else
       # If so, delete old, create new
       votes.destroy_all
       if @vote.save
-        flash[:warning] = 'Your vote has been updated!'
+        flash[:warning] = 'Your vote has been updated! Thanks for voting!'
         redirect_to idea_path(@vote.idea)
       end
     end
