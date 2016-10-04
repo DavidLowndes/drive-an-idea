@@ -2,7 +2,8 @@
   <h1 align="center">My Ideas</h1>
   
   <% if @user.ideas.any? %>
-    <%= render 'ideas/idea', obj: @user.ideas %>
+		<%= render '/ideas/search', obj: @ideas %>
+    <%= render 'ideas/idea', obj: @user.ideas %>		
   <% else %>
     <p align="center">
       You have no ideas!

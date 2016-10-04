@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 gem 'cancancan', '~> 1.15'
 gem 'trix', '~> 0.9.9'
+gem 'ransack'
 
 
 # Use jquery as the JavaScript library
