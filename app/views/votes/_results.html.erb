@@ -1,85 +1,16 @@
-<%# Find what voting style is being used and react accordingly %>
-<% case @idea.voting_style 
-   when 'Binary' %>
-   
-  <% stats = @idea.binary_voting_stats %>
-
-  <ul>
-    <li><strong>Positive votes: </strong><%= stats[1] %></li>
-    <li><strong>Negative votes: </strong><%= stats[2] %></li>
-    <li><strong>Percent score: </strong><%= stats[0].round(2) %></li>
-  </ul>
-
-<% when '1-10' %>
-
-  <% stats =  @idea.one_to_ten_voting_stats %>
-  <% values = (1..10).to_a %>
-  <div align="center">
-    <table class="table">
-      <tr>
-        <th>Vote value</th>
-        <% values.each do |value| %>
-          <td><%= value %></td>
-        <% end %>
-      </tr>
-      <tr>
-        <th>Vote count</th>
-        <% values.each do |value| %>
-          <td><%= stats[1][value-1] %></td>
-        <% end %>
-    </table>
-
-    <strong>Percentage Score: </strong><%= stats[0].round(2) %>%
-  </div>
+<% if @idea.votes.any? %>
+  <%# Display votes trends %>
+  <%= render 'votes/trends' %>
   
-
-<% when '5 Stars' %>
-
-  <% stats = @idea.five_stars_voting_stats %>
-  <% values = (1..5).to_a %>
-  <div align="center">
-    <table class="table table-sm">
-      <tr>
-        <th>Vote value</th>
-        <% values.each do |value| %>
-          <td><%= value %></td>
-        <% end %>
-      </tr>
-      <tr>
-        <th>Vote count</th>
-        <% values.each do |value| %>
-          <td><%= stats[1][value-1] %></td>
-        <% end %>
-    </table>
-
-    <strong>Average: </strong><%= stats[0].round(2) %>
-  </div>
-
-<% when 'Fibonacci' %>
-
-  <% stats = @idea.fibonacci_voting_stats %>
-  <% values = [1, 2, 3, 5, 8, 13, 21] %>
-  <div align="center">
-    <table class="table table-sm">
-      <tr>
-        <th>Vote value</th>
-        <% values.each do |value| %>
-          <td><%= value %></td>
-        <% end %>
-      </tr>
-      <tr>
-        <th>Vote count</th>
-        <% (0..6).each do |value| %>
-          <td><%= stats[1][value] %></td>
-        <% end %>
-    </table>
-    
-    <strong>Total Score: </strong><%= stats[0][1] %><br>
-    <small>Minimum Score: <%= stats[0][0] %> - Maximum: <%= stats[0][2] %></small><br>
-    <strong>Percent Score: </strong><%= stats[0][3].round(2) %>%
-  </div>
-
+  <%# If votes aren't anonymous, reveal them %>
+  <% if @idea.reveal_voter_details? %>
+    <br>
+    <%= render 'votes/details' %>
+  <% end %>
+  
 <% else %>
-  Unrecognisable voting style, this should never happen. 
-  Try to delete, then resubmit your idea.
+  <%# There are no votes yet %>
+  <p class="text-center">
+    There are no votes to show. Be the first to vote!
+  </p>
 <% end %>

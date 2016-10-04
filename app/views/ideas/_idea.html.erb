@@ -2,34 +2,34 @@
   <% idea = obj %>
 
   <%# SHOW VIEW %>
-  <div class="row well col-md-10 col-md-offset-1">
-    
-    <% if idea.user == current_user %>
-      <%# Dropdown menu %>
-      <div class="top-right dropdown">
-        <a class="dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-chevron-down fa-2x" aria-hidden="true"></i>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-right">
-          <% if idea.open? %>
-            <li><%= link_to "Edit Idea", edit_idea_path(idea) %></li>
-          <% end %>
-          <li><%= link_to "Delete Idea", idea_path(idea),
-                                         method: :delete %></li>
-        </ul>
-      </div>
-    <% end %>
+  <div class="row well col-md-10 col-md-offset-1"><!-- idea -->
     
     <%# Idea body %>
-    <div class="add-side-margins">
-      <div class="idea-body">
+    <div class="body-and-options">
+      <div class="idea-body add-side-margins">
         <%= idea.text.html_safe %>
       </div>
-    </div>
+      <% if idea.user == current_user %>
+        <%# Dropdown menu %>
+        <div class="top-right dropdown">
+          <a class="dropdown-toggle" href="#" id="dropdownMenuLink"
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-chevron-down fa-2x" aria-hidden="true"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right">
+            <% if idea.open? %>
+              <li><%= link_to "Edit Idea", edit_idea_path(idea) %></li>
+            <% end %>
+            <li><%= link_to "Delete Idea", idea_path(idea),
+                                           method: :delete %></li>
+          </ul>
+        </div>
+      <% end %>
+    </div><!-- /idea-body-->
     
     <div class="row idea-details" align="center">
       <small>
-        <%# Left meta-details %>
+        <%# Left idea-details %>
         <div class="col-md-6">
           This idea was created by
           <strong>
@@ -41,7 +41,7 @@
           <%= time_ago_in_words(idea.updated_at) %> ago.
           <br>
           This idea is currently
-          <strong><%= idea.open? ? 'OPEN' : 'CLOSED' %></strong>.
+          <strong><%= idea.open? ? 'OPEN' : 'CLOSED' %>.</strong>
           <br>
           <% if idea.open? %>
             This idea will close in <%= time_ago_in_words(idea.closing_time) %>.
@@ -51,7 +51,7 @@
           <% end %>
           <br>
         </div>
-        <%# Right meta-details %>
+        <%# Right idea-details %>
         <div class="col-md-6">
           This idea's voting style is <%= idea.voting_style %>.
           <br>
@@ -71,18 +71,31 @@
         </div>
       </small>
     </div><!-- /idea-details -->
-    <br>
     
     <!-- Modal Buttons -->
-    <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#vote-form">Vote on this idea</button>
-    
-    <!-- Modal -->
+    <% if idea.open? %>
+      <button type="button" class="btn btn-info btn-md" data-toggle="modal"
+              data-target="#vote-form">Vote on this idea</button>
+    <% end %>
+    <% if idea.results_viewable? %>
+      <button type="button" class="btn btn-info btn-md" data-toggle="modal"
+              data-target="#voting-results">Voting Results</button>
+    <% else %>
+      <button type="button" class="btn btn-info btn-sm disabled">
+        Results currently unavailable
+      </button>
+    <% end %>
+
+    <!-- Modals -->
+    <!-- vote-form modal -->
     <div id="vote-form" class="modal fade" role="dialog">
       <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
             <h4 class="modal-title">Vote form</h4>
           </div>
           <div class="modal-body">
@@ -90,10 +103,28 @@
           </div>
         </div><!-- /content -->
       </div>
-    </div><!-- /modal -->
+    </div><!-- /vote-form modal -->
+
+    <!-- voting-results modal -->
+    <div id="voting-results" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+            <h4 class="modal-title">Voting Results</h4>
+          </div>
+          <div class="modal-body">
+            <%= render 'votes/results', obj: @idea %>
+          </div>
+        </div><!-- /content -->
+      </div>
+    </div><!-- /voting-stats modal -->
+    <!-- /modals -->
 
   </div><!-- /idea -->
-  
 <% else %>
   <% obj.each do |idea| %>
 

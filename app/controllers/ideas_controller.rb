@@ -12,6 +12,7 @@ class IdeasController < ApplicationController
   # GET /ideas/1
   # GET /ideas/1.json
   def show
+    @current_user == current_user
   end
 
   # GET /ideas/new

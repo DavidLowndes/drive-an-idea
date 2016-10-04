@@ -60,10 +60,16 @@ a.dropdown-toggle {
 
 /* Ideas */
 
+.body-and-options {
+  //margin-top: 10px;
+  position: relative;
+}
+
 .top-right {
   position: absolute;
-  top: 10px;
-  right: 15px;
+  top: 0px;
+  right: -5px;
+  margin-top: 0px;
 }
 
 .add-side-margins {
@@ -87,7 +93,7 @@ a.dropdown-toggle {
 }
 
 .idea-details {
-  margin: 10px 0px 0px 0px;
+  margin: 10px 0px 10px 0px;
   border-top: 1px solid;
   border-bottom: 1px solid;
   padding: 5px 0px;

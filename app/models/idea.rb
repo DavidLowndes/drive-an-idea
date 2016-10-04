@@ -38,6 +38,10 @@ class Idea < ApplicationRecord
     anonymous_comments == 1
   end
 
+  def results_viewable?
+    real_time_voting? || closed? || (user == @current_user)
+  end
+
   def binary_voting_stats
     # Initialize vars
     running_total = 0
