@@ -17,6 +17,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'cancancan', '~> 1.15'
 gem 'trix', '~> 0.9.9'
 gem 'ransack'
+gem 'bootstrap-sass', '~> 3.3.6'
 
 
 # Use jquery as the JavaScript library
