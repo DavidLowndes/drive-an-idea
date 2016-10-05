@@ -86,9 +86,12 @@
         <% end %>
     </table>
     
-    <strong>Total Score: </strong><%= stats[0][1] %><br>
-    <small>Minimum Score: <%= stats[0][0] %> - Maximum: <%= stats[0][2] %></small><br>
-    <strong>Percent Score: </strong><%= stats[0][3].round(2) %>%
+    <strong>Total Score: </strong><%= stats[0][0] %><br>
+    <% vote_count = @idea.votes.count %>
+    <small>
+      Minimum Score: <%= vote_count %> - Maximum: <%= vote_count*21 %>
+    </small><br>
+    <strong>Percent Score: </strong><%= stats[0][1].round(2) %>%
   </div>
 
 <% else %>

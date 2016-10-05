@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     redirect_to :back
     flash[:danger] = 'You are not authorised to access that page'
   end
-  
+
   def set_search
     @search = Idea.search(params[:q])
   end

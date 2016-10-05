@@ -1,5 +1,5 @@
 <%= form_for([@idea, @idea.comments.build]) do |f| %>
-  <%= f.trix_editor :body %>
+  <%= f.trix_editor :body, class: 'trix-body' %>
   <br>
   <%= f.submit class: 'btn btn-md btn-primary' %>
 <% end %>

@@ -6,9 +6,9 @@
   <%= form_for([@idea, Vote.new]) do |f| %>
     <div align="center" class="form-group">
       <%= f.submit '0', name: 'value', value: 0, 
-                         class: 'btn btn-md btn-danger' %>
+                         class: 'btn btn-lg btn-danger' %>
       <%= f.submit '1', name: 'value', value: 1,
-                         class: 'btn btn-md btn-success' %>
+                         class: 'btn btn-lg btn-success' %>
 
     </div>
   <% end %>
@@ -20,7 +20,7 @@
     <div align="center" class="form-group">
       <% values.each do |value| %>
         <%= f.submit "#{value}", name: 'value', value: value, 
-                                 class: 'btn btn-md btn-info' %>
+                                 class: 'btn btn-lg btn-info' %>
       <% end %>
     </div>
   <% end %>
@@ -32,8 +32,8 @@
     <% values = (1..5).to_a %>
     <div align="center" class="form-group">
       <% values.each do |value| %>
-        <%= f.submit "#{value}", name: 'value', value: value, 
-                               class: 'btn btn-md btn-info' %>
+        <%= f.submit "#{value}", name: 'value', value: value,
+                                                class: 'btn btn-lg btn-info' %>
       <% end %>
     </div>
   <% end %>
@@ -45,7 +45,7 @@
     <div align="center" class="form-group">
       <% values.each do |value| %>
       <%= f.submit "#{value}", name: 'value', value: value, 
-                               class: 'btn btn-md btn-info' %>
+                               class: 'btn btn-lg btn-info' %>
       <% end %>
     </div>
   <% end %>    

@@ -3,45 +3,55 @@
 
   <%# SHOW VIEW %>
   <div class="row well col-md-10 col-md-offset-1"><!-- idea -->
+    <%# Core details %>
+    <div class="core-details">
+      This idea is
+      <% if idea.open? %>
+        <span style="color:green;">OPEN</span>.
+      <% else %>
+        <span style="color:red;">CLOSED</span>.
+      <% end %>
+      <br>
+      This idea was created by
+      <strong>
+        <%= idea.user.full_name %>,
+      </strong>
+      <%= time_ago_in_words(idea.created_at) %> ago.
+    </div>
+    
+    <%# Dropdown menu %>
+    <% if idea.user == current_user %>
+      <div class="top-right dropdown">
+        <a class="dropdown-toggle" href="#" id="dropdownMenuLink"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-chevron-down fa-3x" aria-hidden="true"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <% if idea.open? %>
+            <li><%= link_to "Edit Idea", edit_idea_path(idea) %></li>
+          <% end %>
+          <li>
+            <%= link_to "Delete Idea", idea_path(idea), method: :delete,
+            data: { confirm: 'Are you sure you want to delete this idea?' } %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
     
     <%# Idea body %>
     <div class="body-and-options">
-      <div class="idea-body add-side-margins">
+      <div class="trix-body idea-scroller side-margins">
         <%= idea.text.html_safe %>
       </div>
-      <% if idea.user == current_user %>
-        <%# Dropdown menu %>
-        <div class="top-right dropdown">
-          <a class="dropdown-toggle" href="#" id="dropdownMenuLink"
-             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-chevron-down fa-2x" aria-hidden="true"></i>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-right">
-            <% if idea.open? %>
-              <li><%= link_to "Edit Idea", edit_idea_path(idea) %></li>
-            <% end %>
-            <li><%= link_to "Delete Idea", idea_path(idea),
-                                           method: :delete %></li>
-          </ul>
-        </div>
-      <% end %>
-    </div><!-- /idea-body-->
-    
+    </div><!-- /Idea body-->
+
+    <%# Idea details %>
     <div class="row idea-details" align="center">
       <small>
         <%# Left idea-details %>
-        <div class="col-md-6">
-          This idea was created by
-          <strong>
-            <%= idea.user.full_name.present? ? idea.user.full_name                                                           : idea.user.email %>,
-          </strong>
-          <%= time_ago_in_words(idea.created_at) %> ago. 
-          <br>
-          This idea was last changed
+        <div class="col-sm-6">
+          This idea was last edited
           <%= time_ago_in_words(idea.updated_at) %> ago.
-          <br>
-          This idea is currently
-          <strong><%= idea.open? ? 'OPEN' : 'CLOSED' %>.</strong>
           <br>
           <% if idea.open? %>
             This idea will close in <%= time_ago_in_words(idea.closing_time) %>.
@@ -50,41 +60,47 @@
             <%= time_ago_in_words(idea.closing_time) %> ago.
           <% end %>
           <br>
-        </div>
-        <%# Right idea-details %>
-        <div class="col-md-6">
           This idea's voting style is <%= idea.voting_style %>.
           <br>
+        </div>
+        <%# Right idea-details %>
+        <div class="col-sm-6">
           Comments
           <strong>
             ARE <%= 'NOT' if !idea.anonymous_comments? %>
           </strong>
           anonymous.
           <br>
-          Votes will be revealed
-          <%= idea.real_time_voting? ? 'as they come in'
-                                     : 'when the idea closes' %>.
+          Voting results will 
+          <%= idea.real_time_voting? ? 'always be available to view'
+                                     : 'be revealed when the idea closes' %>.
           <br>
-          Voter names and vote choices
+          Voter names and their vote choices
           <strong>WILL <%= 'NOT' if !idea.reveal_voter_details? %></strong>
           be displayed.
         </div>
       </small>
     </div><!-- /idea-details -->
-    
+
     <!-- Modal Buttons -->
-    <% if idea.open? %>
-      <button type="button" class="btn btn-info btn-md" data-toggle="modal"
-              data-target="#vote-form">Vote on this idea</button>
-    <% end %>
-    <% if idea.results_viewable? %>
-      <button type="button" class="btn btn-info btn-md" data-toggle="modal"
-              data-target="#voting-results">Voting Results</button>
-    <% else %>
-      <button type="button" class="btn btn-info btn-sm disabled">
-        Results currently unavailable
-      </button>
-    <% end %>
+    <div align="center">
+      <% if idea.open? %>
+        <button type="button" class="btn btn-primary btn-md" data-toggle="modal"
+                data-target="#vote-form">Vote on this idea</button>
+      <% end %>
+      <% if idea.results_viewable? %>
+        <button type="button" class="btn btn-info btn-md" data-toggle="modal"
+                data-target="#voting-results">Voting Results</button>
+      <% else %>
+        <button type="button" class="btn btn-info btn-sm disabled">
+          Results currently unavailable
+        </button>
+      <% end %>
+      <% if idea.open? %>
+        <button type="button" class="btn btn-success" data-toggle="modal"
+                data-target="#create-comment">Comment on this idea</button>
+      <% end %>
+    </div>
 
     <!-- Modals -->
     <!-- vote-form modal -->
@@ -121,7 +137,25 @@
           </div>
         </div><!-- /content -->
       </div>
-    </div><!-- /voting-stats modal -->
+    </div><!-- /voting-results modal -->
+
+    <!-- create-comment modal-->
+    <div class="modal fade" id="create-comment" role="dialog">
+      <div class="modal-dialog">
+        <%# Modal Content %>
+        <div class="modal-content">
+          <div class="modal-header">
+            <strong>Create a comment:</strong>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= render 'comments/form' %>
+          </div>
+        </div>
+      </div>
+    </div><!-- /create-comment modal -->
     <!-- /modals -->
 
   </div><!-- /idea -->
@@ -130,12 +164,12 @@
 
     <%# INDEX VIEW %>
     <div class="row well col-md-10 col-md-offset-1">
-      <div class="idea-body">
+      <div class="trix-body">
         <%= link_to idea.text.html_safe, idea_path(idea) %>
       </div>
       <p class="idea-details" align="center">
         <small>
-          Created by <%= idea.user.email %> | 
+          Created by <%= idea.user.full_name %> | 
           Created <%= time_ago_in_words(idea.created_at) %> ago | 
           Last updated <%= time_ago_in_words(idea.updated_at) %> ago<br>
           Active days: <%= idea.open_days %> | 

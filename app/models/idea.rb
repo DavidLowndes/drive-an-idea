@@ -108,10 +108,9 @@ class Idea < ApplicationRecord
       end
       running_total += vote.value
     end
-    minimum_score = votes.count
-    maximum_score = minimum_score * 21
+    maximum_score = votes.count * 21
     percent_score = running_total.to_f / maximum_score * 100
-    scores = [minimum_score, running_total, maximum_score, percent_score]
+    scores = [running_total, percent_score]
     [scores, vote_counts]
   end
 end

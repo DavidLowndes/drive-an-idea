@@ -1,10 +1,7 @@
-<!-- <p id="notice"><%= notice %></p> -->
-
 <div class="container col-md-offset-1 col-md-10">
   <h1 align="center">All Ideas</h1>
-	
-		<%= render 'search' %>
-  
+  <%= render 'search' %>
+
   <% if @ideas.any? %>
     <%= render 'idea', obj: @ideas %>
   <% else %>
@@ -12,6 +9,4 @@
       There are no ideas!
     </p>
   <% end %>
-  
 </div>
-
