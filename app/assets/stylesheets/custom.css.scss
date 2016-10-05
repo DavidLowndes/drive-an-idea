@@ -23,6 +23,11 @@ h3 {
   color: #EEE !important;
 }
 
+.row {
+  .row-comment {
+    margin: 0px;
+  }
+}
 /* Navbar */
 
 .navbar-default {
@@ -142,7 +147,7 @@ a.dropdown-toggle {
   float: right;
   background-color: #DFF0D8;
   border: 1px solid darken(#DFF0D8, 15%);
-  padding-right: 20px;
+  padding-right: 27px;
 }
 
 .delete-comment-button {
@@ -153,7 +158,11 @@ a.dropdown-toggle {
 
 .scroller {
   overflow: auto;
-  max-height: 360px;
+  max-height: 300px;
+  border-top: 1px solid #CCC;
+  padding-top: 5px;
+  border-bottom: 1px solid #CCC;
+  //box-shadow: 0px 1px 5px #888;
 }
 
 /* Footer */

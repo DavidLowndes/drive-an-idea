@@ -5,8 +5,10 @@
 <div class="row well col-md-offset-2 col-md-8">
   <%# Comments %>
   <% if @idea.comments.count > 0 %>
-    <h3 align="center">Comments<br><small>Most recent at the top</small></h3>
-    <%= render @idea.comments.order(created_at: :desc) %>
+    <h3 align="center">Comments</h3>
+    <div class="scroller">
+      <%= render @idea.comments.order(created_at: :desc) %>
+    </div>
   <% else %>
     <h5>There are no comments! Be the first!</h5>
   <% end %>

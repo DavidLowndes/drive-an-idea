@@ -1,17 +1,15 @@
 <% if comment.id.present? %>
   <%# Wrapping bubble %>
-  <div class="row">
+  <div class="row row-comment">
     <div class="bubble trix-body
                 <%= 'yours' if comment.user == current_user %>">
-                
+
       <%# Comment text %>
       <%= comment.body.html_safe %>
       
       <%# Delete cross %>
       <% if comment.user == current_user %>
         <div class="delete-comment-button">
-          
-          
           <%= link_to [comment.idea, comment], method: :delete, data: { confirm: 'Are you sure you want to delete this comment?' } do %>
             <i class="fa fa-times fa-2x" aria-hidden="true"></i>
           <% end %>
