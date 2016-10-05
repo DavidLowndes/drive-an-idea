@@ -11,12 +11,8 @@ h3 {
   margin-top: 0px;
 }
 
-.btn-warning {
-  color: #EEE !important;
-}
-
-.btn-danger {
-  color: #EEE !important;
+.btn-default {
+  //background-color: #C2D9EE;
 }
 
 .row {
@@ -69,6 +65,7 @@ a.dropdown-toggle {
 /* Ideas */
 
 .core-details {
+  padding-right: 30px;
   padding-bottom: 10px;
   border-bottom: 1px solid #AAA;
   font-size: 1.1em;
@@ -78,9 +75,9 @@ a.dropdown-toggle {
   position: relative;
 }
 
-.top-right {
+.dropdown-chevron {
   position: absolute;
-  top: 0px;
+  top: 10px;
   right: 10px;
   margin-top: 0px;
 }

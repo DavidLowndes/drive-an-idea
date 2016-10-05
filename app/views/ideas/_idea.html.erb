@@ -6,11 +6,13 @@
     <%# Core details %>
     <div class="core-details">
       This idea is
-      <% if idea.open? %>
-        <span style="color:green;">OPEN</span>.
-      <% else %>
-        <span style="color:red;">CLOSED</span>.
-      <% end %>
+      <strong>
+        <% if idea.open? %>
+          <span style="color:green;">OPEN</span>.
+        <% else %>
+          <span style="color:red;">CLOSED</span>.
+        <% end %>
+      </strong>
       <br>
       This idea was created by
       <strong>
@@ -18,14 +20,16 @@
       </strong>
       <%= time_ago_in_words(idea.created_at) %> ago.
     </div>
-    
+
     <%# Dropdown menu %>
     <% if idea.user == current_user %>
-      <div class="top-right dropdown">
+      <div class="dropdown-chevron dropdown">
+        <%# Button %>
         <a class="dropdown-toggle" href="#" id="dropdownMenuLink"
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fa fa-chevron-down fa-3x" aria-hidden="true"></i>
         </a>
+        <%# Contents %>
         <ul class="dropdown-menu dropdown-menu-right">
           <% if idea.open? %>
             <li><%= link_to "Edit Idea", edit_idea_path(idea) %></li>
@@ -37,7 +41,7 @@
         </ul>
       </div>
     <% end %>
-    
+
     <%# Idea body %>
     <div class="body-and-options">
       <div class="trix-body idea-scroller side-margins">
@@ -85,19 +89,19 @@
     <!-- Modal Buttons -->
     <div align="center">
       <% if idea.open? %>
-        <button type="button" class="btn btn-primary btn-md" data-toggle="modal"
+        <button type="button" class="btn btn-default btn-md" data-toggle="modal"
                 data-target="#vote-form">Vote on this idea</button>
       <% end %>
       <% if idea.results_viewable? %>
-        <button type="button" class="btn btn-info btn-md" data-toggle="modal"
+        <button type="button" class="btn btn-default btn-md" data-toggle="modal"
                 data-target="#voting-results">Voting Results</button>
       <% else %>
-        <button type="button" class="btn btn-info btn-sm disabled">
+        <button type="button" class="btn btn-default btn-sm disabled">
           Results currently unavailable
         </button>
       <% end %>
       <% if idea.open? %>
-        <button type="button" class="btn btn-success" data-toggle="modal"
+        <button type="button" class="btn btn-default" data-toggle="modal"
                 data-target="#create-comment">Comment on this idea</button>
       <% end %>
     </div>
