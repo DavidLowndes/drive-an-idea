@@ -2,36 +2,11 @@
 <%= render 'idea', obj: @idea %>
 
 <%# Comment Section %>
-<div class="row well col-md-offset-1 col-md-10">
-
+<div class="row well col-md-offset-2 col-md-8">
   <%# Comments %>
   <% if @idea.comments.count > 0 %>
-
-    <%# Modal Button %>
-    <button type="button" class="btn btn-success" data-toggle="modal"
-            data-target="#viewComment">View Comments</button>
-    <%# Modal %>
-    <div class="modal fade" id="viewComment" role="dialog">
-      <div class="modal-dialog">
-        <%# Modal content %>
-        <div class="modal-content">
-          <div class="modal-header">
-            <strong>Comments</strong>
-            <button type="button" class="close" data-dismiss="modal">
-              &times;
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="scroller">
-              <table class ="table table-striped">
-                <%= render @idea.comments.order(created_at: :desc) %>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <h3 align="center">Comments<br><small>Most recent at the top</small></h3>
+    <%= render @idea.comments.order(created_at: :desc) %>
   <% else %>
     <h5>There are no comments! Be the first!</h5>
   <% end %>

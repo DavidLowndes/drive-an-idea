@@ -8,6 +8,14 @@ body {
   margin: 0px !important;
 }
 
+h3 {
+  margin-top: 0px;
+}
+
+.well {
+  background-color: #EFEFEF;
+}
+
 .btn-warning {
   color: #EEE !important;
 }
@@ -78,20 +86,22 @@ a.dropdown-toggle {
   margin-top: 0px;
 }
 
-.add-side-margins {
+.side-margins {
   margin-right: 25px !important;
   margin-left: 25px !important;
 }
 
-.idea-body {
-  color: #444;
+.trix-body {
+  color: #333;
   font-size: 13px;
   h1 {
     font-size: 1.9em;
-    margin: 0px 0px 15px 0px;
+    margin: 0px 0px 10px 0px;
   }
   blockquote {
     font-size: 1.15em;
+    padding: 10px;
+    margin-bottom: 3px;
   }
   li {
     font-size: 1em;
@@ -109,12 +119,6 @@ a.dropdown-toggle {
   padding-top: 10px;
 }
 
-/* Votes */
-
-.table {
-  margin-bottom: 10px;
-}
-
 /* Forms */
 
 .actions {
@@ -122,16 +126,6 @@ a.dropdown-toggle {
   margin-bottom: 0px !important;
 }
 
-/* Footer */
-
-footer {
-  color: #777;
-  margin: 20px 0px;
-  border-top: 1px solid #777;
-  .footer-text {
-    margin-top: 10px;
-  }
-}
 
 /* For first and last names */
 
@@ -145,30 +139,34 @@ footer {
 
 /* Comments */
 
-.comment-text {
-	font-size: 1.5em;
-	margin: 1px;
-	border-top: 1px solid #777;	
+.bubble {
+  float: left;
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin: 0px 15px 10px 15px;
+  width: 75%;
+  background-color: #C2D9EE;
+  border: 1px solid darken(#C2D9EE, 10%);
 }
 
-.comment-actions {
-  margin-top: 5px;
-	border-bottom: 1px solid;
-  padding-top: 10px;
-	padding-bottom: 10px;
-}
-
-.comments-container {
-	display: inline-block;
-	vertical-align: middle;
-	float: left;
+.yours {
+  float: right;
+  background-color: #DFF0D8;
+  border: 1px solid darken(#DFF0D8, 15%);
 }
 
 .scroller {
-	overflow: auto;
+  overflow: auto;
   max-height: 360px;
 }
 
-.success-comment {
-	text-align: right;
+/* Footer */
+
+footer {
+  color: #777;
+  margin: 10px 0px;
+  border-top: 1px solid #777;
+  .footer-text {
+    margin-top: 10px;
+  }
 }

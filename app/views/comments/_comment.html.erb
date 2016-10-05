@@ -1,47 +1,21 @@
 <% if comment.id.present? %>
-  <tr>
-    <td>
-		<% if comment.user == current_user %>	<%# If the comment user is logged in %>
-		<td class="success">					<%# Display a green background on their comment %>
-			<div class="success-comment">		
+  <%# Wrapping bubble %>
+  <div class="row">
+    <div class="bubble trix-body <%= 'yours' if comment.user == current_user %>">
       <%# Comment text %>
       <%= comment.body.html_safe %>
-		      <% if !@idea.anonymous_comments? %>
-		        <small> - 
-		          <strong>
-		            <%= comment.user.full_name.present? ?                                              				 		comment.user.full_name : comment.user.email %> <%# Display name if not anonymous%>
-		          </strong>
-				  <%= time_ago_in_words(comment.created_at) %> ago.
-		        </small>
-		      <% end %>
-		  </div>
-  		</td>
-	  <% else %>
-	  <td class="danger">						<%# Otherwise display comment in red %>
-		  <%= comment.body.html_safe %>
-		      <% if !@idea.anonymous_comments? %>
-		        <small> - 
-		          <strong>
-		            <%= comment.user.full_name.present? ?                                       						comment.user.full_name : comment.user.email %> <%# Display name if not anonymous%>
-		          </strong>
-				  <%= time_ago_in_words(comment.created_at) %> ago.
-		        </small>
-		      <% end %>
-	  </td>
-	  <% end %>
-    </td>
     
-    <%# Delete button %>
-    <% if can? :destroy, comment %>
-      <td>
-        <div class="row">
-          <%= link_to "Delete", [comment.idea, comment],
-                                method: :delete,
-                                class: "btn btn-xs btn-danger" %>
-        </div>
-      </td>
-    <% end %>
-  </tr>
-  
-<% end %>
+      <small> 
+        <% if !@idea.anonymous_comments? %>
+          <strong>
+            <%# Display commenter name (or email) %>
+            <%= comment.user.full_name %>,
+          </strong>
+        <% end %>
+        <%= time_ago_in_words(comment.created_at) %> ago.
+        
+      </small>
+    </div>
+  </div>
 
+<% end %>

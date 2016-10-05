@@ -21,7 +21,7 @@
     
     <%# Idea body %>
     <div class="body-and-options">
-      <div class="idea-body add-side-margins">
+      <div class="trix-body side-margins">
         <%= idea.text.html_safe %>
       </div>
       <% if idea.user == current_user %>
@@ -35,13 +35,15 @@
             <% if idea.open? %>
               <li><%= link_to "Edit Idea", edit_idea_path(idea) %></li>
             <% end %>
-            <li><%= link_to "Delete Idea", idea_path(idea),
-                                           method: :delete,
-                                           confirmation: 'Are you sure?' %></li>
+            <li>
+              <%= link_to "Delete Idea", idea_path(idea),
+                                         method: :delete,
+                                         data: { confirm: 'Are you sure?' } %>
+            </li>
           </ul>
         </div>
       <% end %>
-    </div><!-- /idea-body-->
+    </div><!-- /Idea body-->
     
     <div class="row idea-details" align="center">
       <small>
@@ -93,8 +95,10 @@
           Results currently unavailable
         </button>
       <% end %>
-      <button type="button" class="btn btn-success" data-toggle="modal"
-              data-target="#create-comment">Comment on this idea</button>
+      <% if idea.open? %>
+        <button type="button" class="btn btn-success" data-toggle="modal"
+                data-target="#create-comment">Comment on this idea</button>
+      <% end %>
     </div>
 
     <!-- Modals -->
@@ -159,7 +163,7 @@
 
     <%# INDEX VIEW %>
     <div class="row well col-md-10 col-md-offset-1">
-      <div class="idea-body">
+      <div class="trix-body">
         <%= link_to idea.text.html_safe, idea_path(idea) %>
       </div>
       <p class="idea-details" align="center">
