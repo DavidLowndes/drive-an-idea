@@ -1,7 +1,7 @@
 <% if comment.id.present? %>
   <%# Wrapping bubble %>
   <div class="row row-comment">
-    <div class="bubble trix-body
+    <div class="bubble trix-body trix-comment
                 <%= 'yours' if comment.user == current_user %>">
 
       <%# Comment text %>

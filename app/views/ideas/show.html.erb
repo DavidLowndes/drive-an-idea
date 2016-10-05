@@ -6,10 +6,10 @@
   <%# Comments %>
   <% if @idea.comments.count > 0 %>
     <h3 align="center">Comments</h3>
-    <div class="scroller">
+    <div class="comment-scroller">
       <%= render @idea.comments.order(created_at: :desc) %>
     </div>
   <% else %>
-    <h5>There are no comments! Be the first!</h5>
+    <h5 align="center">There are no comments on this idea! Be the first!</h5>
   <% end %>
 </div>
