@@ -1,18 +1,27 @@
 <% if comment.id.present? %>
   <%# Wrapping bubble %>
   <div class="row">
-    <div class="bubble trix-body <%= 'yours' if comment.user == current_user %>">
+    <div class="bubble trix-body
+                <%= 'yours' if comment.user == current_user %>">
+                
       <%# Comment text %>
       <%= comment.body.html_safe %>
+      
+      <%# Delete cross %>
+      <% if comment.user == current_user %>
+        <div class="delete-comment-button">
+          <i class="fa fa-times fa-lg" aria-hidden="true"></i>
+        </div>
+      <% end %>
     
       <small> 
         <% if !@idea.anonymous_comments? %>
           <strong>
             <%# Display commenter name (or email) %>
-            <%= comment.user.full_name %>,
-          </strong>
+            <%= comment.user.full_name %>
+          </strong> -
         <% end %>
-        <%= time_ago_in_words(comment.created_at) %> ago.
+        <%= comment.created_at.to_formatted_s(:short) %>
         
       </small>
     </div>

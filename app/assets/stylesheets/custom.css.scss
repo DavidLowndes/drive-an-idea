@@ -1,6 +1,5 @@
 /* Home Page */
 
-
 /* Site-wide */
 
 body {
@@ -82,13 +81,13 @@ a.dropdown-toggle {
 .top-right {
   position: absolute;
   top: -5px;
-  right: -5px;
+  right: 0px;
   margin-top: 0px;
 }
 
 .side-margins {
-  margin-right: 25px !important;
-  margin-left: 25px !important;
+  margin-right: 30px !important;
+  margin-left: 20px !important;
 }
 
 .trix-body {
@@ -126,20 +125,10 @@ a.dropdown-toggle {
   margin-bottom: 0px !important;
 }
 
-
-/* For first and last names */
-
-.no-padding {
-	padding: 0 !important;
-}
-
-.left-padding {
-	padding-left: 15px !important;
-}
-
 /* Comments */
 
 .bubble {
+  position: relative;
   float: left;
   padding: 5px 10px;
   border-radius: 10px;
@@ -153,6 +142,13 @@ a.dropdown-toggle {
   float: right;
   background-color: #DFF0D8;
   border: 1px solid darken(#DFF0D8, 15%);
+  padding-right: 20px;
+}
+
+.delete-comment-button {
+  position: absolute;
+  top: 0px;
+  right: 5px;
 }
 
 .scroller {
