@@ -1,12 +1,4 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
-.results-block {
-  display: inline-block;
-}
-
 /* Home Page */
-
 
 /* Site-wide */
 
@@ -45,6 +37,7 @@ h3 {
 }
 
 a.dropdown-toggle {
+  color: #555;
   &:hover {
     color: #333;
     background-color: transparent !important;
