@@ -6,18 +6,16 @@
     <%# Core details %>
     <div class="core-details">
       This idea is
-      <strong>
-        <% if idea.open? %>
-          <span style="color:green;">OPEN</span>.
-        <% else %>
-          <span style="color:red;">CLOSED</span>.
-        <% end %>
-      </strong>
+      <% if idea.open? %>
+        <strong style="color:green;">OPEN</strong>,
+        and will close in 
+        <%= time_ago_in_words(idea.closing_time) %>.
+      <% else %>
+        <strong style="color:red;">CLOSED.</strong>
+      <% end %>
       <br>
       This idea was created by
-      <strong>
-        <%= idea.user.full_name %>,
-      </strong>
+      <strong><%= idea.user.full_name %></strong>,
       <%= time_ago_in_words(idea.created_at) %> ago.
     </div>
 
@@ -54,21 +52,6 @@
       <small>
         <%# Left idea-details %>
         <div class="col-sm-6">
-          This idea was last edited
-          <%= time_ago_in_words(idea.updated_at) %> ago.
-          <br>
-          <% if idea.open? %>
-            This idea will close in <%= time_ago_in_words(idea.closing_time) %>.
-          <% else %>
-            This idea closed about
-            <%= time_ago_in_words(idea.closing_time) %> ago.
-          <% end %>
-          <br>
-          This idea's voting style is <%= idea.voting_style %>.
-          <br>
-        </div>
-        <%# Right idea-details %>
-        <div class="col-sm-6">
           Comments
           <strong>
             ARE <%= 'NOT' if !idea.anonymous_comments? %>
@@ -83,6 +66,21 @@
           <strong>WILL <%= 'NOT' if !idea.reveal_voter_details? %></strong>
           be displayed.
         </div>
+        <%# Right idea-details %>
+        <div class="col-sm-6">
+          This idea was last edited
+          <%= time_ago_in_words(idea.updated_at) %> ago.
+          <br>
+          <% if idea.closed? %>
+            This idea closed about
+            <%= time_ago_in_words(idea.closing_time) %> ago.
+            <br>
+          <% end %>
+          This idea's voting style is <%= idea.voting_style %>.
+          <br>
+        </div>
+
+    
       </small>
     </div><!-- /idea-details -->
 
