@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 body {
-  background-color: #E2E9E2 !important;
+  background-color: darken(#E1EDF7,5%) !important;
   margin: 0px !important;
 }
 
@@ -35,7 +35,7 @@ table.table {
 \*------------------------------------*/
 
 .navbar-default {
-  background-color: #9AB19B;
+  background-color: #92BCE0;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -196,18 +196,19 @@ a.dropdown-toggle {
   position: relative;
   float: left;
   padding: 5px 10px;
-  border-radius: 10px;
+  border-radius: 10px 0px;
   margin: 0px 15px 10px 15px;
   width: 75%;
-  background-color: lighten(#EC971F, 30%);
-  border: 1px solid #EC971F;
+  background-color: lighten(#31B0D5, 35%);
+  border: 1px solid lighten(#31B0D5, 10%);
 }
 
 .bubble-yours {
   float: right;
-  background-color: #DFF0D8;
-  border: 1px solid darken(#DFF0D8, 25%);
+  background-color: lighten(#3071A9, 40%);
+  border: 1px solid lighten(#3071A9, 20%);
   padding-right: 27px;
+  border-radius: 0px 10px;
 }
 
 .delete-comment-button {

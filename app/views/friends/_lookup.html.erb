@@ -11,7 +11,7 @@
                              class: 'form-control search-box' %>
         </div>
         <div class="col-md-2">
-          <%= button_tag(type: :submit, class: "btn btn-success") do %>
+          <%= button_tag(type: :submit, class: "btn btn-primary") do %>
             <i class="fa fa-search"></i> Look up a friend
           <% end %>
         </div>
@@ -40,15 +40,15 @@
                   <td><%= user.email %></td>
                   <td>
                     <%= link_to "View Profile",
-                        user_path(user), class: "btn btn-xs btn-success" %>
+                        user_path(user), class: "btn btn-xs btn-primary" %>
                   </td>
                   <td>
                     <% if current_user.not_friends_with?(user.id) %>
                       <%= link_to "Add as my friend ",
                           add_friend_path(user: current_user, friend: user),
-                          class: "btn btn-xs btn-success", method: :post %>
+                          class: "btn btn-xs btn-primary", method: :post %>
                     <% else %>
-                      <span class="btn btn-xs btn-success disabled">
+                      <span class="btn btn-xs btn-primary disabled">
                         You are friends.
                       </span>
                     <% end %>
