@@ -7,7 +7,7 @@ class VotesController < ApplicationController
     @vote.idea = Idea.find(params[:idea_id])
 
     # Has the user already voted on this idea?
-    votes = Vote.where(:user_id => current_user, :idea_id => params[:idea_id])
+    votes = Vote.where(user_id: current_user, idea_id: params[:idea_id])
     if votes.empty?
       # If not, save as normal
       if @vote.save

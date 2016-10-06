@@ -2,7 +2,7 @@
 class User::RegistrationsController < Devise::RegistrationsController
   before_filter :configure_permitted_parameters
 
-  # This is the method that automatically creates the user options for a 
+  # This is the method that automatically creates the user options for a
   # user after the sign up for the first time
   def after_sign_up_path_for(resource)
     # Create options

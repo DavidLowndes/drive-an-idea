@@ -1,10 +1,6 @@
-.results-block {
-  display: inline-block;
-}
-
-/* Home Page */
-
-/* Site-wide */
+/*------------------------------------*\
+  #SITE-WIDE
+\*------------------------------------*/
 
 body {
   background-color: #E2E9E2 !important;
@@ -34,7 +30,9 @@ table.table {
   margin-bottom: 5px;
 }
 
-/* Navbar */
+/*------------------------------------*\
+  #NAVBAR
+\*------------------------------------*/
 
 .navbar-default {
   background-color: #9AB19B;
@@ -77,7 +75,9 @@ a.dropdown-toggle {
   margin-top: 4px;
 }
 
-/* Ideas */
+/*------------------------------------*\
+  #IDEAS
+\*------------------------------------*/
 
 .idea-well {
   padding-bottom: 10px;
@@ -103,7 +103,7 @@ a.dropdown-toggle {
   max-height: 220px;
   background-color: #EEE;
   border-top: 1px solid white;
-  padding: 7px;
+  padding: 7px 20px;
   border-bottom: 1px solid white;
 }
 
@@ -115,18 +115,22 @@ a.dropdown-toggle {
 .trix-body {
   color: #333;
   font-size: 13.5px;
+
   h1 {
     font-size: 1.9em;
     margin: 0px 0px 10px 0px;
   }
+
   blockquote {
     font-size: 1.15em;
     padding: 10px;
     margin: 5px 0px;
   }
+
   li {
     font-size: 1em;
   }
+
 }
 
 .trix-comment {
@@ -148,13 +152,25 @@ a.dropdown-toggle {
   margin-bottom: 10px;
 }
 
-/* Votes */
+/*------------------------------------*\
+  #VOTES
+\*------------------------------------*/
 
 .vote-form-group {
   margin-bottom: 0px !important;
 }
 
-/* Forms */
+/*------------------------------------*\
+  #FORMS
+\*------------------------------------*/
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.left-padding {
+  padding-left: 10px !important;
+}
 
 .form-group {
   margin-bottom: 15px;
@@ -165,11 +181,12 @@ a.dropdown-toggle {
 }
 
 .actions {
-  //margin-top: 10px;
   margin-bottom: 0px !important;
 }
 
-/* Comments */
+/*------------------------------------*\
+  #COMMENTS
+\*------------------------------------*/
 
 .create-comment-btn {
   margin-top: 5px;
@@ -214,7 +231,9 @@ a.dropdown-toggle {
   background-color: #EEE;
 }
 
-/* Modals */
+/*------------------------------------*\
+  #MODALS
+\*------------------------------------*/
 
 .modal-header {
   padding: 15px 15px 10px 15px;
@@ -224,8 +243,16 @@ a.dropdown-toggle {
   line-height: 1;
 }
 
-/* Footer */
+/*------------------------------------*\
+  #FRIENDS
+\*------------------------------------*/
+.results-block {
+  display: inline-block;
+}
 
+/*------------------------------------*\
+  #FOOTER
+\*------------------------------------*/
 footer {
   color: #777;
   margin: 10px 0px;
