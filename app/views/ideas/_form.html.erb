@@ -15,10 +15,10 @@
     <% end %>
 
     <div class="row form-group">
-      <div class="control-label col-sm-1">
+      <div class="control-label col-xs-1">
         <%= f.label :text, class: 'text-right hidden' %>
       </div>
-      <div class="col-sm-10">
+      <div class="col-xs-10">
         <%= f.trix_editor :text, placeholder: "Write your idea here!",                                           autofocus: true, class: 'trix-body' %>
       </div>
     </div>
@@ -27,63 +27,77 @@
     <% if params[:action] != 'edit' %>
       <%# Show voting style field %>
       <div class="row form-group">
-        <div class="control-label col-sm-3">
+        <div class="control-label col-xs-3">
           <%= f.label :voting_style, class: 'text-right' %>
         </div>
-        <div class="col-sm-2">
+        <div class="col-xs-2">
           <%= f.select :voting_style, ['Binary', '1-10', '5 Stars',
                                        'Fibonacci'],
                                       class: 'select form-control' %>
+        </div>
+        <div class="col-xs-7">
+          <%= render 'style_explanation' %>
         </div>
       </div>
 
       <%# Active Days field %>
       <div class="row form-group">
-        <div class="control-label col-sm-3">
+        <div class="control-label col-xs-3">
           <%= f.label :open_days, 'Number of days open', class: 'text-right' %>
         </div>
-        <div class="col-sm-2">
+        <div class="col-xs-2">
           <%= f.number_field :open_days, class: 'form-control' %>
         </div>
-        How many full days do you want this idea to be open for?<br>
-        <em>Choose a number between 0 and 31</em>
+        <div class="col-xs-7">
+          How many full days do you want this idea to be open for?<br>
+          <em>Choose a number between 0 and 31</em>
+        </div>
       </div>
 
       <!-- Check boxes -->
       <% opts = current_user.user_option %>
-      
+
       <div class="row form-check">
-        <div class="form-check-label col-md-3">
+        <div class="form-check-label col-xs-3">
           <%= f.label :anonymous_comments, class: 'text-right' %>
         </div>
-        <div class="form-check-input col-md-2">
+        <div class="form-check-input col-xs-2">
           <%= f.check_box :anonymous_comments,
                           { checked: opts.anonymous_comments_default? } %>
         </div>
-        If on, comments on this idea will be anonymous
+        <div class="col-xs-7">
+          If on, comments on this idea will be anonymous
+        </div>
       </div>
       
       <div class="row form-check">
-        <div class="form-check-label col-md-3">
+        <div class="form-check-label col-xs-3">
           <%= f.label :real_time_voting, class: 'text-right' %>
         </div>
-        <div class="form-check-input col-md-2">
+        <div class="form-check-input col-xs-2">
           <%= f.check_box :real_time_voting,
                           { checked: opts.real_time_voting_default? }%>
         </div>
-        If on, voting results on this idea will be displayed in real time
+        <div class="col-xs-7">
+          If on, voting results on this idea will be available to view at any
+          time. If off, voting results will only become available when voting
+          has closed.
+        </div>
       </div>
 
       <div class="row form-check">
-        <div class="form-check-label col-md-3">
+        <div class="form-check-label col-xs-3">
           <%= f.label :reveal_voter_details, class: 'text-right' %>
         </div>
-        <div class="form-check-input col-md-2">
+        <div class="form-check-input col-xs-2">
           <%= f.check_box :reveal_voter_details,
                           { checked: opts.reveal_voter_details_default? }%>
         </div>
-        If on, voter names and their vote choices on this
-        idea will be displayed publicly
+        <div class="col-xs-7">
+          If on, voter names and their vote choices on this idea will be
+          displayed publicly. If off, only general voting trends will be
+          displayed.
+        </div>
       </div>
 
     <% end %>

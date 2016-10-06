@@ -152,8 +152,16 @@ a.dropdown-toggle {
 
 /* Forms */
 
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-check {
+  margin-bottom: 15px;
+}
+
 .actions {
-  margin-top: 10px;
+  //margin-top: 10px;
   margin-bottom: 0px !important;
 }
 
