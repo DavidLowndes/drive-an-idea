@@ -1,4 +1,4 @@
-<h5 align="center">- Trends -</h5>
+<h5 align="center">- Voting Trends -</h5>
 
 <%# Find what voting style is being used and react accordingly %>
 <% case @idea.voting_style 
@@ -19,7 +19,7 @@
     </tr>
   </table>
   <div align="center">
-    <strong>Percent score: </strong><%= stats[0].round(2) %>%
+    <strong>Overall Idea Score: </strong><%= stats[0].round(2) %>%
   </div>
 
 <% when '1-10' %>
@@ -41,9 +41,8 @@
         <% end %>
     </table>
 
-    <strong>Percentage Score: </strong><%= stats[0].round(2) %>%
+    <strong>Overall Idea Score: </strong><%= stats[0].round(2) %>%
   </div>
-  
 
 <% when '5 Stars' %>
 
@@ -64,7 +63,7 @@
         <% end %>
     </table>
 
-    <strong>Average: </strong><%= stats[0].round(2) %>
+    <strong>Average Vote: </strong><%= stats[0].round(2) %>
   </div>
 
 <% when 'Fibonacci' %>
@@ -85,7 +84,7 @@
           <td><%= stats[1][value] %></td>
         <% end %>
     </table>
-    
+
     <strong>Total Score: </strong><%= stats[0][0] %><br>
     <% vote_count = @idea.votes.count %>
     <small>
@@ -95,6 +94,6 @@
   </div>
 
 <% else %>
-  Unrecognisable voting style, this should never happen. 
+  Unrecognisable voting style. This should never happen. 
   Try to delete, then resubmit your idea.
 <% end %>

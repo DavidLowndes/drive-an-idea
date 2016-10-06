@@ -3,13 +3,51 @@
 
 <%# Comment Section %>
 <div class="row well col-md-offset-2 col-md-8">
+  <% if @idea.open? %>
+    <%# Create comment modal button %>
+    
+    <div align="center">
+      <h3>Comments</h3>
+      <button type="button" class="btn btn-success create-comment-btn"
+              data-toggle="modal" data-target="#create-comment">
+        Comment on this idea
+      </button>
+    </div>
+
+    <!-- create-comment modal-->
+    <div class="modal fade" id="create-comment" role="dialog">
+      <div class="modal-dialog">
+        <%# Modal Content %>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 align="center">
+              Create a comment
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+              <br>
+              <small>
+                Comments on this idea are 
+                <%= 'not' if !@idea.anonymous_comments? %>
+                anonymous
+              </small>
+            </h3>
+          </div>
+          <div class="modal-body">
+            <%= render 'comments/form' %>
+          </div>
+        </div>
+      </div>
+    </div><!-- /create-comment modal -->
+  <% end %>
   <%# Comments %>
   <% if @idea.comments.count > 0 %>
-    <h3 align="center">Comments</h3>
+    
+    <%# Display Comments %>
     <div class="comment-scroller">
       <%= render @idea.comments.order(created_at: :desc) %>
     </div>
   <% else %>
-    <h5 align="center">There are no comments on this idea! Be the first!</h5>
+    <h4 align="center">There are no comments on this idea! Be the first!</h4>
   <% end %>
 </div>

@@ -12,6 +12,9 @@
 <% else %>
   <%# There are no votes yet %>
   <p class="text-center">
-    There are no votes to show. Be the first to vote!
+    There are no votes to show.
+    <% if @idea.open? %>
+      Be the first to vote!
+    <% end %>
   </p>
 <% end %>

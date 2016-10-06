@@ -4,7 +4,7 @@
    when 'Binary' %>
 
   <%= form_for([@idea, Vote.new]) do |f| %>
-    <div align="center" class="form-group">
+    <div align="center" class="form-group vote-form-group">
       <%= f.submit '0', name: 'value', value: 0, 
                          class: 'btn btn-lg btn-danger' %>
       <%= f.submit '1', name: 'value', value: 1,
@@ -17,7 +17,7 @@
   
   <%= form_for([@idea, Vote.new]) do |f| %>
     <% values = (1..10).to_a %>
-    <div align="center" class="form-group">
+    <div align="center" class="form-group vote-form-group">
       <% values.each do |value| %>
         <%= f.submit "#{value}", name: 'value', value: value, 
                                  class: 'btn btn-lg btn-info' %>
@@ -30,7 +30,7 @@
   <%= form_for([@idea, Vote.new]) do |f| %>
   
     <% values = (1..5).to_a %>
-    <div align="center" class="form-group">
+    <div align="center" class="form-group vote-form-group">
       <% values.each do |value| %>
         <%= f.submit "#{value}", name: 'value', value: value,
                                                 class: 'btn btn-lg btn-info' %>
@@ -42,7 +42,7 @@
 
   <%= form_for([@idea, Vote.new]) do |f| %>
     <% values = [1, 2, 3, 5, 8, 13, 21] %>
-    <div align="center" class="form-group">
+    <div align="center" class="form-group vote-form-group">
       <% values.each do |value| %>
       <%= f.submit "#{value}", name: 'value', value: value, 
                                class: 'btn btn-lg btn-info' %>

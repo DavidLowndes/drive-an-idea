@@ -2,7 +2,7 @@
   <% idea = obj %>
 
   <%# SHOW VIEW %>
-  <div class="row well col-md-10 col-md-offset-1"><!-- idea -->
+  <div class="row well idea-well col-md-10 col-md-offset-1"><!-- idea -->
     <%# Core details %>
     <div class="core-details">
       This idea is
@@ -41,64 +41,48 @@
     <% end %>
 
     <%# Idea body %>
-    <div class="body-and-options">
-      <div class="trix-body idea-scroller side-margins">
-        <%= idea.text.html_safe %>
-      </div>
-    </div><!-- /Idea body-->
+    <div class="trix-body idea-scroller side-margins">
+      <%= idea.text.html_safe %>
+    </div>
 
     <%# Idea details %>
     <div class="row idea-details" align="center">
       <small>
         <%# Left idea-details %>
-        <div class="col-sm-6">
-          Comments
-          <strong>
-            ARE <%= 'NOT' if !idea.anonymous_comments? %>
-          </strong>
-          anonymous.
-          <br>
-          Voting results will 
-          <%= idea.real_time_voting? ? 'always be available to view'
-                                     : 'be revealed when the idea closes' %>.
-          <br>
-          Voter names and their vote choices
-          <strong>WILL <%= 'NOT' if !idea.reveal_voter_details? %></strong>
-          be displayed.
+        <div class="col-xs-6">
+          This idea was edited
+          <%= time_ago_in_words(idea.updated_at) %> ago.
         </div>
         <%# Right idea-details %>
-        <div class="col-sm-6">
-          This idea was last edited
-          <%= time_ago_in_words(idea.updated_at) %> ago.
-          <br>
-          <% if idea.closed? %>
+        <div class="col-xs-6">
+          <% if idea.open? %>
+            <% if idea.real_time_voting? %>
+              Current voting results are available to view,
+              but are not final.
+            <% else %>
+              Voting results will be revealed when the idea closes.
+            <% end %>
+          <% else %>
             This idea closed about
             <%= time_ago_in_words(idea.closing_time) %> ago.
-            <br>
           <% end %>
-          This idea's voting style is <%= idea.voting_style %>.
-          <br>
         </div>
       </small>
     </div><!-- /idea-details -->
 
     <!-- Modal Buttons -->
-    <div align="center">
+    <div align="center" class="modal-btn-group">
       <% if idea.open? %>
-        <button type="button" class="btn btn-default btn-md" data-toggle="modal"
+        <button type="button" class="btn btn-success btn-md" data-toggle="modal"
                 data-target="#vote-form">Vote on this idea</button>
       <% end %>
       <% if idea.results_viewable? %>
-        <button type="button" class="btn btn-default btn-md" data-toggle="modal"
+        <button type="button" class="btn btn-info btn-md" data-toggle="modal"
                 data-target="#voting-results">Voting Results</button>
       <% else %>
         <button type="button" class="btn btn-default btn-sm disabled">
           Results currently unavailable
         </button>
-      <% end %>
-      <% if idea.open? %>
-        <button type="button" class="btn btn-default" data-toggle="modal"
-                data-target="#create-comment">Comment on this idea</button>
       <% end %>
     </div>
 
@@ -112,7 +96,14 @@
             <button type="button" class="close" data-dismiss="modal">
               &times;
             </button>
-            <h4 class="modal-title">Vote form</h4>
+            <h3 align="center" class="modal-title">
+              Voting form<br>
+              <small>
+              Your name and your vote choice
+              <strong>will <%= 'not' if !idea.reveal_voter_details? %></strong>
+              be displayed.
+              </small>
+            </h3>
           </div>
           <div class="modal-body">
             <%= render 'votes/form', obj: @idea %>
@@ -130,7 +121,13 @@
             <button type="button" class="close" data-dismiss="modal">
               &times;
             </button>
-            <h4 class="modal-title">Voting Results</h4>
+            <h3 align="center" class="modal-title">
+              Voting Results
+              <% if @idea.open? %>
+                <br>
+                <small>Results are not final, as voting is still open.</small>
+              <% end %>
+            </h3>
           </div>
           <div class="modal-body">
             <%= render 'votes/results', obj: @idea %>
@@ -138,24 +135,6 @@
         </div><!-- /content -->
       </div>
     </div><!-- /voting-results modal -->
-
-    <!-- create-comment modal-->
-    <div class="modal fade" id="create-comment" role="dialog">
-      <div class="modal-dialog">
-        <%# Modal Content %>
-        <div class="modal-content">
-          <div class="modal-header">
-            <strong>Create a comment:</strong>
-            <button type="button" class="close" data-dismiss="modal">
-              &times;
-            </button>
-          </div>
-          <div class="modal-body">
-            <%= render 'comments/form' %>
-          </div>
-        </div>
-      </div>
-    </div><!-- /create-comment modal -->
     <!-- /modals -->
 
   </div><!-- /idea -->
@@ -164,7 +143,7 @@
 
     <%# INDEX VIEW %>
     <div class="row well col-md-10 col-md-offset-1">
-      <div class="trix-body">
+      <div class="trix-body idea-scroller">
         <%= link_to idea.text.html_safe, idea_path(idea) %>
       </div>
       <p class="idea-details" align="center">
@@ -179,7 +158,7 @@
           <% end %>
           <br>
           This idea was created by
-          <strong><%= idea.user.full_name %></strong>
+          <strong><%= idea.user.full_name %></strong>.
         </small>
       </p>
     </div>
