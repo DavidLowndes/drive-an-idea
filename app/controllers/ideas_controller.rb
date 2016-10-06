@@ -9,6 +9,11 @@ class IdeasController < ApplicationController
     @ideas = @search.result
   end
 
+  def open_ideas
+    @search = Idea.all.ransack(params[:q])
+    @ideas = @search.result.select { |idea| idea.open? }
+  end
+
   # GET /ideas/1
   # GET /ideas/1.json
   def show
