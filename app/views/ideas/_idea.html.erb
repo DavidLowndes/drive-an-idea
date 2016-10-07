@@ -15,7 +15,7 @@
       <% end %>
       <br>
       This idea was created by
-      <strong><%= idea.user.full_name %></strong>,
+      <strong><%= link_to idea.user.full_name, user_path(idea.user) %></strong>,
       <%= time_ago_in_words(idea.created_at) %> ago.
     </div>
 
@@ -48,10 +48,10 @@
     <%# Idea details %>
     <div class="row idea-details" align="center">
       <small>
-        This idea was edited
-        <%= time_ago_in_words(idea.updated_at) %> ago.
-        <br>
         <% if idea.open? %>
+          This idea was edited
+          <%= time_ago_in_words(idea.updated_at) %> ago.
+          <br>
           <% if !idea.real_time_voting? %>
             Voting results will be revealed when the idea closes.
           <% end %>
@@ -150,7 +150,9 @@
           <% end %>
           <br>
           This idea was created by
-          <strong><%= idea.user.full_name %></strong>.
+          <strong>
+            <%= link_to idea.user.full_name, user_path(idea.user) %>.
+          </strong>
         </small>
       </p>
     </div>

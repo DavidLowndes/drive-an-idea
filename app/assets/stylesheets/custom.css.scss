@@ -30,6 +30,10 @@ table.table {
   margin-bottom: 5px;
 }
 
+.margin-bottom {
+  margin-bottom: 10px;
+}
+
 /*------------------------------------*\
   #NAVBAR
 \*------------------------------------*/
@@ -207,7 +211,7 @@ a.dropdown-toggle {
   float: right;
   background-color: lighten(#3071A9, 40%);
   border: 1px solid lighten(#3071A9, 20%);
-  padding-right: 27px;
+  padding-right: 30px;
   border-radius: 0px 10px;
 }
 
@@ -219,7 +223,11 @@ a.dropdown-toggle {
 
 .comment-sub-text {
   margin-top: 4px;
-  border-top: 1px solid #AAA;
+  border-top: 1px solid lighten(#31B0D5, 10%);
+}
+
+.sub-text-yours {
+  border-top: 1px solid lighten(#3071A9, 20%);
 }
 
 .comment-scroller {
@@ -260,6 +268,7 @@ a.dropdown-toggle {
 \*------------------------------------*/
 
 footer {
+  position: relative;
   color: #777;
   margin: 10px 0px;
   border-top: 1px solid #777;

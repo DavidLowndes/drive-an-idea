@@ -1,7 +1,7 @@
 <% if comment.id.present? %>
   <%# Wrapping bubble %>
   <div class="row row-comment">
-    <div class="bubble trix-body trix-comment
+    <div class="trix-body trix-comment bubble
                 <%= 'bubble-yours' if comment.user == current_user %>">
 
       <%# Comment text %>
@@ -17,18 +17,20 @@
       <% end %>
       
       <%# Comment sub-text %>
-      <div class="comment-sub-text">
+      <div class="comment-sub-text 
+                  <%= 'sub-text-yours' if comment.user == current_user %>">
         <small> 
           <% if !@idea.anonymous_comments? %>
             <strong>
               <%# Commenter name (or email) %>
-              <%= comment.user.full_name %>
+              <%= link_to comment.user.full_name, user_path(comment.user) %>
             </strong> -
           <% end %>
           <%# Comment timestamp %>
           <%= comment.created_at.to_formatted_s(:short) %>
         </small>
       </div>
+
     </div>
   </div>
 

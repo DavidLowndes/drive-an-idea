@@ -6,12 +6,12 @@ class IdeasController < ApplicationController
   # GET /ideas.json
   def index
     @search = Idea.ransack(params[:q])
-    @ideas = @search.result
+    @ideas = @search.result.order(created_at: :desc)
   end
 
   def open_ideas
     @search = Idea.all.ransack(params[:q])
-    @ideas = @search.result.select { |idea| idea.open? }
+    @ideas = @search.result.order(created_at: :desc).select(&:open?)
   end
 
   # GET /ideas/1
