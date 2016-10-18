@@ -26,8 +26,10 @@
         <%= f.check_box :real_time_voting_default %>
       </div>
       <div class="col-xs-5">
-        If on, votes on ideas you create will be revealed in real-time by
-        default (if off, votes will revealed when the idea closes)
+        If on, votes on ideas you create will be available to view any time
+        by default.<br>
+        If off, voting results on ideas you create will only become available
+        when voting has closed. 
       </div>
     </div>
 
@@ -39,12 +41,14 @@
         <%= f.check_box :reveal_voter_details_default %>
       </div>
       <div class="col-xs-5">
-        If on, voter names and their vote choices will be public by default
+        If on, voter names and their vote choices on ideas you create will be
+        displayed publicly by default.<br>
+        If off, only general voting trends will be displayed.
       </div>
     </div>
 
     <div class="row form-group">
-      <div class="col-sm-offset-2 col-xs-8 actions">
+      <div class="col-sm-offset-2 col-xs-7 actions">
         <%= f.submit 'Update Options', class: 'btn btn-md btn-primary'%>
       </div>
     </div>
