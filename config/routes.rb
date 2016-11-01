@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   get 'open_ideas', to: 'ideas#open_ideas'
+  get 'closed_ideas', to: 'ideas#closed_ideas'
 
   get 'my_ideas', to: 'users#my_ideas'
   get 'my_friends', to: 'users#my_friends'

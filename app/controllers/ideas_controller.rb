@@ -13,6 +13,11 @@ class IdeasController < ApplicationController
     @search = Idea.all.ransack(params[:q])
     @ideas = @search.result.order(created_at: :desc).select(&:open?)
   end
+  
+  def closed_ideas
+    @search = Idea.all.ransack(params[:q])
+    @ideas = @search.result.order(created_at: :desc).select(&:closed?)
+  end
 
   # GET /ideas/1
   # GET /ideas/1.json
