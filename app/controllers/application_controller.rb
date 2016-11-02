@@ -2,7 +2,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
-  before_filter :set_search
+  before_action :set_search # Changed to before action as filter will be removed in rails 5.1
 
   rescue_from CanCan::AccessDenied do
     redirect_to :back
