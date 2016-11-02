@@ -1,6 +1,6 @@
 <div class="row">
   <div id="friend-lookup">
-    <h3 align="center" class="margin-bottom">Search for Friends</h3>
+    <h3 align="center" class="margin-bottom">Search for Innovators</h3>
     <%= form_tag search_friends_path, remote: true, method: :get,
                                       id: 'friend-lookup-form' do %>
       <div class="well col-md-10 col-md-offset-1 form-group text-center">
@@ -10,9 +10,9 @@
                              autofocus: true, 
                              class: 'form-control search-box' %>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3"><br>
           <%= button_tag(type: :submit, class: "btn btn-primary") do %>
-            <i class="fa fa-search"></i> Look up a friend
+            <i class="fa fa-search"></i> Search
           <% end %>
         </div>
       </div>
@@ -44,12 +44,12 @@
                   </td>
                   <td>
                     <% if current_user.not_friends_with?(user.id) %>
-                      <%= link_to "Add as my friend ",
+                      <%= link_to "Subscribe ",
                           add_friend_path(user: current_user, friend: user),
-                          class: "btn btn-xs btn-primary", method: :post %>
+                          class: "btn btn-xs btn-danger", method: :post %>
                     <% else %>
                       <span class="btn btn-xs btn-primary disabled">
-                        You are friends.
+                        You have already subscribed.
                       </span>
                     <% end %>
                   </td>

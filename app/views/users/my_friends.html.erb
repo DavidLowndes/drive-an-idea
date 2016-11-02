@@ -8,7 +8,7 @@
         <thead>
           <tr>
             <th colspan="3">
-              <h3>My Friends</h3>
+              <h3>My Subscriptions</h3>
             </th>
           </tr>
           <tr>
@@ -24,16 +24,16 @@
               <td><%= friend.email %></td>
               <td>
                 <%= link_to "View Profile", user_path(friend),
-                                            class: "btn btn-primary btn-sm" %>
+                                            class: "btn btn-primary btn-xs" %>
               </td>
               <td>
-                <%= link_to 'Remove Friend',
+                <%= link_to 'Unsubscribe',
                     friendship_path(friend),
                     method: :delete,
                     data: { 
-                      confirm: 'Are you sure you want to remove this friend?'
+                      confirm: 'Are you sure you want to unsubscribe'
                     },
-                    class: 'btn btn-sm btn-danger' %>
+                    class: 'btn btn-xs btn-danger' %>
               </td>
             </tr>
           <% end %>
@@ -43,7 +43,7 @@
   <% else %>
     <div class='row'>
       <p class="lead text-center">
-        You don't have any friends yet. Please add some!
+        You don't follow anybody yet.
       </p>
     </div>
   <% end %>
