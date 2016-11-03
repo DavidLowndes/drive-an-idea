@@ -18,11 +18,20 @@ class IdeasController < ApplicationController
     @search = Idea.all.ransack(params[:q])
     @ideas = @search.result.order(created_at: :desc).select(&:closed?)
   end
+  
+  def escalated_ideas
+    @search = Idea.all.ransack(params[:q])
+    @ideas = @search.result.order(created_at: :desc).where(final_verdict: "Escalated")
+  end
+  
+  def discarded_ideas
+    @search = Idea.all.ransack(params[:q])
+    @ideas = @search.result.order(created_at: :desc).where(final_verdict: "Discarded")
+  end
 
   # GET /ideas/1
   # GET /ideas/1.json
   def show
-    @current_user == current_user
   end
 
   # GET /ideas/new
@@ -96,6 +105,7 @@ class IdeasController < ApplicationController
   def idea_params
     params.require(:idea).permit(:text, :user_id, :voting_style,
                                  :anonymous_comments, :real_time_voting,
-                                 :reveal_voter_details, :open_days)
+                                 :reveal_voter_details, :open_days,
+                                 :final_verdict, :force_close)
   end
 end

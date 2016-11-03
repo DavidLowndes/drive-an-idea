@@ -34,6 +34,10 @@ table.table {
   margin-bottom: 10px;
 }
 
+.border-right {
+  border-right: 1px solid #CCC;
+}
+
 /*------------------------------------*\
   #NAVBAR
 \*------------------------------------*/
@@ -68,7 +72,7 @@ a.dropdown-toggle {
   }
 }
 
-.dropdown {
+.user-dropdown {
   margin-top: 5px;
 }
 
@@ -118,21 +122,21 @@ a.dropdown-toggle {
 
 .trix-body {
   color: #333;
-  font-size: 13.5px;
+  font-size: 15px;
 
   h1 {
-    font-size: 1.9em;
+    font-size: 1.6em;
     margin: 0px 0px 10px 0px;
   }
 
   blockquote {
-    font-size: 1.15em;
+    font-size: 1em;
     padding: 10px;
     margin: 5px 0px;
   }
 
   li {
-    font-size: 1em;
+    font-size: 15px;
   }
 }
 
@@ -153,6 +157,14 @@ a.dropdown-toggle {
 
 .search-btn {
   margin-bottom: 10px;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: darken(red, 10%);
 }
 
 /*------------------------------------*\
@@ -192,8 +204,7 @@ a.dropdown-toggle {
 \*------------------------------------*/
 
 .create-comment-btn {
-  margin-top: 5px;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .bubble {
@@ -231,12 +242,13 @@ a.dropdown-toggle {
 }
 
 .comment-scroller {
+  background-color: #EEE;
   overflow: auto;
   max-height: 350px;
+  margin-top: 10px;
   border-top: 1px solid #CCC;
   padding-top: 5px;
   border-bottom: 1px solid #CCC;
-  background-color: #EEE;
 }
 
 /*------------------------------------*\

@@ -13,6 +13,9 @@ Rails.application.routes.draw do
 
   get 'open_ideas', to: 'ideas#open_ideas'
   get 'closed_ideas', to: 'ideas#closed_ideas'
+  get 'escalated_ideas', to: 'ideas#escalated_ideas'
+  get 'discarded_ideas', to: 'ideas#discarded_ideas'
+  
   get 'my_area', to: 'users#index'
   get 'my_ideas', to: 'users#my_ideas'
   get 'my_friends', to: 'users#my_friends'

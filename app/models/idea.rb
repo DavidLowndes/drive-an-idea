@@ -13,17 +13,21 @@ class Idea < ApplicationRecord
   def closing_time
     # Get the date created, advance it by the specified number of days
     # and move the timer to the end of the day (23:59:59)
-    created_at.advance(days: open_days).end_of_day
+    if force_close == 0
+      created_at.advance(days: open_days).end_of_day
+    else
+      updated_at
+    end
   end
 
   def open?
     # Is the closing date in the future? Idea is still active.
-    closing_time.future?
+    closing_time.future? && force_close == 0
   end
 
   def closed?
-    # Is the closing date already past? Idea is closed.
-    closing_time.past?
+    # Is the closing date in the past? Idea is closed.
+    closing_time.past? || force_close == 1
   end
 
   def reveal_voter_details?
@@ -39,7 +43,7 @@ class Idea < ApplicationRecord
   end
 
   def results_viewable?
-    real_time_voting? || closed? || (user == @current_user)
+    real_time_voting? || closed?
   end
 
   def binary_voting_stats

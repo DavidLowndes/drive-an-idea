@@ -7,11 +7,17 @@
     <div class="core-details">
       This idea is
       <% if idea.open? %>
-        <strong style="color:green;">OPEN</strong>,
+        <strong class="green">OPEN</strong>,
         and will close in 
         <%= time_ago_in_words(idea.closing_time) %>.
       <% else %>
-        <strong style="color:red;">CLOSED.</strong>
+        <strong class="red">CLOSED.</strong>
+        <% if idea.final_verdict != "Undecided" %>
+          It has been
+          <strong class="<%= idea.final_verdict == 'Escalated' ? "green" : "red" %>">
+            <%= idea.final_verdict.upcase %>.
+          </strong>
+        <% end %>
       <% end %>
       <br>
       This idea was created by
@@ -66,17 +72,29 @@
     <div align="center" class="modal-btn-group">
       <% if idea.open? %>
         <button type="button" class="btn btn-primary btn-md" data-toggle="modal"
-                data-target="#vote-form">Vote on this idea</button>
+                data-target="#vote-form">
+          Vote on this idea
+        </button>
       <% end %>
+      
       <% if idea.results_viewable? %>
         <button type="button" class="btn btn-info btn-md" data-toggle="modal"
-                data-target="#voting-results">Voting Results</button>
+                data-target="#voting-results">
+          Voting Results
+        </button>
       <% else %>
         <button type="button" class="btn btn-default btn-sm disabled">
           Results currently unavailable
         </button>
       <% end %>
-    </div>
+      
+      <% if (idea.user == current_user) && idea.final_verdict == "Undecided" %>
+        <button type="button" class="btn btn-default btn-md" data-toggle="modal"
+                data-target="#decide-verdict">
+          <strong>Decide Verdict</strong>
+        </button>
+      <% end %>
+    </div><!-- /modal buttons -->
 
     <!-- Modals -->
     <!-- vote-form modal -->
@@ -85,18 +103,20 @@
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
+            <!-- Close modal button -->
             <button type="button" class="close" data-dismiss="modal">
               &times;
             </button>
             <h3 align="center" class="modal-title">
               Voting form<br>
               <small>
-              Your name and your vote choice
+              Your name
               <strong>will <%= 'not' if !idea.reveal_voter_details? %></strong>
               be displayed.
               </small>
             </h3>
           </div>
+          <!-- Voting buttons -->
           <div class="modal-body">
             <%= render 'votes/form', obj: @idea %>
           </div>
@@ -110,6 +130,7 @@
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
+            <!-- Close modal button -->
             <button type="button" class="close" data-dismiss="modal">
               &times;
             </button>
@@ -127,6 +148,65 @@
         </div><!-- /content -->
       </div>
     </div><!-- /voting-results modal -->
+    
+    <!-- decide-verdict modal -->
+    <div id="decide-verdict" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- Close modal button -->
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+            <h3 align="center" class="modal-title">
+              Decide Verdict
+              <br>
+              <small>
+                Is this idea worth acting upon?
+                <% if idea.open? %>
+                  <br>This idea will permanently close if you click either of these buttons.
+                <% end %>
+              </small>
+            </h3>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <%# Left side %>
+              <div class="col-md-6 border-right" align="center">
+                <%= form_for(@idea) do |f| %>
+                  <div class="form-group">
+                    <%= f.hidden_field :force_close, value: 1 %>
+                    <%= f.hidden_field :final_verdict, value: "Discarded" %>
+                    <%= f.submit "Discard", class: 'btn btn-lg btn-danger',
+                                            data: {confirm: 'Are you sure?'} %>
+                  </div>
+                  <h5>
+                    This idea isn't generally considered to be worth
+                    following up on.
+                  </h5>
+                <% end %>
+              </div>
+              <div class="col-md-6" align="center">
+                <%= form_for(@idea) do |f| %>
+                  <div class="form-group">
+                    <%= f.hidden_field :force_close, value: 1 %>
+                    <%= f.hidden_field :final_verdict, value: "Escalated" %>
+                    <%= f.submit "Escalate", class: 'btn btn-lg btn-primary',
+                                             data: {confirm: 'Are you sure?'} %>
+                  </div>
+                  <h5>
+                    It has been agreed that this idea is going to be actively
+                    worked on <br> or implemented.
+                    <!--This <br> is important, look up typography widows-->
+                  </h5>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div><!-- /content -->
+      </div>
+    </div><!-- /decide-verdict modal -->
     <!-- /modals -->
 
   </div><!-- /idea -->
@@ -142,11 +222,17 @@
         <small>
           This idea is
           <% if idea.open? %>
-            <strong style="color:green;">OPEN</strong>,
+            <strong class="green">OPEN</strong>,
             and will close in 
             <%= time_ago_in_words(idea.closing_time) %>.
           <% else %>
-            <strong style="color:red;">CLOSED.</strong>
+            <strong class="red">CLOSED.</strong>
+          <% end %>
+          <% if idea.final_verdict != "Undecided" %>
+            It has been
+            <strong class="<%= idea.final_verdict == 'Escalated' ? "green" : "red" %>">
+              <%= idea.final_verdict.upcase %>.
+            </strong>
           <% end %>
           <br>
           This idea was created by
