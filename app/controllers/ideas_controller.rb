@@ -30,6 +30,18 @@ class IdeasController < ApplicationController
     @ideas = @search.result.order(created_at: :desc)
                            .where(final_verdict: "Discarded")
   end
+  
+  def followed_ideas
+    @search = Idea.all.ransack(params[:q])
+    @ideas = @search.result.where(id: current_user.follows.pluck(:idea_id))
+                           .order(created_at: :desc).select(&:open?)
+  end
+  
+  def not_followed_ideas
+    @search = Idea.all.ransack(params[:q])
+    @ideas = @search.result.where.not(id: current_user.follows.pluck(:idea_id))
+                           .order(created_at: :desc).select(&:open?)
+  end
 
   # GET /ideas/1
   # GET /ideas/1.json
