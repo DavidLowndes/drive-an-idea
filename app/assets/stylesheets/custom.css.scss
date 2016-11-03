@@ -268,11 +268,22 @@ a.dropdown-toggle {
 }
 
 /*------------------------------------*\
-  #FRIENDS
+  #SUBSCRIBERS
 \*------------------------------------*/
 
 .results-block {
   width: 100%;
+}
+
+/*------------------------------------*\
+  #USER_AREA
+\*------------------------------------*/
+
+.userArea-scroller {
+  overflow: auto;
+  max-height: 250px;
+  margin-top: 10px;
+  padding-top: 5px;
 }
 
 /*------------------------------------*\

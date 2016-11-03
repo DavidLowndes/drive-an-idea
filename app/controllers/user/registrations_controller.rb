@@ -28,4 +28,4 @@ class User::RegistrationsController < Devise::RegistrationsController
                                       keys: [:first_name, :last_name, :email])
   end
 end
-# NEED TO MAKE IT FOR SIGN IN 
+

@@ -1,35 +1,20 @@
-<div class ="container row col-md-offset-1 col-md-3">
-  <div class = "row well">
-      <h4>welcome.. </h4>
-      <h3 class align ="center"><%= current_user.first_name %></h3>
+<h1 align="center"><%= current_user.first_name %>'s Area</h1>
+<div class = "container">
+  <div class ="container col-md-6"> <%#Subscriptions%>
+    <div class="userArea-scroller">
+      <div class = "row well">
+        <%= render 'friends/subscriptions' %>
+      </div>
+    </div>
   </div>
-</div>
 
 
-<div class ="container row col-md-offset-1 col-md-6">
-  <div class = "row well">
-    <%= render 'friends/subscriptions' %>
-  </div>
-</div>
-
-<div class = "container row col-md-offset-1 col-md-6">
-  <div class = "row well">
-    <h4>My Ideas</h4>
-    <%= render 'ideas/idea', obj: @user.ideas %>	
-  </div>
-</div>
-
-<div class = "container row col-md-offset-1 col-md-6"> 
-  <div class = "row well">
-    <h4>Ideas I'm following</h4>
-    <h6>Will add this in when I've done the functionality.</h6>
-    <h6>When a user comments on something, it will auto follow</h6>
-  </div>
-</div>
-
-<div class = "container row col-md-offset-1 col-md-6"> 
-  <div class = "row well">
-    <h4>Recent Activity</h4>
-    <h6>Will add this in when I've done the functionality</h6>
+  <div class = "container col-md-6"><%#My Ideas%>
+    <div class="userArea-scroller">
+      <div class = "row well">
+        <h4>My Ideas</h4>
+        <%= render 'ideas/idea', obj: @user.ideas %>	
+      </div>
+    </div>
   </div>
 </div>
