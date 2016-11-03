@@ -31,9 +31,9 @@
           <%= f.label :voting_style, class: 'text-right' %>
         </div>
         <div class="col-xs-2">
-          <%= f.select :voting_style, ['Binary', '1-10', '5 Stars',
-                                       'Fibonacci'],
-                                      class: 'select form-control' %>
+          <%= f.select :voting_style, 
+                options_for_select(['5 Stars', '1-10', 'Binary', 'Fibonacci']),
+                class: 'select form-control' %>
         </div>
         <div class="col-xs-7">
           <%= render 'style_explanation' %>
