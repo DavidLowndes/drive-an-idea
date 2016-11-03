@@ -3,7 +3,8 @@ class Idea < ApplicationRecord
   belongs_to :user
 
   has_many :comments, dependent: :destroy
-  has_many :votes, dependent: :destroy
+  has_many :votes,    dependent: :destroy
+  has_many :follows,  dependent: :destroy
 
   validates :text, presence: true, length: { minimum: 3 }
   validates :open_days, presence: true,

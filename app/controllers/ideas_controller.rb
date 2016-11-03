@@ -21,12 +21,26 @@ class IdeasController < ApplicationController
   
   def escalated_ideas
     @search = Idea.all.ransack(params[:q])
-    @ideas = @search.result.order(created_at: :desc).where(final_verdict: "Escalated")
+    @ideas = @search.result.order(created_at: :desc)
+                           .where(final_verdict: "Escalated")
   end
   
   def discarded_ideas
     @search = Idea.all.ransack(params[:q])
-    @ideas = @search.result.order(created_at: :desc).where(final_verdict: "Discarded")
+    @ideas = @search.result.order(created_at: :desc)
+                           .where(final_verdict: "Discarded")
+  end
+  
+  def followed_ideas
+    @search = Idea.all.ransack(params[:q])
+    @ideas = @search.result.where(id: current_user.follows.pluck(:idea_id))
+                           .order(created_at: :desc).select(&:open?)
+  end
+  
+  def not_followed_ideas
+    @search = Idea.all.ransack(params[:q])
+    @ideas = @search.result.where.not(id: current_user.follows.pluck(:idea_id))
+                           .order(created_at: :desc).select(&:open?)
   end
 
   # GET /ideas/1
@@ -52,6 +66,9 @@ class IdeasController < ApplicationController
 
     respond_to do |format|
       if @idea.save
+        # Create follow
+        Follow.create_follow(user: current_user, idea: @idea)
+        
         format.html {
           redirect_to @idea, notice: 'Idea was successfully created.'
         }

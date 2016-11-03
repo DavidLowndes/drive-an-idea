@@ -9,6 +9,8 @@ class CommentsController < ApplicationController
     @comment = @idea.comments.create(comment_params)
     @comment.user = current_user
     if @comment.save
+      # Create follow
+      Follow.create_follow(user: current_user, idea: @comment.idea)
       redirect_to idea_path(@idea)
     else
       render 'comments/form'

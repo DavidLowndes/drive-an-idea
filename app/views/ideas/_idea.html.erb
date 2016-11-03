@@ -25,15 +25,15 @@
       <%= time_ago_in_words(idea.created_at) %> ago.
     </div>
 
-    <%# Dropdown menu %>
+    <%# Idea user menu %>
     <% if idea.user == current_user %>
       <div class="dropdown-chevron dropdown">
-        <%# Button %>
+        <%# Dropdown Button %>
         <a class="dropdown-toggle" href="#" id="dropdownMenuLink"
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fa fa-chevron-down fa-3x" aria-hidden="true"></i>
         </a>
-        <%# Contents %>
+        <%# Dropdown Contents %>
         <ul class="dropdown-menu dropdown-menu-right">
           <% if idea.open? %>
             <li><%= link_to "Edit Idea", edit_idea_path(idea) %></li>
@@ -57,18 +57,25 @@
         <% if idea.open? %>
           This idea was edited
           <%= time_ago_in_words(idea.updated_at) %> ago.
-          <br>
           <% if !idea.real_time_voting? %>
+            <br>
             Voting results will be revealed when the idea closes.
+          <% end %>
+          <br>
+          <% if Follow.where(user: current_user, idea: idea).any? %>
+            You are following this idea, and will receive notifications for it.
+          <% else %>
+            You aren't following this idea.
           <% end %>
         <% else %>
           This idea closed
           <%= time_ago_in_words(idea.closing_time) %> ago.
         <% end %>
+        
       </small>
     </div><!-- /idea-details -->
 
-    <!-- Modal Buttons -->
+    <!-- MODAL BUTTONS -->
     <div align="center" class="modal-btn-group">
       <% if idea.open? %>
         <button type="button" class="btn btn-primary btn-md" data-toggle="modal"
@@ -96,7 +103,7 @@
       <% end %>
     </div><!-- /modal buttons -->
 
-    <!-- Modals -->
+    <!-- MODALS -->
     <!-- vote-form modal -->
     <div id="vote-form" class="modal fade" role="dialog">
       <div class="modal-dialog">
@@ -165,7 +172,9 @@
               <small>
                 Is this idea worth acting upon?
                 <% if idea.open? %>
-                  <br>This idea will permanently close if you click either of these buttons.
+                  <br> 
+                  This idea will permanently close if you click either of
+                  these buttons.
                 <% end %>
               </small>
             </h3>
@@ -182,8 +191,8 @@
                                             data: {confirm: 'Are you sure?'} %>
                   </div>
                   <h5>
-                    This idea isn't generally considered to be worth
-                    following up on.
+                    This idea isn't generally considered<br>
+                    to be worth following up on.
                   </h5>
                 <% end %>
               </div>
@@ -197,8 +206,8 @@
                   </div>
                   <h5>
                     It has been agreed that this idea is going to be actively
-                    worked on <br> or implemented.
-                    <!--This <br> is important, look up typography widows-->
+                    worked on <br> or implemented. 
+                    <!-- This <br> is important, look up typography widows -->
                   </h5>
                 <% end %>
               </div>
@@ -239,6 +248,12 @@
           <strong>
             <%= link_to idea.user.full_name, user_path(idea.user) %>.
           </strong>
+          <br>
+          <% if Follow.where(user: current_user, idea: idea).any? %>
+            You are following this idea.
+          <% else %>
+            You aren't following this idea.
+          <% end %>
         </small>
       </p>
     </div>

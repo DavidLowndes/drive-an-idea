@@ -6,9 +6,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :user_option
-  has_many :ideas, dependent: :destroy
+  has_many :ideas,    dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :votes, dependent: :destroy
+  has_many :votes,    dependent: :destroy
+  has_many :follows,  dependent: :destroy
   has_many :friendships
   has_many :friends, through: :friendships
 
