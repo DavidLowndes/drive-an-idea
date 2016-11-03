@@ -1,5 +1,6 @@
 # Users Controller
 class UsersController < ApplicationController
+  
   def my_friends
     @friendships = current_user.friends
   end
@@ -28,6 +29,11 @@ class UsersController < ApplicationController
   end
 
   def my_ideas
+    @user = current_user
+  end
+  
+  def index
+    @friendships = current_user.friends
     @user = current_user
   end
 
