@@ -1,4 +1,3 @@
-#
 class User::RegistrationsController < Devise::RegistrationsController
   before_filter :configure_permitted_parameters
 
@@ -8,7 +7,7 @@ class User::RegistrationsController < Devise::RegistrationsController
     # Create options
     build_user_options
     # This line means 'redirect to where you'd usually go after you sign up'
-    request.env['omniauth.origin'] || stored_location_for(resource) || my_ideas_path
+    request.env['omniauth.origin'] || stored_location_for(resource) || my_area_path
   end
 
   private
@@ -29,3 +28,4 @@ class User::RegistrationsController < Devise::RegistrationsController
                                       keys: [:first_name, :last_name, :email])
   end
 end
+# NEED TO MAKE IT FOR SIGN IN 
