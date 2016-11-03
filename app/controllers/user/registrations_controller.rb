@@ -8,7 +8,7 @@ class User::RegistrationsController < Devise::RegistrationsController
     # Create options
     build_user_options
     # This line means 'redirect to where you'd usually go after you sign up'
-    request.env['omniauth.origin'] || stored_location_for(resource) || root_path
+    request.env['omniauth.origin'] || stored_location_for(resource) || my_ideas_path
   end
 
   private
