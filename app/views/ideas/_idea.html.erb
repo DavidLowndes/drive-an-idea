@@ -40,7 +40,7 @@
           <% end %>
           <li>
             <%= link_to "Delete Idea", idea_path(idea), method: :delete,
-            data: { confirm: 'Are you sure you want to delete this idea?' } %>
+                data: {confirm: 'Are you sure you want to delete this idea?'} %>
           </li>
         </ul>
       </div>
@@ -55,13 +55,13 @@
     <div class="row idea-details" align="center">
       <small>
         <% if idea.open? %>
-          This idea was edited
-          <%= time_ago_in_words(idea.updated_at) %> ago.
-          <% if !idea.real_time_voting? %>
-            <br>
-            Voting results will be revealed when the idea closes.
+          <% if idea.created_at != idea.updated_at %>
+            This idea was edited
+            <%= time_ago_in_words(idea.updated_at) %> ago.<br>
           <% end %>
-          <br>
+          <% if !idea.real_time_voting? %>
+            Voting results will be revealed when the idea closes.<br>
+          <% end %>
           <% if Follow.where(user: current_user, idea: idea).any? %>
             You are following this idea, and will receive notifications for it.
           <% else %>
@@ -182,7 +182,7 @@
           <div class="modal-body">
             <div class="row">
               <%# Left side %>
-              <div class="col-md-6 border-right" align="center">
+              <div class="col-md-6" align="center">
                 <%= form_for(@idea) do |f| %>
                   <div class="form-group">
                     <%= f.hidden_field :force_close, value: 1 %>
@@ -196,7 +196,7 @@
                   </h5>
                 <% end %>
               </div>
-              <div class="col-md-6" align="center">
+              <div class="col-md-6 border-left" align="center">
                 <%= form_for(@idea) do |f| %>
                   <div class="form-group">
                     <%= f.hidden_field :force_close, value: 1 %>
@@ -239,7 +239,8 @@
           <% end %>
           <% if idea.final_verdict != "Undecided" %>
             It has been
-            <strong class="<%= idea.final_verdict == 'Escalated' ? "green" : "red" %>">
+            <strong class=
+              "<%= idea.final_verdict == 'Escalated' ? "green" : "red" %>">
               <%= idea.final_verdict.upcase %>.
             </strong>
           <% end %>
@@ -248,11 +249,13 @@
           <strong>
             <%= link_to idea.user.full_name, user_path(idea.user) %>.
           </strong>
-          <br>
-          <% if Follow.where(user: current_user, idea: idea).any? %>
-            You are following this idea.
-          <% else %>
-            You aren't following this idea.
+          <% if idea.open? %>
+            <br>
+            <% if Follow.where(user: current_user, idea: idea).any? %>
+              You are following this idea.
+            <% else %>
+              You aren't following this idea.
+            <% end %>
           <% end %>
         </small>
       </p>

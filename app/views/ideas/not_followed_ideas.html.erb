@@ -1,12 +1,12 @@
 <div class="container col-md-offset-1 col-md-10">
   <h1 align="center">Ideas You Aren't Following</h1>
-  <%= render 'search' %>
+  <%= render 'search', action: :not_followed_ideas %>
 
   <% if @ideas.any? %>
     <%= render 'idea', obj: @ideas %>
   <% else %>
     <p align="center">
-      You're following every open idea! Thanks for contributing!
+      No results!
     </p>
   <% end %>
 </div>
