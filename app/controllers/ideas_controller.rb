@@ -23,7 +23,7 @@ class IdeasController < ApplicationController
     @search = Idea.ransack(params[:q])
     @ideas = @search.result.order(created_at: :desc)
                            .where(final_verdict: "Escalated")
-  end
+  end 
   
   def discarded_ideas
     @search = Idea.ransack(params[:q])
@@ -46,6 +46,15 @@ class IdeasController < ApplicationController
   # GET /ideas/1
   # GET /ideas/1.json
   def show
+    alert = current_user.alerts.where(idea: @idea).first
+    if alert.nil?
+      # Create update if it doesn't exist
+      Alert.create(user: current_user, idea: @idea, active: 0)
+    else
+      # User has seen update
+      alert.active = 0
+      alert.save
+    end
   end
 
   # GET /ideas/new
@@ -68,7 +77,10 @@ class IdeasController < ApplicationController
       if @idea.save
         # Create follow
         Follow.create_follow(user: current_user, idea: @idea)
-        
+        # Create alerts for everyone
+        User.all.each do |user|
+          Alert.create(user: user, idea: @idea, active: 1)
+        end
         format.html {
           redirect_to @idea, notice: 'Idea was successfully created.'
         }

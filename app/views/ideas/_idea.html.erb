@@ -98,7 +98,7 @@
       <% if (idea.user == current_user) && idea.final_verdict == "Undecided" %>
         <button type="button" class="btn btn-default btn-md" data-toggle="modal"
                 data-target="#decide-verdict">
-          <strong>Decide Verdict</strong>
+          <strong>Discard/Escalate</strong>
         </button>
       <% end %>
     </div><!-- /modal buttons -->
@@ -224,9 +224,18 @@
 
     <%# INDEX VIEW %>
     <div class="row well col-md-10 col-md-offset-1">
+      <%# Alert Notification %>
+      <% if current_user.alerts.where(idea: idea, active: 1).exists? %>
+        <i class="fa fa-exclamation fa-2x exclamation" aria-hidden="true">
+        </i>
+      <% end %>
+      
+      <%# Idea Body %>
       <div class="trix-body idea-scroller">
         <%= link_to idea.text.html_safe, idea_path(idea) %>
       </div>
+      
+      <%# Idea Details %>
       <p class="idea-details" align="center">
         <small>
           This idea is

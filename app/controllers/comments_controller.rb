@@ -11,6 +11,20 @@ class CommentsController < ApplicationController
     if @comment.save
       # Create follow
       Follow.create_follow(user: current_user, idea: @comment.idea)
+      
+      # Refresh alerts for everyone
+      User.all.each do |user|
+        alert = user.alerts.where(idea: @comment.idea).first
+        if alert.nil?
+          # Create alert if it doesn't exist
+          Update.create(user: user, idea: @comment.idea, active: 1)
+        else
+          # Reset the alert
+          alert.active = 1
+          alert.save
+        end
+      end
+      
       redirect_to idea_path(@idea)
     else
       render 'comments/form'

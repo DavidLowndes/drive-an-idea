@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :votes,    dependent: :destroy
   has_many :follows,  dependent: :destroy
+  has_many :alerts,  dependent: :destroy
+  
   has_many :friendships
   has_many :friends, through: :friendships
 

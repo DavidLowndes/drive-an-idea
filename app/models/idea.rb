@@ -5,6 +5,7 @@ class Idea < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :votes,    dependent: :destroy
   has_many :follows,  dependent: :destroy
+  has_many :alerts,  dependent: :destroy  
 
   validates :text, presence: true, length: { minimum: 3 }
   validates :open_days, presence: true,

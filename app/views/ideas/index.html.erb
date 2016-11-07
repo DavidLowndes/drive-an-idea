@@ -1,6 +1,6 @@
 <div class="container col-md-offset-1 col-md-10">
   <h1 align="center">Most Recent Ideas</h1>
-  <%= render 'search' %>
+  <%= render 'search', action: :index %>
 
   <% if @ideas.any? %>
     <%= render 'idea', obj: @ideas %>
