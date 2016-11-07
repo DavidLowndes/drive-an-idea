@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
         alert = user.alerts.where(idea: @comment.idea).first
         if alert.nil?
           # Create alert if it doesn't exist
-          Update.create(user: user, idea: @comment.idea, active: 1)
+          Alert.create(user: user, idea: @comment.idea, active: 1)
         else
           # Reset the alert
           alert.active = 1
