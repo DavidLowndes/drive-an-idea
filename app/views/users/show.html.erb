@@ -1,12 +1,2 @@
-<div class="container col-md-offset-1 col-md-10">
-  <h1 align="center"><%= @user.full_name %>'s Ideas</h1>
-  <%= render '/ideas/search', obj: @ideas, action: :show %>
-
-  <% if @user.ideas.any? %>
-    <%= render 'ideas/idea', obj: @ideas %>		
-  <% else %>
-    <p align="center" class="well">
-      User has no ideas!
-    </p>
-  <% end %>
-</div>
+<%= render 'ideas/ideas_container', title: "#{@user.full_name}'s Ideas",
+                                    search_action: :show %>

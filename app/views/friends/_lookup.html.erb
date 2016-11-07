@@ -46,10 +46,10 @@
                     <% if current_user.not_friends_with?(user.id) %>
                       <%= link_to "Subscribe ",
                           add_friend_path(user: current_user, friend: user),
-                          class: "btn btn-xs btn-danger", method: :post %>
+                          class: "btn btn-xs btn-success", method: :post %>
                     <% else %>
                       <span class="btn btn-xs btn-primary disabled">
-                        You have already subscribed.
+                        Already subscribed.
                       </span>
                     <% end %>
                   </td>
