@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   root 'pages#home'
 
+  get 'alerted_ideas',      to: 'ideas#alerted_ideas'
   get 'open_ideas',         to: 'ideas#open_ideas'
   get 'closed_ideas',       to: 'ideas#closed_ideas'
   get 'escalated_ideas',    to: 'ideas#escalated_ideas'

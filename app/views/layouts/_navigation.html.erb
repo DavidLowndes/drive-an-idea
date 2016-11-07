@@ -16,12 +16,17 @@
           <li><%= link_to 'New Idea', new_idea_path %></li>
             <li class="dropdown text-right"><!-- Dropdown Idea Menu-->
               <!-- Dropdown Link -->
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                 role="button" aria-haspopup="true" aria-expanded="false">
                 View Ideas
                 <span class="caret"></span>
               </a>
               <!-- Dropdown Content -->
               <ul class="dropdown-menu"> 
+                <li>
+                  <% count = current_user.alerts.where(active: 1).count %>
+                  <%= link_to "Alerted Ideas (#{count})", alerted_ideas_path %>
+                </li>
                 <li><%= link_to 'Most Recent Ideas', ideas_path %></li>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to 'Ideas You\'re Following', followed_ideas_path %></li>

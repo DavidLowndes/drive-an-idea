@@ -8,6 +8,11 @@ class IdeasController < ApplicationController
     @search = Idea.ransack(params[:q])
     @ideas = @search.result.order(created_at: :desc)
   end
+  
+  def alerted_ideas
+    @search = Idea.ransack(params[:q])
+    @ideas = @search.result.where(id: current_user.alerts.where(active: 1).pluck(:idea_id)).order(created_at: :desc)
+  end
 
   def open_ideas
     @search = Idea.ransack(params[:q])
