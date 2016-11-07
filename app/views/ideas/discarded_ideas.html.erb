@@ -1,12 +1,2 @@
-<div class="container col-md-offset-1 col-md-10">
-  <h1 align="center">Discarded Ideas</h1>
-  <%= render 'search', action: :discarded_ideas %>
-
-  <% if @ideas.any? %>
-    <%= render 'idea', obj: @ideas %>
-  <% else %>
-    <p align="center">
-      No results!
-    </p>
-  <% end %>
-</div>
+<%= render 'ideas_container', title: "Discarded Ideas",
+                              search_action: :discarded_ideas %>

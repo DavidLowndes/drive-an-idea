@@ -1,12 +1,2 @@
-<div class="container col-md-offset-1 col-md-10">
-  <h1 align="center">Most Recent Ideas</h1>
-  <%= render 'search', action: :index %>
-
-  <% if @ideas.any? %>
-    <%= render 'idea', obj: @ideas %>
-  <% else %>
-    <p align="center">
-      No results!
-    </p>
-  <% end %>
-</div>
+<%= render 'ideas_container', title: "Most Recent Ideas",
+                              search_action: :index %>

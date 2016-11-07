@@ -1,9 +1,5 @@
 # Users Controller
 class UsersController < ApplicationController
-  
-  def my_friends
-    @friendships = current_user.friends
-  end
 
   def search
     @users = User.search(params[:search_param])
@@ -16,6 +12,27 @@ class UsersController < ApplicationController
     end
   end
 
+  def my_ideas
+    @user = current_user
+    @search = @user.ideas.ransack(params[:q])
+    @ideas = @search.result.order(created_at: :desc)
+  end
+  
+  def my_area
+    @friendships = current_user.friends
+    @user = current_user
+  end
+
+  def show
+    @user = User.find(params[:id])
+    @search = @user.ideas.ransack(params[:q])
+    @ideas = @search.result.order(created_at: :desc)
+  end
+
+  def my_friends
+    @friendships = current_user.friends
+  end
+
   def add_friend
     @friend = User.find(params[:friend])
     current_user.friendships.build(friend_id: @friend.id)
@@ -26,22 +43,5 @@ class UsersController < ApplicationController
       redirect_to my_friends_path, flash[:error] = "There was an error adding
                                                     user as friend"
     end
-  end
-
-  def my_ideas
-    @user = current_user
-    @search = @user.ideas.ransack(params[:q])
-    @ideas = @search.result.order(created_at: :desc)
-  end
-  
-  def index
-    @friendships = current_user.friends
-    @user = current_user
-  end
-
-  def show
-    @user = User.find(params[:id])
-    @search = @user.ideas.ransack(params[:q])
-    @ideas = @search.result.order(created_at: :desc)
   end
 end

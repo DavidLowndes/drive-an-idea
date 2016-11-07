@@ -1,13 +1,2 @@
-<div class="container col-md-offset-1 col-md-10">
-  <h1 align="center">Alerted Ideas</h1>
-  
-  <%= render 'search', action: :alerted_ideas %>
-
-  <% if @ideas.any? %>
-    <%= render 'idea', obj: @ideas %>
-  <% else %>
-    <p align="center">
-      No search results, or you have no alerts! 
-    </p>
-  <% end %>
-</div>
+<%= render 'ideas_container', title: "Alerted Ideas",
+                              search_action: :alerted_ideas %>

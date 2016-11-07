@@ -8,44 +8,47 @@ class IdeasController < ApplicationController
     @search = Idea.ransack(params[:q])
     @ideas = @search.result.order(created_at: :desc)
   end
-  
+
   def alerted_ideas
     @search = Idea.ransack(params[:q])
-    @ideas = @search.result.where(id: current_user.alerts.where(active: 1).pluck(:idea_id)).order(created_at: :desc)
+    @ideas = @search.result
+                    .where(
+                      id: current_user.alerts.where(active: 1).pluck(:idea_id)
+                    ).order(created_at: :desc)
   end
 
   def open_ideas
     @search = Idea.ransack(params[:q])
     @ideas = @search.result.order(created_at: :desc).select(&:open?)
   end
-  
+
   def closed_ideas
     @search = Idea.ransack(params[:q])
     @ideas = @search.result.order(created_at: :desc).select(&:closed?)
   end
-  
-  def escalated_ideas
-    @search = Idea.ransack(params[:q])
-    @ideas = @search.result.order(created_at: :desc)
-                           .where(final_verdict: "Escalated")
-  end 
-  
-  def discarded_ideas
-    @search = Idea.ransack(params[:q])
-    @ideas = @search.result.order(created_at: :desc)
-                           .where(final_verdict: "Discarded")
-  end
-  
+
   def followed_ideas
     @search = Idea.ransack(params[:q])
     @ideas = @search.result.where(id: current_user.follows.pluck(:idea_id))
                            .order(created_at: :desc).select(&:open?)
   end
-  
+
   def not_followed_ideas
     @search = Idea.ransack(params[:q])
     @ideas = @search.result.where.not(id: current_user.follows.pluck(:idea_id))
                            .order(created_at: :desc).select(&:open?)
+  end
+
+  def escalated_ideas
+    @search = Idea.ransack(params[:q])
+    @ideas = @search.result.order(created_at: :desc)
+                           .where(final_verdict: "Escalated")
+  end 
+ 
+  def discarded_ideas
+    @search = Idea.ransack(params[:q])
+    @ideas = @search.result.order(created_at: :desc)
+                           .where(final_verdict: "Discarded")
   end
 
   # GET /ideas/1

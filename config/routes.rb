@@ -19,11 +19,11 @@ Rails.application.routes.draw do
   get 'followed_ideas',     to: 'ideas#followed_ideas'
   get 'not_followed_ideas', to: 'ideas#not_followed_ideas'
   
-  get 'my_area',        to: 'users#index'
-  get 'my_ideas',       to: 'users#my_ideas'
-  get 'my_friends',     to: 'users#my_friends'
-  get 'search_friends', to: 'users#search'
-  post 'add_friend',    to: 'users#add_friend'
+  get  'my_area',        to: 'users#my_area'
+  get  'my_ideas',       to: 'users#my_ideas'
+  get  'my_friends',     to: 'users#my_friends'
+  get  'search_friends', to: 'users#search'
+  post 'add_friend',     to: 'users#add_friend'
 
   # For details on the DSL available within this file, see
   # http://guides.rubyonrails.org/routing.html

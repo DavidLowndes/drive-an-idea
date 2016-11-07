@@ -1,12 +1,3 @@
-<div class="container col-md-offset-1 col-md-10">
-  <h1 align="center">Ideas You're Following</h1>
-  <%= render 'search', action: :followed_ideas %>
+<%= render 'ideas_container', title: "Followed Ideas",
+                              search_action: :followed_ideas %>
 
-  <% if @ideas.any? %>
-    <%= render 'idea', obj: @ideas %>
-  <% else %>
-    <p align="center">
-      No results!
-    </p>
-  <% end %>
-</div>

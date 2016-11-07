@@ -24,8 +24,8 @@
               <!-- Dropdown Content -->
               <ul class="dropdown-menu"> 
                 <li>
-                  <% count = current_user.alerts.where(active: 1).count %>
-                  <%= link_to "Alerted Ideas (#{count})", alerted_ideas_path %>
+                  <% alert_count = current_user.alerts.where(active: 1).count %>
+                  <%= link_to "Alerted Ideas (#{alert_count})", alerted_ideas_path, disabled: true %>
                 </li>
                 <li><%= link_to 'Most Recent Ideas', ideas_path %></li>
                 <li role="separator" class="divider"></li>

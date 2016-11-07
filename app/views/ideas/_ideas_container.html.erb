@@ -1,0 +1,16 @@
+<div class="container col-md-offset-1 col-md-10">
+  <%# Title %>
+  <h1 align="center"><%= title %></h1>
+  
+  <%# Search button %>
+  <%= render 'ideas/search', action: search_action %>
+
+  <%# Ideas %>
+  <% if @ideas.any? %>
+    <%= render 'ideas/idea', obj: @ideas %>
+  <% else %>
+  <div class="no-results" align="center">
+    <h4>No results!</h4>
+  </div>
+  <% end %>
+</div>
