@@ -30,6 +30,8 @@ class UsersController < ApplicationController
 
   def my_ideas
     @user = current_user
+    @search = @user.ideas.ransack(params[:q])
+    @ideas = @search.result.order(created_at: :desc)
   end
   
   def index

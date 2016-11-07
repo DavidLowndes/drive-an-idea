@@ -38,6 +38,23 @@ table.table {
   border-left: 1px solid #CCC;
 }
 
+.no-padding {
+  padding: 0 !important;
+}
+
+.left-padding {
+  padding-left: 10px !important;
+}
+
+
+.green {
+  color: green;
+}
+
+.red {
+  color: darken(red, 10%);
+}
+
 /*------------------------------------*\
   #NAVBAR
 \*------------------------------------*/
@@ -165,14 +182,6 @@ a.dropdown-toggle {
   margin-bottom: 10px;
 }
 
-.green {
-  color: green;
-}
-
-.red {
-  color: darken(red, 10%);
-}
-
 /*------------------------------------*\
   #VOTES
 \*------------------------------------*/
@@ -184,14 +193,6 @@ a.dropdown-toggle {
 /*------------------------------------*\
   #FORMS
 \*------------------------------------*/
-
-.no-padding {
-  padding: 0 !important;
-}
-
-.left-padding {
-  padding-left: 10px !important;
-}
 
 .form-group {
   margin-bottom: 15px;
