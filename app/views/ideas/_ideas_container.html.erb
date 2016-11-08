@@ -2,12 +2,28 @@
   <%# Title %>
   <h1 align="center"><%= title %></h1>
   
+  <%# Subscribe button if this a user's page %>
+  <% if search_action == :show %>
+    <div align="center">
+      <% if current_user.not_friends_with?(@user.id) %>
+        <%= link_to "Subscribe to User",
+            add_friend_path(user: current_user, friend: @user),
+            class: "btn btn-sm btn-primary margin-bottom", method: :post %>
+      <% else %>
+        <%= link_to 'Unsubscribe from user',
+            friendship_path(@user),
+            method: :delete,
+            class: 'btn btn-sm btn-default margin-bottom' %>
+      <% end %>
+    </div>
+  <% end %>
+  
   <%# Search button %>
   <%= render 'ideas/search', action: search_action %>
 
   <%# Ideas %>
   <% if @ideas.any? %>
-    <%= render 'ideas/idea', obj: @ideas %>
+    <%= render 'ideas/ideas', obj: @ideas %>
   <% else %>
   <div class="no-results" align="center">
     <h4>No results!</h4>

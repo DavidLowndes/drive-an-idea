@@ -1,10 +1,10 @@
 <div class="row">
   <div id="friend-lookup">
-    <h3 align="center" class="margin-bottom">Search for Innovators</h3>
+    <h3 align="center" class="margin-bottom">Search for Users</h3>
     <%= form_tag search_friends_path, remote: true, method: :get,
                                       id: 'friend-lookup-form' do %>
       <div class="row well col-md-10 col-md-offset-1 form-group text-center">
-        <div class="col-md-8">
+        <div class="col-md-9">
           <%= text_field_tag :search_param, params[:search_param], 
                              placeholder: "First name, Last name or Email",
                              autofocus: true, 
@@ -26,7 +26,7 @@
           <table class="table table-striped well text-center results-block">
             <tbody>
               <tr>
-                <th colspan="5" class="no-padding">
+                <th colspan="5">
                   <h4 align="center" class="no-padding">Search Results</h4>
                 </th>
               </tr>

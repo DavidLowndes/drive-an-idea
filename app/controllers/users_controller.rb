@@ -21,7 +21,8 @@ class UsersController < ApplicationController
   def my_area
     @friendships = current_user.friends
     @user = current_user
-    @recent_ideas = Idea.where(user: current_user).order(created_at: :desc).limit(5)
+    @recent_ideas = Idea.where(user: current_user)
+                        .order(created_at: :desc).limit(5)
     
     recent_comment_ids = @user.comments.order(created_at: :desc)
                               .pluck(:idea_id).uniq[0..4]
@@ -43,9 +44,9 @@ class UsersController < ApplicationController
     current_user.friendships.build(friend_id: @friend.id)
 
     if current_user.save
-      redirect_to my_friends_path, notice: 'Subscription added!'
+      redirect_to :back, notice: 'Subscription added!'
     else
-      redirect_to my_friends_path, flash[:error] = "There was an error adding
+      redirect_to :back, flash[:error] = "There was an error adding
                                                     user as friend"
     end
   end
