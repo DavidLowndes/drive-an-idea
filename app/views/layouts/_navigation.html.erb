@@ -23,11 +23,11 @@
               </a>
               <!-- Dropdown Content -->
               <ul class="dropdown-menu"> 
+                <li><%= link_to 'Most Recent Ideas', ideas_path %></li>
                 <li>
                   <% alert_count = current_user.alerts.where(active: 1).count %>
                   <%= link_to "Alerted Ideas (#{alert_count})", alerted_ideas_path, disabled: true %>
                 </li>
-                <li><%= link_to 'Most Recent Ideas', ideas_path %></li>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to 'Ideas You\'re Following', followed_ideas_path %></li>
                 <li><%= link_to 'Ideas You Aren\'t Following', not_followed_ideas_path %></li>
@@ -43,7 +43,7 @@
         </ul>
         
         <!-- Right Navbar -->
-        <ul class ="nav navbar-right col-md-3">
+        <ul class="nav navbar-right col-md-3">
           
           <!-- Dropdown User Menu-->
           <li class="dropdown user-dropdown text-right">

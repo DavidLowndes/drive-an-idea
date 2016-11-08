@@ -1,0 +1,30 @@
+<h4 align="center">My Subscriptions</h4>
+<% if @friendships.size > 0 %>
+  <table class="table table-striped well text-center my-area-scroller">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Ideas</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @friendships.each do |friend| %>
+        <tr>
+          <td><%= friend.full_name %></td>
+          <td><%= Idea.where(user: friend).count %></td>
+          <td>
+            <%= link_to "View Profile", user_path(friend),
+                                        class: "btn btn-primary btn-xs" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class='well text-center my-area-scroller'>
+    <h3>
+      <small>You aren't following anybody at the moment.</small>
+    </h3>
+  </div>
+<% end %>

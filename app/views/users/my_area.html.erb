@@ -1,20 +1,17 @@
-<h1 align="center"><%= current_user.first_name %>'s Area</h1>
-<div class = "container">
-  <div class ="container col-md-6"> <%# Subscriptions %>
-    <div class="userArea-scroller">
-      <div class = "row well">
-        <%= render 'friends/subscriptions' %>
-      </div>
-    </div>
+<div class="col-md-12">
+  <h1 align="center"><%= current_user.full_name %>'s Area</h1>
+
+  <%# Left side %>
+  <div class="col-md-6">
+    <%# My Recent Ideas %>
+    <%= render 'ideas/recent_ideas', obj: @recent_ideas %>	
+    <%# Subscriptions %>
+    <%= render 'friends/compact_subscriptions' %>
   </div>
 
-  <%# My Ideas %>
-  <div class = "container col-md-6">
-    <div class="user-area-scroller">
-      <div class="row well">
-        <h4>My Ideas</h4>
-        <%= render 'ideas/idea', obj: @user.ideas %>	
-      </div>
-    </div>
+  <%# Right Side %>
+  <div class="col-md-6">
+    <%# Recently Commented on Ideas %>
+    <%= render 'ideas/commented_ideas', obj: @commented_ideas %>	
   </div>
 </div>

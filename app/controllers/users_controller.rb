@@ -21,6 +21,11 @@ class UsersController < ApplicationController
   def my_area
     @friendships = current_user.friends
     @user = current_user
+    @recent_ideas = Idea.where(user: current_user).order(created_at: :desc).limit(5)
+    
+    recent_comment_ids = @user.comments.order(created_at: :desc)
+                              .pluck(:idea_id).uniq[0..4]
+    @commented_ideas = Idea.find(recent_comment_ids)
   end
 
   def show

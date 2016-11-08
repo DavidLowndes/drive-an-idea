@@ -3,14 +3,14 @@
     <h3 align="center" class="margin-bottom">Search for Innovators</h3>
     <%= form_tag search_friends_path, remote: true, method: :get,
                                       id: 'friend-lookup-form' do %>
-      <div class="well col-md-10 col-md-offset-1 form-group text-center">
+      <div class="row well col-md-10 col-md-offset-1 form-group text-center">
         <div class="col-md-8">
           <%= text_field_tag :search_param, params[:search_param], 
                              placeholder: "First name, Last name or Email",
                              autofocus: true, 
                              class: 'form-control search-box' %>
         </div>
-        <div class="col-md-3"><br>
+        <div class="col-md-3">
           <%= button_tag(type: :submit, class: "btn btn-primary") do %>
             <i class="fa fa-search"></i> Search
           <% end %>
@@ -22,15 +22,20 @@
     
     <% if @users %>
       <% if @users.size > 0 %>
-        <h3 align="center">Search Results</h3>
-        <br>
-        <div id="friend-lookup-results" class="well results-block">
-          <table class="table table-striped">
+        <div id="friend-lookup-results" class="row">
+          <table class="table table-striped well text-center results-block">
             <tbody>
+              <tr>
+                <th colspan="5" class="no-padding">
+                  <h4 align="center" class="no-padding">Search Results</h4>
+                </th>
+              </tr>
               <tr>
                 <th>Full Name</th>
                 <th>Email</th>
-                <th colspan=2>Actions</th>
+                <th>Ideas</th>
+                <th>Profile</th>
+                <th>Subscribe</th>
               </tr>
               <% @users.each do |user| %>
                 <tr>
@@ -38,18 +43,19 @@
                     <%= user.full_name == user.email ? '-' : user.full_name %>
                   </td>
                   <td><%= user.email %></td>
+                  <td><%= Idea.where(user: user).count %></td>
                   <td>
                     <%= link_to "View Profile",
                         user_path(user), class: "btn btn-xs btn-primary" %>
                   </td>
                   <td>
                     <% if current_user.not_friends_with?(user.id) %>
-                      <%= link_to "Subscribe ",
+                      <%= link_to "Subscribe",
                           add_friend_path(user: current_user, friend: user),
                           class: "btn btn-xs btn-success", method: :post %>
                     <% else %>
                       <span class="btn btn-xs btn-primary disabled">
-                        Already subscribed.
+                        Already Subscribed
                       </span>
                     <% end %>
                   </td>
@@ -59,7 +65,7 @@
           </table>
         </div>
       <% else %>
-        <p class ="lead col-md-12">
+        <p class="lead col-md-12">
           No people match this search criteria
         </p>
       <% end %>

@@ -1,0 +1,46 @@
+<h4 align="center">My Recent Ideas</h4>
+<div class="my-area-scroller">
+  <% if obj.size > 0 %>
+    <% obj.each do |idea| %>
+      <div class="well col-md-12 <%= "no-margin" if idea == obj.last %>">
+        <%# Alert Notification %>
+        <% if current_user.alerts.where(idea: idea, active: 1).exists? %>
+          <i class="fa fa-exclamation fa-2x exclamation" aria-hidden="true">
+          </i>
+        <% end %>
+    
+        <%# Idea Body %>
+        <div class="trix-body idea-scroller">
+          <%= link_to idea.text.html_safe, idea_path(idea) %>
+        </div>
+    
+        <%# Idea Details %>
+        <p class="idea-details" align="center">
+          <small>
+            This idea is
+            <% if idea.open? %>
+              <strong class="green">OPEN</strong>,
+              and will close in 
+              <%= time_ago_in_words(idea.closing_time) %>.
+            <% else %>
+              <strong class="red">CLOSED.</strong>
+            <% end %>
+            <% if idea.final_verdict != "Undecided" %>
+              It has been
+              <strong class=
+                "<%= idea.final_verdict == 'Escalated' ? "green" : "red" %>">
+                <%= idea.final_verdict.upcase %>.
+              </strong>
+            <% end %>
+          </small>
+        </p>
+      </div>
+    <% end %>
+  <% else %>
+    <div class='well text-center no-margin'>
+      <h3>
+        <small>You don't have any ideas at the moment.</small>
+      </h3>
+    </div>
+  <% end %>
+</div>
