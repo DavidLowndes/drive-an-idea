@@ -30,13 +30,13 @@ class IdeasController < ApplicationController
   def followed_ideas
     @search = Idea.ransack(params[:q])
     @ideas = @search.result.where(id: current_user.follows.pluck(:idea_id))
-                           .order(created_at: :desc).select(&:open?)
+                           .order(created_at: :desc)
   end
 
   def not_followed_ideas
     @search = Idea.ransack(params[:q])
     @ideas = @search.result.where.not(id: current_user.follows.pluck(:idea_id))
-                           .order(created_at: :desc).select(&:open?)
+                           .order(created_at: :desc)
   end
 
   def escalated_ideas

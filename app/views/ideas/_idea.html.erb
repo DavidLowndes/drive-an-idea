@@ -61,16 +61,16 @@
         <% if !idea.real_time_voting? %>
           Voting results will be revealed when the idea closes.<br>
         <% end %>
-        <% if Follow.where(user: current_user, idea: idea).any? %>
-          You are following this idea, and will receive notifications for it.
-        <% else %>
-          You aren't following this idea.
-        <% end %>
       <% else %>
         This idea closed
-        <%= time_ago_in_words(idea.closing_time) %> ago.
+        <%= time_ago_in_words(idea.closing_time) %> ago.<br>
       <% end %>
       
+      <% if Follow.where(user: current_user, idea: idea).any? %>
+        You are following this idea, and will receive notifications for it.
+      <% else %>
+        You aren't following this idea.
+      <% end %>
     </small>
   </div><!-- /idea-details -->
 
