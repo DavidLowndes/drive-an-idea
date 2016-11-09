@@ -18,7 +18,7 @@ class FollowsController < ApplicationController
       redirect_to :back
     else
       flash[:danger] = "You can't do that."
-      redirect_to :back
+      redirect_to '/'
     end
   end
 end
