@@ -1,32 +1,42 @@
 <div class="container col-md-offset-1 col-md-10">
-  <%# Title %>
-  <h1 align="center"><%= title %></h1>
   
-  <%# Subscribe button if this a user's page %>
-  <% if search_action == :show %>
-    <div align="center">
-      <% if current_user.not_friends_with?(@user.id) %>
-        <%= link_to "Subscribe to User",
-            add_friend_path(user: current_user, friend: @user),
-            class: "btn btn-sm btn-primary margin-bottom", method: :post %>
-      <% else %>
-        <%= link_to 'Unsubscribe from user',
-            friendship_path(@user),
-            method: :delete,
-            class: 'btn btn-sm btn-default margin-bottom' %>
+  <div class="row">
+    <div class="well col-md-offset-1 col-md-10">
+      <%# Title %>
+      <h1 align="center"><%= title %></h1>
+    
+      <div class="subtitle">Viewing <%= @ideas.count %> ideas</div>
+    
+      <% if search_action == :show %>
+          <%# Subscribe Button %>
+          <div align="center">
+            <% if current_user.not_friends_with?(@user.id) %>
+              <%= link_to "Subscribe to User",
+                  add_friend_path(user: current_user, friend: @user),
+                  class: "btn btn-md btn-primary margin-bottom",
+                  method: :post %>
+            <% else %>
+              <%= link_to friendship_path(@user), method: :delete,
+                          class: 'btn btn-sm btn-default margin-bottom' do %>
+                <strong>Unsubscribe</strong>
+              <% end %>
+            <% end %>
+          </div>
       <% end %>
-    </div>
-  <% end %>
   
-  <%# Search button %>
-  <%= render 'ideas/search', action: search_action %>
-
+      <%# Search Button %>
+      <%= render 'ideas/search', action: search_action %>
+    </div>
+  </div>
+  
   <%# Ideas %>
   <% if @ideas.any? %>
-    <%= render 'ideas/ideas', obj: @ideas %>
+    <%= render 'ideas/idea_list', obj: @ideas %>
   <% else %>
-  <div class="no-results" align="center">
-    <h4>No results!</h4>
-  </div>
+    <div class="row">
+      <div class="well col-md-10 col-md-offset-1">
+        <div class="subtitle no-margin">No results!</div>
+      </div>
+    </div>
   <% end %>
 </div>
