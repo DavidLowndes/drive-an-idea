@@ -1,9 +1,11 @@
 # Follows Controller
 class FollowsController < ApplicationController
-  # One-time code that will create follows for everyone who should have one
+  
+  # One-time function that will create follows for everyone who should have one
   def refresh_follows
     if current_user.admin?
       User.all.each do |user|
+        # Follow every idea they've created, commented on, or voted on.
         user.ideas.each do |user_idea|
           Follow.create_follow(user: user, idea: user_idea)
         end
@@ -15,10 +17,11 @@ class FollowsController < ApplicationController
         end
       end
       flash[:success] = "Follows refreshed."
-      redirect_to :back
+      redirect_to '/'
     else
       flash[:danger] = "You can't do that."
       redirect_to '/'
     end
   end
+  
 end

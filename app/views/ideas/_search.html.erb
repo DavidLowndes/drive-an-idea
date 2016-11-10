@@ -12,12 +12,12 @@
         <button type="button" class="close" data-dismiss="modal">
           &times;
         </button>
-        <h3 align="center"><strong>Search Ideas</strong></h3>
+        <h3 align="center"><strong>Search for Ideas</strong></h3>
       </div>
       <div class="modal-body">
         <%= search_form_for @search, url: { action: action } do |f| %>
           <div class="form-group">
-            <%= f.label :text_cont, "Text Contains" %>
+            <%= f.label :text_cont, "Text Contains:" %>
             <%= f.text_field :text_cont %>
           </div>
           <div class="actions">

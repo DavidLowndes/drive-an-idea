@@ -25,7 +25,7 @@
   </div>
 
   <%# Idea user menu %>
-  <% if idea.user == current_user %>
+  <% if idea.user == current_user || current_user.admin? %>
     <div class="dropdown-chevron dropdown">
       <%# Dropdown Button %>
       <a class="dropdown-toggle" href="#" id="dropdownMenuLink"
@@ -34,7 +34,7 @@
       </a>
       <%# Dropdown Contents %>
       <ul class="dropdown-menu dropdown-menu-right">
-        <% if idea.open? %>
+        <% if idea.open? || current_user.admin? %>
           <li><%= link_to "Edit Idea", edit_idea_path(idea) %></li>
         <% end %>
         <li>

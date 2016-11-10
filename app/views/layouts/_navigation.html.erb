@@ -29,8 +29,10 @@
                   <%= link_to "Alerted Ideas (#{alert_count})", alerted_ideas_path, disabled: true %>
                 </li>
                 <li role="separator" class="divider"></li>
-                <li><%= link_to 'Ideas You\'re Following', followed_ideas_path %></li>
-                <li><%= link_to 'Ideas You Aren\'t Following', not_followed_ideas_path %></li>
+                <li><%= link_to 'Ideas You\'re Following',
+                        followed_ideas_path %></li>
+                <li><%= link_to 'Ideas You Aren\'t Following',
+                        not_followed_ideas_path %></li>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to 'Open Ideas', open_ideas_path %></li>
                 <li><%= link_to 'Closed Ideas', closed_ideas_path %></li>
@@ -49,7 +51,11 @@
           <li class="dropdown user-dropdown text-right">
             <!-- Dropdown Link -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <i class ="fa fa-user"></i>
+              <% if current_user.admin? %>
+                <i class="fa fa-wrench" aria-hidden="true"></i>
+              <% else %>
+                <i class ="fa fa-user"></i>
+              <% end %>
               <%= current_user.full_name %>
               <span class="caret"></span>
             </a>
@@ -70,11 +76,16 @@
               </li>
               <% if current_user.admin? %>
                 <li role="separator" class="divider"></li>
-                <li><%= link_to 'Refresh Follows', refresh_follows_path %></li>
+                <li>
+                  <%= link_to refresh_follows_path, data: { confirm: 'Don\'t run this unless you know what it\'s going to do - Dave' } do %>
+                    Refresh Follows
+                    <i class="fa fa-wrench" aria-hidden="true"></i>
+                  <% end %>
+                </li>
               <% end %>
             </ul>
           </li><!-- /dropdown -->
-          
+
         </ul>
       </div>
     <% else %>

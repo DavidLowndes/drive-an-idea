@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
       render 'comments/form'
     end
   end
-
+  
   def destroy
     @idea = Idea.find(params[:idea_id])
     @comment = @idea.comments.find(params[:id])
