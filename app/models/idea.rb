@@ -15,7 +15,7 @@ class Idea < ApplicationRecord
   def closing_time
     # Get the date created, advance it by the specified number of days
     # and move the timer to the end of the day (23:59:59)
-    if !force_close
+    if !force_close?
       created_at.advance(days: open_days).end_of_day
     else
       updated_at
