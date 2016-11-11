@@ -25,6 +25,11 @@
 
     <%# Don't show these fields if editing %>
     <% if params[:action] != 'edit' %>
+    
+
+      <%# Load default idea options for user %>
+      <% opts = current_user.user_option %>
+    
       <%# Show voting style field %>
       <div class="row form-group">
         <div class="control-label col-xs-3">
@@ -32,8 +37,10 @@
         </div>
         <div class="col-xs-2">
           <%= f.select :voting_style, 
-                options_for_select(['5 Stars', '1-10', 'Binary', 'Fibonacci']),
-                class: 'select form-control' %>
+                options_for_select(
+                  ['5 Stars', '1-10', 'Binary', 'Fibonacci'],
+                  opts.voting_style_default
+                ), class: 'select form-control' %>
         </div>
         <div class="col-xs-7">
           <%= render 'style_explanation' %>
@@ -53,9 +60,6 @@
           <em>Choose a number between 0 and 31.</em>
         </div>
       </div>
-
-      <!-- Check boxes -->
-      <% opts = current_user.user_option %>
 
       <div class="row form-check">
         <div class="form-check-label col-xs-3">
