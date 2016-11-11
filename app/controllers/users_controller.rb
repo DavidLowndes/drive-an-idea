@@ -1,6 +1,5 @@
 # Users Controller
 class UsersController < ApplicationController
-
   def search
     @users = User.search(params[:search_param])
 
@@ -17,13 +16,13 @@ class UsersController < ApplicationController
     @search = @user.ideas.ransack(params[:q])
     @ideas = @search.result.order(created_at: :desc)
   end
-  
+
   def my_area
     @friendships = current_user.friends
     @user = current_user
     @recent_ideas = Idea.where(user: current_user)
                         .order(created_at: :desc).limit(5)
-    
+
     recent_comment_ids = @user.comments.order(created_at: :desc)
                               .pluck(:idea_id).uniq[0..4]
     @commented_ideas = Idea.find(recent_comment_ids)

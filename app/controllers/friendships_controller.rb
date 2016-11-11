@@ -5,8 +5,7 @@ class FriendshipsController < ApplicationController
     @friendship.destroy
     respond_to do |format|
       format.html {
-        redirect_to :back,
-        notice: 'Subscription Removed!'
+        redirect_to :back, notice: 'Subscription Removed!'
       }
     end
   end

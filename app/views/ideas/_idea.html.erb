@@ -36,8 +36,10 @@
       <ul class="dropdown-menu dropdown-menu-right">
         <% if current_user.admin? %>
           <li>
-            <%= link_to 'Raw Stats', '#',
-                        data: { toggle: "modal", target: '#raw-stats' } %>
+            <%= link_to '#', 
+                        data: { toggle: "modal", target: '#raw-stats' } do %>
+              Raw Stats <i class="fa fa-wrench" aria-hidden="true"></i>
+            <% end %>
           </li> 
           <li role="separator" class="divider"></li>
         <% end %>

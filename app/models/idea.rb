@@ -5,7 +5,7 @@ class Idea < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :votes,    dependent: :destroy
   has_many :follows,  dependent: :destroy
-  has_many :alerts,  dependent: :destroy  
+  has_many :alerts,   dependent: :destroy
 
   validates :text, presence: true, length: { minimum: 3 }
   validates :open_days, presence: true,
@@ -15,7 +15,7 @@ class Idea < ApplicationRecord
   def closing_time
     # Get the date created, advance it by the specified number of days
     # and move the timer to the end of the day (23:59:59)
-    if force_close == 0
+    if !force_close
       created_at.advance(days: open_days).end_of_day
     else
       updated_at
@@ -24,12 +24,12 @@ class Idea < ApplicationRecord
 
   def open?
     # Is the closing date in the future? Idea is still active.
-    closing_time.future? && force_close == 0
+    closing_time.future? && !force_close?
   end
 
   def closed?
     # Is the closing date in the past? Idea is closed.
-    closing_time.past? || force_close == 1
+    closing_time.past? || force_close?
   end
 
   def reveal_voter_details?

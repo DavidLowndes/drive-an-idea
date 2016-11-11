@@ -130,7 +130,8 @@
               <strong>Number of Active Alerts:</strong>
             </div>
             <div class="col-md-8">
-              <%= @idea.alerts.where(active: 1).count %>
+              <%= @idea.alerts.where(active: 1).count %> out of 
+              <%= User.all.count %> total users.
             </div>
           </div>
         </div>

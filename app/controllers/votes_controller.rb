@@ -13,7 +13,7 @@ class VotesController < ApplicationController
       if @vote.save
         # Create follow
         Follow.create_follow(user: current_user, idea: @vote.idea)
-        
+
         flash[:success] = 'Your vote has been registered! Thanks for voting!'
         redirect_to idea_path(@vote.idea)
       end
@@ -23,7 +23,7 @@ class VotesController < ApplicationController
       if @vote.save
         # Create follow
         Follow.create_follow(user: current_user, idea: @vote.idea)
-        
+
         flash[:warning] = 'Your vote has been updated! Thanks for voting!'
         redirect_to idea_path(@vote.idea)
       end

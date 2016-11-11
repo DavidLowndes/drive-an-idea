@@ -30,25 +30,25 @@ class IdeasController < ApplicationController
   def followed_ideas
     @search = Idea.ransack(params[:q])
     @ideas = @search.result.where(id: current_user.follows.pluck(:idea_id))
-                           .order(created_at: :desc)
+                    .order(created_at: :desc)
   end
 
   def not_followed_ideas
     @search = Idea.ransack(params[:q])
     @ideas = @search.result.where.not(id: current_user.follows.pluck(:idea_id))
-                           .order(created_at: :desc)
+                    .order(created_at: :desc)
   end
 
   def escalated_ideas
     @search = Idea.ransack(params[:q])
     @ideas = @search.result.order(created_at: :desc)
-                           .where(final_verdict: "Escalated")
-  end 
- 
+                    .where(final_verdict: 'Escalated')
+  end
+
   def discarded_ideas
     @search = Idea.ransack(params[:q])
     @ideas = @search.result.order(created_at: :desc)
-                           .where(final_verdict: "Discarded")
+                    .where(final_verdict: 'Discarded')
   end
 
   # GET /ideas/1

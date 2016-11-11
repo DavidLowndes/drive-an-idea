@@ -28,4 +28,3 @@ class User::RegistrationsController < Devise::RegistrationsController
                                       keys: [:first_name, :last_name, :email])
   end
 end
-

@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     if @comment.save
       # Create follow
       Follow.create_follow(user: current_user, idea: @comment.idea)
-      
+
       # Refresh alerts for everyone
       User.all.each do |user|
         alert = user.alerts.where(idea: @comment.idea).first
@@ -24,13 +24,13 @@ class CommentsController < ApplicationController
           alert.save
         end
       end
-      
+
       redirect_to idea_path(@idea)
     else
       render 'comments/form'
     end
   end
-  
+
   def destroy
     @idea = Idea.find(params[:idea_id])
     @comment = @idea.comments.find(params[:id])
