@@ -34,6 +34,13 @@
       </a>
       <%# Dropdown Contents %>
       <ul class="dropdown-menu dropdown-menu-right">
+        <% if current_user.admin? %>
+          <li>
+            <%= link_to 'Raw Stats', '#',
+                        data: { toggle: "modal", target: '#raw-stats' } %>
+          </li> 
+          <li role="separator" class="divider"></li>
+        <% end %>
         <% if idea.open? || current_user.admin? %>
           <li><%= link_to "Edit Idea", edit_idea_path(idea) %></li>
         <% end %>
@@ -43,6 +50,9 @@
         </li>
       </ul>
     </div>
+    
+    <%# Advanced Stats Modal %>
+    <%= render 'raw_stats' %>
   <% end %>
 
   <%# Idea body %>

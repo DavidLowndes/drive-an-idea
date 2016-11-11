@@ -1,1 +1,1 @@
-Time::DATE_FORMATS[:custom] = "%D %H:%M"
+Time::DATE_FORMATS[:custom] = "%d/%m/%y %H:%M"
