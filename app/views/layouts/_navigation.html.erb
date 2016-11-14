@@ -23,22 +23,58 @@
               </a>
               <!-- Dropdown Content -->
               <ul class="dropdown-menu"> 
-                <li><%= link_to 'Most Recent Ideas', ideas_path %></li>
+                <li>
+                  <%= link_to ideas_path do %>
+                    <i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>
+                    Most Recent Ideas
+                  <% end %>
+                </li>
                 <li>
                   <% alert_count = current_user.alerts.where(active: 1).count %>
-                  <%= link_to "Alerted Ideas (#{alert_count})", alerted_ideas_path, disabled: true %>
+                  <%= link_to alerted_ideas_path, disabled: true do %>
+                    <i class="fa fa-exclamation fa-fw" aria-hidden="true"></i>
+                    Alerted Ideas (<%= alert_count %>)
+                  <% end %>
                 </li>
                 <li role="separator" class="divider"></li>
-                <li><%= link_to 'Ideas You\'re Following',
-                        followed_ideas_path %></li>
-                <li><%= link_to 'Ideas You Aren\'t Following',
-                        not_followed_ideas_path %></li>
+                <li>
+                  <%= link_to followed_ideas_path do %>
+                    <i class="fa fa-bell-o fa-fw" aria-hidden="true"></i>
+                    Ideas You're Following
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to not_followed_ideas_path do %>
+                    <i class="fa fa-bell-slash-o fa-fw" aria-hidden="true"></i>
+                    Ideas You Aren't Following
+                  <% end %>
+                </li>
                 <li role="separator" class="divider"></li>
-                <li><%= link_to 'Open Ideas', open_ideas_path %></li>
-                <li><%= link_to 'Closed Ideas', closed_ideas_path %></li>
+                <li>
+                  <%= link_to open_ideas_path do %>
+                    <i class="fa fa-dot-circle-o fa-fw" aria-hidden="true"></i>
+                    Open Ideas
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to closed_ideas_path do %>
+                    <i class="fa fa-minus-circle fa-fw" aria-hidden="true"></i>
+                    Closed Ideas
+                  <% end %>
+                </li>
                 <li role="separator" class="divider"></li>
-                <li><%= link_to 'Escalated Ideas', escalated_ideas_path %></li>
-                <li><%= link_to 'Discarded Ideas', discarded_ideas_path %></li>
+                <li>
+                  <%= link_to escalated_ideas_path do %>
+                    <i class="fa fa-arrow-up fa-fw" aria-hidden="true"></i>
+                    Escalated Ideas
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to discarded_ideas_path do %>
+                    <i class="fa fa-trash fa-fw" aria-hidden="true"></i>
+                    Discarded Ideas
+                  <% end %>
+                </li>
               </ul>
             </li><!-- /dropdown -->
           <li><%= link_to 'Subscriptions', my_friends_path %></li>
@@ -52,9 +88,7 @@
             <!-- Dropdown Link -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <% if current_user.admin? %>
-                <i class="fa fa-wrench" aria-hidden="true"></i>
-              <% else %>
-                <i class ="fa fa-user"></i>
+                <i class="fa fa-wrench fa-lg fa-fw" aria-hidden="true"></i>
               <% end %>
               <%= current_user.full_name %>
               <span class="caret"></span>
@@ -62,24 +96,44 @@
 
             <!-- Dropdown Content -->
             <ul class="dropdown-menu">
-              <li><%= link_to 'My Area', my_area_path %></li>
-              <li><%= link_to 'My Ideas', my_ideas_path %></li>
-              <li role="separator" class="divider"></li>
-              <li><%= link_to 'Edit User Options',
-                      edit_user_option_path(current_user.user_option) %></li>
-              <li><%= link_to 'Edit Account Details',
-                      edit_user_registration_path(current_user) %></li>
+              <li>
+                <%= link_to my_area_path do %>
+                  <i class="fa fa-sitemap fa-fw" aria-hidden="true"></i>
+                  My Area
+                <% end %>
+              </li>
+              <li>
+                <%= link_to my_ideas_path do %>
+                  <i class="fa fa-list-ul fa-fw" aria-hidden="true"></i>
+                  My Ideas
+                <% end %>
+              </li>
               <li role="separator" class="divider"></li>
               <li>
-                <%= link_to 'Log out', destroy_user_session_path,
-                                       method: :delete %>
+                <%= link_to edit_user_option_path(current_user.user_option) do %>
+                  <i class="fa fa-cog fa-fw" aria-hidden="true"></i>
+                  User Options
+                <% end %>
+              </li>
+              <li>
+                <%= link_to edit_user_registration_path(current_user) do %>
+                  <i class="fa fa-user-circle-o fa-fw" aria-hidden="true"></i>
+                  Edit Account Details
+                <% end %>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>
+                  Log Out
+                <% end %>
               </li>
               <% if current_user.admin? %>
                 <li role="separator" class="divider"></li>
                 <li>
                   <%= link_to refresh_follows_path, data: { confirm: 'Don\'t run this unless you know what it\'s going to do - Dave' } do %>
+                    <i class="fa fa-wrench fa-fw" aria-hidden="true"></i>
                     Refresh Follows
-                    <i class="fa fa-wrench" aria-hidden="true"></i>
                   <% end %>
                 </li>
               <% end %>
