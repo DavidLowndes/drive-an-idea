@@ -18,10 +18,8 @@
           <%# Dropdown Contents %>
           <ul class="dropdown-menu dropdown-menu-right force-above">
             <li>
-              <% link_to edit_idea_comment_path(comment.idea, comment),
-                          data: {
-                            toggle: "modal", target: "#edit-comment"
-                          } do %>
+              <%= link_to edit_idea_comment_path(comment.idea, comment) do %>
+                        <!---->
                 <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
                 Edit Comment
               <% end %>
@@ -35,28 +33,6 @@
           </ul>
         </div>
       <% end %>
-      
-      <!-- edit-comment modal-->
-      <div class="modal fade" id="edit-comment" role="dialog">
-        <div class="modal-dialog">
-          <%# Modal Content %>
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3 align="center">
-                Editing comment
-                <button type="button" class="close" data-dismiss="modal">
-                  &times;
-                </button>
-              </h3>
-            </div>
-            <div class="modal-body">
-              <% puts "Comment outside id: #{comment}" %>
-              <% puts "Comment body: #{comment.body}" %>
-              <%= render 'comments/form', obj: comment %>
-            </div>
-          </div>
-        </div>
-      </div><!-- /edit-comment modal -->
 
       <%# Comment sub-text %>
       <div class="comment-sub-text
