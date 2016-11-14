@@ -134,10 +134,17 @@ a.dropdown-toggle {
   margin-top: 0px;
 }
 
-.exclamation {
-  position: absolute;
-  top: 5px;
-  left: 5px;
+.alert-text {
+  position: relative;
+  color: #269ABC;
+  font-weight: bold;
+  text-align: center;
+  margin-top: -10px;
+  padding-bottom: 5px;
+}
+
+.line {
+  border-bottom: 1px solid #AAAAAA;
 }
 
 .idea-scroller {

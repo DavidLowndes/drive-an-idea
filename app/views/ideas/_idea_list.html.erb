@@ -4,10 +4,13 @@
   <div class="row">
     <div class="well col-md-10 col-md-offset-1">
       <%# Alert Notification %>
-      <% if current_user.alerts.where(idea: idea, active: 1).exists? %>
-        <i class="fa fa-exclamation fa-2x exclamation" aria-hidden="true">
-        </i>
+      <% alerts = current_user.alerts.where(idea: idea, active: 1) %>
+      <% if alerts.any? %>
+        <div class="alert-text">
+          <%= alerts.first.text %>
+        </div>
       <% end %>
+      <div class="line"></div>
     
       <%# Idea Body %>
       <div class="trix-body idea-scroller">
