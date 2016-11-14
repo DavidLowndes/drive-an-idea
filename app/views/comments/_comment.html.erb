@@ -18,7 +18,7 @@
           <%# Dropdown Contents %>
           <ul class="dropdown-menu dropdown-menu-right force-above">
             <li>
-              <%= link_to edit_idea_comment_path(comment.idea, comment),
+              <% link_to edit_idea_comment_path(comment.idea, comment),
                           data: {
                             toggle: "modal", target: "#edit-comment"
                           } do %>
@@ -50,11 +50,13 @@
               </h3>
             </div>
             <div class="modal-body">
+              <% puts "Comment outside id: #{comment}" %>
+              <% puts "Comment body: #{comment.body}" %>
               <%= render 'comments/form', obj: comment %>
             </div>
           </div>
         </div>
-      </div><!-- /eidt-comment modal -->
+      </div><!-- /edit-comment modal -->
 
       <%# Comment sub-text %>
       <div class="comment-sub-text
