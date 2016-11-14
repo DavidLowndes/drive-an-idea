@@ -30,7 +30,28 @@ class CommentsController < ApplicationController
       render 'comments/form'
     end
   end
-
+  
+  def edit
+    @idea = Idea.find(params[:idea_id])
+    @comment = @idea.comments.find(params[:id])
+  end
+  
+  def update
+    authorize! :update, @comment
+    @idea = Idea.find(params[:idea_id])
+    respond_to do |format|
+      if @comment.update(comment_params)
+        format.html {
+          redirect_to @idea, notice: 'Comment was successfully updated.'
+        }
+        format.json { render :show, status: :ok, location: @idea }
+      else
+        format.html { render :edit }
+        format.json { render json: @idea.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
   def destroy
     @idea = Idea.find(params[:idea_id])
     @comment = @idea.comments.find(params[:id])

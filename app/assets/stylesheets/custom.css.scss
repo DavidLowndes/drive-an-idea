@@ -259,10 +259,16 @@ a.dropdown-toggle {
 
 .delete-comment-button {
   position: absolute;
-  top: 0px;
-  right: 5px;
+  top: 25px;
+  right: 6px;
 }
 
+.edit-comment-button {
+  position: absolute;
+  top: 0px;
+  right: 2px;
+}
+ 
 .comment-sub-text {
   margin-top: 4px;
   border-top: 1px solid lighten(#31B0D5, 10%);

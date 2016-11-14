@@ -1,4 +1,4 @@
-<%= form_for([@idea, @idea.comments.build]) do |f| %>
+<%= form_for([@idea, obj]) do |f| %>
   <%= f.trix_editor :body, class: 'trix-body', autofocus: true %>
   <%= f.submit class: 'btn btn-md btn-primary create-comment-btn modal-btn' %>
 <% end %>
