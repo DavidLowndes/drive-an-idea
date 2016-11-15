@@ -24,4 +24,4 @@
 /.ssh
 
 # Don't hack env variables please
-/config/application.yaml
+/config/application.yml
