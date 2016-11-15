@@ -1,127 +1,124 @@
-<div class="row well well-lg col-md-offset-1 col-md-10">
+<%= form_for(idea) do |f| %>
+  <%# Error Messages %>
+  <% if idea.errors.any? %>
+    <div align="center" id="error_explanation">
+      <h2><%= pluralize(idea.errors.count, "error") %> prohibited this idea from being saved:</h2>
 
-  <%= form_for(idea) do |f| %>
-    <%# Error Messages %>
-    <% if idea.errors.any? %>
-      <div align="center" id="error_explanation">
-        <h2><%= pluralize(idea.errors.count, "error") %> prohibited this idea from being saved:</h2>
-
-        <ul>
-        <% idea.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <div class="row form-group">
-      <div class="control-label col-xs-1">
-        <%= f.label :text, class: 'text-right hidden' %>
-      </div>
-      <div class="col-xs-10">
-        <%= f.trix_editor :text, placeholder: "Write your idea here!",                                           autofocus: true, class: 'trix-body' %>
-      </div>
-    </div>
-
-    <%# Don't show these fields if editing %>
-    <% if params[:action] != 'edit' %>
-    
-
-      <%# Load default idea options for user %>
-      <% opts = current_user.user_option %>
-    
-      <%# Show voting style field %>
-      <div class="row form-group">
-        <div class="control-label col-xs-3">
-          <%= f.label :voting_style, class: 'text-right' %>
-        </div>
-        <div class="col-xs-2">
-          <%= f.select :voting_style, 
-                options_for_select(
-                  ['5 Stars', '1-10', 'Binary', 'Fibonacci'],
-                  opts.voting_style_default
-                ), class: 'select form-control' %>
-        </div>
-        <div class="col-xs-7">
-          <%= render 'style_explanation' %>
-        </div>
-      </div>
-
-      <%# Active Days field %>
-      <div class="row form-group">
-        <div class="control-label col-xs-3">
-          <%= f.label :open_days, 'Number of days open', class: 'text-right' %>
-        </div>
-        <div class="col-xs-2">
-          <%= f.number_field :open_days, class: 'form-control' %>
-        </div>
-        <div class="col-xs-7">
-          How many full days do you want this idea to be open for?<br>
-          <em>Choose a number between 0 and 31.</em>
-        </div>
-      </div>
-
-      <div class="row form-check">
-        <div class="form-check-label col-xs-3">
-          <%= f.label :anonymous_comments, class: 'text-right' %>
-        </div>
-        <div class="form-check-input col-xs-2">
-          <%= f.check_box :anonymous_comments,
-                          { checked: opts.anonymous_comments_default? } %>
-        </div>
-        <div class="col-xs-7">
-          If on, comments on this idea will be anonymous.
-        </div>
-      </div>
-      
-      <div class="row form-check">
-        <div class="form-check-label col-xs-3">
-          <%= f.label :real_time_voting, class: 'text-right' %>
-        </div>
-        <div class="form-check-input col-xs-2">
-          <%= f.check_box :real_time_voting,
-                          { checked: opts.real_time_voting_default? }%>
-        </div>
-        <div class="col-xs-7">
-          If on, votes on this idea will be available to view at any
-          time. <br>
-          If off, voting results will only become available when voting
-          has closed.
-        </div>
-      </div>
-
-      <div class="row form-check">
-        <div class="form-check-label col-xs-3">
-          <%= f.label :reveal_voter_details, class: 'text-right' %>
-        </div>
-        <div class="form-check-input col-xs-2">
-          <%= f.check_box :reveal_voter_details,
-                          { checked: opts.reveal_voter_details_default? }%>
-        </div>
-        <div class="col-xs-7">
-          If on, voter names and their vote choices on this idea will be
-          displayed publicly.<br>
-          If off, only general voting trends will be
-          displayed.
-        </div>
-      </div>
-
-    <% end %>
-
-    <%# Buttons %>
-    <div class="row form-group">
-      <div class="col-sm-offset-1 col-sm-10 actions">
-        <%= f.submit class: 'btn btn-md btn-primary'%>
-        <% if params[:action] == 'edit' %>
-          <%# If editing idea, cancel should send back to show %>
-          <%= link_to 'Cancel', idea_path(idea),
-                                class: 'btn btn-md btn-danger' %>
-        <% else %>
-          <%# Otherwise, send back to index %>
-          <%= link_to 'Cancel', ideas_path, class: 'btn btn-md btn-danger' %>
-        <% end %>
-      </div>
+      <ul>
+      <% idea.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
     </div>
   <% end %>
-</div>
+
+  <div class="row form-group">
+    <div class="control-label col-xs-1">
+      <%= f.label :text, class: 'text-right hidden' %>
+    </div>
+    <div class="col-xs-10">
+      <%= f.trix_editor :text, placeholder: "Write your idea here!",                                           autofocus: true, class: 'trix-body' %>
+    </div>
+  </div>
+
+  <%# Don't show these fields if editing %>
+  <% if params[:action] != 'edit' %>
+  
+
+    <%# Load default idea options for user %>
+    <% opts = current_user.user_option %>
+  
+    <%# Show voting style field %>
+    <div class="row form-group">
+      <div class="control-label col-xs-3">
+        <%= f.label :voting_style, class: 'text-right' %>
+      </div>
+      <div class="col-xs-2">
+        <%= f.select :voting_style, 
+              options_for_select(
+                ['5 Stars', '1-10', 'Binary', 'Fibonacci'],
+                opts.voting_style_default
+              ), class: 'select form-control' %>
+      </div>
+      <div class="col-xs-7">
+        <%= render 'style_explanation' %>
+      </div>
+    </div>
+
+    <%# Active Days field %>
+    <div class="row form-group">
+      <div class="control-label col-xs-3">
+        <%= f.label :open_days, 'Number of days open', class: 'text-right' %>
+      </div>
+      <div class="col-xs-2">
+        <%= f.number_field :open_days, class: 'form-control' %>
+      </div>
+      <div class="col-xs-7">
+        How many full days do you want this idea to be open for?<br>
+        <em>Choose a number between 0 and 31.</em>
+      </div>
+    </div>
+
+    <div class="row form-check">
+      <div class="form-check-label col-xs-3">
+        <%= f.label :anonymous_comments, class: 'text-right' %>
+      </div>
+      <div class="form-check-input col-xs-2">
+        <%= f.check_box :anonymous_comments,
+                        { checked: opts.anonymous_comments_default? } %>
+      </div>
+      <div class="col-xs-7">
+        If on, comments on this idea will be anonymous.
+      </div>
+    </div>
+    
+    <div class="row form-check">
+      <div class="form-check-label col-xs-3">
+        <%= f.label :real_time_voting, class: 'text-right' %>
+      </div>
+      <div class="form-check-input col-xs-2">
+        <%= f.check_box :real_time_voting,
+                        { checked: opts.real_time_voting_default? }%>
+      </div>
+      <div class="col-xs-7">
+        If on, votes on this idea will be available to view at any
+        time. <br>
+        If off, voting results will only become available when voting
+        has closed.
+      </div>
+    </div>
+
+    <div class="row form-check">
+      <div class="form-check-label col-xs-3">
+        <%= f.label :reveal_voter_details, class: 'text-right' %>
+      </div>
+      <div class="form-check-input col-xs-2">
+        <%= f.check_box :reveal_voter_details,
+                        { checked: opts.reveal_voter_details_default? }%>
+      </div>
+      <div class="col-xs-7">
+        If on, voter names and their vote choices on this idea will be
+        displayed publicly.<br>
+        If off, only general voting trends will be
+        displayed.
+      </div>
+    </div>
+
+  <% end %>
+
+  <%# Buttons %>
+  <div class="row form-group">
+    <div class="col-sm-offset-1 col-sm-10 actions">
+      <%= f.submit class: 'btn btn-md btn-primary'%>
+      <% if params[:action] == 'edit' %>
+        <%# If editing idea, cancel should send back to show %>
+        <%= link_to 'Cancel', idea_path(idea),
+                              class: 'btn btn-md btn-danger' %>
+      <% else %>
+        <%# Otherwise, send back to index %>
+        <%= link_to 'Cancel', ideas_path, class: 'btn btn-md btn-danger' %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 
