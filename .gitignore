@@ -22,3 +22,6 @@
 
 # ignore ur mum lol
 /.ssh
+
+# Don't hack env variables please
+/config/application.yaml
