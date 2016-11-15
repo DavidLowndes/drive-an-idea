@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_one  :user_option
   has_many :ideas,    dependent: :destroy
@@ -54,4 +54,5 @@ class User < ApplicationRecord
   def self.matches(field_name, param)
     where("lower(#{field_name}) like ?", "%#{param}%")
   end
+  
 end
