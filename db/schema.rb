@@ -10,14 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161111144215) do
+ActiveRecord::Schema.define(version: 20161114142915) do
 
   create_table "alerts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "idea_id"
     t.integer  "active",     default: 1
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "text",       default: "New Alert!"
   end
 
   create_table "comments", force: :cascade do |t|

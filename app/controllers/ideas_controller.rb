@@ -87,7 +87,7 @@ class IdeasController < ApplicationController
         Follow.create_follow(user: current_user, idea: @idea)
         # Create alerts for everyone
         User.all.each do |user|
-          Alert.create(user: user, idea: @idea, active: 1)
+          Alert.create(user: user, idea: @idea, active: 1, text: 'New Idea!')
         end
         format.html {
           redirect_to @idea, notice: 'Idea was successfully created.'
