@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
           Alert.create(
             user: user, idea: @comment.idea, active: 1, text: 'New Comment!'
           )
-        else
+        elsif alert.active.zero?
           # Reset the alert
           alert.active = 1
           alert.text = 'New Comment!'

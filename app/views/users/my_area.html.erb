@@ -1,17 +1,20 @@
-<div class="col-md-12">
-  <h1 align="center"><%= current_user.full_name %>'s Area</h1>
+<div class="row">
+  <div class="col-md-12">
+    <h2 align="center"><%= current_user.full_name %>'s Area</h2>
+    <div class="row">
+      <%# Left side %>
+      <div class="col-md-6">
+        <%# My Recent Ideas %>
+        <%= render 'ideas/recent_ideas', obj: @recent_ideas %>	
+        <%# Subscriptions %>
+        <%= render 'friends/compact_subscriptions' %>
+      </div>
 
-  <%# Left side %>
-  <div class="col-md-6">
-    <%# My Recent Ideas %>
-    <%= render 'ideas/recent_ideas', obj: @recent_ideas %>	
-    <%# Subscriptions %>
-    <%= render 'friends/compact_subscriptions' %>
-  </div>
-
-  <%# Right Side %>
-  <div class="col-md-6">
-    <%# Recently Commented on Ideas %>
-    <%= render 'ideas/commented_ideas', obj: @commented_ideas %>	
+      <%# Right Side %>
+      <div class="col-md-6">
+        <%# Recently Commented on Ideas %>
+        <%= render 'ideas/commented_ideas', obj: @commented_ideas %>	
+      </div>
+    </div>
   </div>
 </div>

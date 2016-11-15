@@ -3,20 +3,16 @@ class User::RegistrationsController < Devise::RegistrationsController
 
   # This is the method that automatically creates the user options for a
   # new user after they sign up
-  def after_sign_up_path_for(resource)
-    # Create options
-    build_user_options
-    # This line means 'redirect to where you'd usually go after you sign up'
-    request.env['omniauth.origin'] || stored_location_for(resource) || my_area_path
-  end
-
-  private
-
-  def build_user_options
-    opts = UserOption.new(user: current_user)
-    opts.save
-    current_user.user_option = opts
-    current_user.save
+  def after_inactive_sign_up_path_for(resource)
+    user = User.last
+    opts = UserOption.where(user: user).first
+    if opts.nil?
+      opts = UserOption.new(user: user)
+      opts.save
+      user.user_option = opts
+      user.save
+    end
+    new_user_session_path
   end
 
   protected
