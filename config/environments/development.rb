@@ -52,13 +52,13 @@ Rails.application.configure do
   
   # Make emails work
   config.action_mailer.perform_deliveries = true
-  # Change raise_deliverey_errors for production
+  # Change raise_delivery_errors for production
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.smtp_settings = {
-    user_name:      ENV["MAILER_USERNAME"],
-    password:       ENV["MAILER_PASSWORD"],
+    user_name:      ENV["MAILER_USERNAME"], # These env vars are in ~./bashrc or
+    password:       ENV["MAILER_PASSWORD"], # config/application.yml
     address:       'email-smtp.us-west-2.amazonaws.com',
     port:          '587',
     :authentication => :login,

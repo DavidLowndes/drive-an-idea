@@ -4,9 +4,7 @@ class FriendshipsController < ApplicationController
     @friendship = current_user.friendships.where(friend_id: params[:id]).first
     @friendship.destroy
     respond_to do |format|
-      format.html {
-        redirect_to :back, notice: 'Subscription Removed!'
-      }
+      format.html { redirect_to :back, notice: 'Subscription Removed!' }
     end
   end
 end

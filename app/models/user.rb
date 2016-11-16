@@ -54,5 +54,4 @@ class User < ApplicationRecord
   def self.matches(field_name, param)
     where("lower(#{field_name}) like ?", "%#{param}%")
   end
-  
 end
