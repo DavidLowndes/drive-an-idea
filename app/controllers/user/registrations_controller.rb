@@ -4,7 +4,7 @@ class User::RegistrationsController < Devise::RegistrationsController
   # This is the method that automatically creates the user options for a
   # new user after they sign up
   def after_inactive_sign_up_path_for(resource)
-    user = resource
+    user = User.last
     opts = UserOption.where(user: user).first
     if opts.nil?
       opts = UserOption.new(user: user)
