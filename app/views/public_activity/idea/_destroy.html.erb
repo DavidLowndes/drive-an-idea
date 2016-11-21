@@ -1,0 +1,11 @@
+<li class="list-group-item">
+  <span class="glyphicon glyphicon-minus"></span>  
+  <% if a.trackable %>
+    <small class="text-muted"> An Idea</small>
+    <%= link_to a.trackable.text.html_safe, idea_path(a.trackable) %> was deleted by <%= a.owner.full_name %>
+    <small class="text-muted"><%= time_ago_in_words(a.updated_at) %> ago.</small>
+  <% else %>
+     An Idea that was open has since been deleted
+  <% end %>
+  <small class="text-muted"><%= time_ago_in_words(a.updated_at) %> ago.</small>
+</li>

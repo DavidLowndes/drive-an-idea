@@ -1,0 +1,10 @@
+<li class="list-group-item">
+  <span class="glyphicon glyphicon-asterisk"></span>
+  <% if a.trackable %>
+    <small class="text-muted"> An existing Comment</small>
+    <%= link_to a.trackable.body.html_safe, idea_path(a.trackable) %> was changed by <%= a.owner.full_name %>update
+  <% else %>
+      A Comment was created, however it has since been deleted. 
+  <% end %>
+  <small class="text-muted"><%= time_ago_in_words(a.created_at) %> ago.</small>
+</li>

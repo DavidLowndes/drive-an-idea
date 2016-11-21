@@ -21,7 +21,7 @@ gem 'cancancan', '~> 1.15'
 gem 'trix', '~> 0.9.9'
 gem 'ransack'
 gem 'bootstrap-sass', '~> 3.3.6'
-
+gem 'public_activity', '~> 1.5'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

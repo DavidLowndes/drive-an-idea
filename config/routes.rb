@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   resources :ideas do
     resources :comments
     resources :votes
@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :user_options, only: [:show, :edit, :update]
   resources :users, only: [:show]
   resources :friendships
+  resources :activities
 
   root 'pages#home'
 

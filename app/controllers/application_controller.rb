@@ -1,5 +1,7 @@
 # Application Controller
 class ApplicationController < ActionController::Base
+  include PublicActivity::StoreController
+  
   protect_from_forgery with: :exception
 
   # Changed to before action as filter will be removed in rails 5.1

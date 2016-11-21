@@ -9,6 +9,8 @@ class CommentsController < ApplicationController
     @comment = @idea.comments.create(comment_params)
     @comment.user = current_user
     if @comment.save
+      # Track a new comment
+      @comment.create_activity :create, owner: current_user
       # Create follow
       Follow.create_follow(user: current_user, idea: @comment.idea)
 
@@ -59,6 +61,7 @@ class CommentsController < ApplicationController
     @idea = Idea.find(params[:idea_id])
     @comment = @idea.comments.find(params[:id])
     @comment.destroy
+    @comment.create_activity :destroy, owner: current_user
     flash[:notice] = 'Comment was successfully deleted'
     redirect_to idea_path(@idea)
   end
