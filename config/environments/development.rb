@@ -57,8 +57,8 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.smtp_settings = {
-    user_name:      ENV["MAILER_USERNAME"], # These env vars are in ~./bashrc or
-    password:       ENV["MAILER_PASSWORD"], # config/application.yml
+    user_name:      ENV["MAILER_USERNAME"], 
+    password:       ENV["MAILER_PASSWORD"], 
     address:       'email-smtp.us-west-2.amazonaws.com',
     port:          '587',
     :authentication => :login,
