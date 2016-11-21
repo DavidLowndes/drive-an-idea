@@ -58,11 +58,11 @@ table.table {
   margin: 0px !important;
 }
 
-.green {
+.open-colour {
   color: green;
 }
 
-.red {
+.closed-colour {
   color: darken(red, 10%);
 }
 
@@ -177,7 +177,11 @@ a.dropdown-toggle {
   }
 
   li {
-    font-size: 15px;
+    font-size: 14.5px;
+  }
+
+  ol, ul {
+    margin-bottom: 0px;
   }
 }
 

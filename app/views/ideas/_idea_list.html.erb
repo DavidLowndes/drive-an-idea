@@ -22,16 +22,16 @@
         <small>
           This idea is
           <% if idea.open? %>
-            <strong class="green">OPEN</strong>,
+            <strong class="open-colour">OPEN</strong>,
             and will close in 
             <%= time_ago_in_words(idea.closing_time) %>.
           <% else %>
-            <strong class="red">CLOSED.</strong>
+            <strong class="closed-colour">CLOSED.</strong>
           <% end %>
           <% if idea.final_verdict != "Undecided" %>
             It has been
             <strong class=
-              "<%= idea.final_verdict == 'Escalated' ? "green" : "red" %>">
+              "<%= idea.final_verdict == 'Escalated' ? "open-colour" : "closed-colour" %>">
               <%= idea.final_verdict.upcase %>.
             </strong>
           <% end %>
