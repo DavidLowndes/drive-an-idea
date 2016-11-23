@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     @comment = @idea.comments.create(comment_params)
     @comment.user = current_user
     if @comment.save
-      # Track a new comment
+      # Create comment Activity
       @comment.create_activity :create, owner: current_user
       # Create follow
       Follow.create_follow(user: current_user, idea: @comment.idea)
@@ -46,6 +46,8 @@ class CommentsController < ApplicationController
     @idea = Idea.find(params[:idea_id])
     respond_to do |format|
       if @comment.update(comment_params)
+        # Update comment Activity
+         @comment.create_activity :update, owner: current_user
         format.html {
           redirect_to @idea, notice: 'Comment was successfully updated.'
         }
@@ -60,8 +62,9 @@ class CommentsController < ApplicationController
   def destroy
     @idea = Idea.find(params[:idea_id])
     @comment = @idea.comments.find(params[:id])
-    @comment.destroy
+    # Destroy comment Activity
     @comment.create_activity :destroy, owner: current_user
+    @comment.destroy
     flash[:notice] = 'Comment was successfully deleted'
     redirect_to idea_path(@idea)
   end

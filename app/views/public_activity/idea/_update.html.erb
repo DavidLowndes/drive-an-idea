@@ -1,10 +1,12 @@
-<li class="list-group-item">
-  <span class="glyphicon glyphicon-asterisk"></span>
-  <% if a.trackable %>
-    <small class="text-muted"> An Idea</small>
-    <%= link_to a.trackable.text.html_safe, idea_path(a.trackable) %> was updated by <%= a.owner.full_name %>
-  <% else %>
-   An Idea that has now been deleted was updated 
-  <% end %>
-  <small class="text-muted"><%= time_ago_in_words(a.updated_at) %> ago.</small>
-</li>
+<div class=activity>
+  <li class="list-group-item">
+    <span class="glyphicon glyphicon-asterisk"></span>
+    <% if a.trackable %>
+      <small class="text-muted"> An Idea was updated by <%= a.owner.full_name %> <%= time_ago_in_words(a.updated_at) %> ago.</small>
+      <%= link_to a.trackable.text.html_safe, idea_path(a.trackable) %> 
+    <% else %>
+     An Idea that has now been deleted was updated 
+     <small class="text-muted">By <%= link_to a.owner.full_name, user_path(a.owner) %> <%= time_ago_in_words(a.created_at) %> ago.</small>
+    <% end %>
+  </li>
+</div>

@@ -1,7 +1,6 @@
 # Idea model
 class Idea < ApplicationRecord
-  include PublicActivity::Model
-  tracked owner: ->(controller, model) { controller.current_user } 
+  include PublicActivity::Common
   
   belongs_to :user
 

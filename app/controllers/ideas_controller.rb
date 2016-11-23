@@ -83,6 +83,8 @@ class IdeasController < ApplicationController
 
     respond_to do |format|
       if @idea.save
+        # Create Activity
+        @idea.create_activity :create, owner: current_user
         # Create follow
         Follow.create_follow(user: current_user, idea: @idea)
         # Create alerts for everyone
@@ -106,6 +108,8 @@ class IdeasController < ApplicationController
     authorize! :update, @idea
     respond_to do |format|
       if @idea.update(idea_params)
+        # Update Activity
+        @idea.create_activity :update, owner: current_user
         format.html {
           redirect_to @idea, notice: 'Idea was successfully updated.'
         }
@@ -121,6 +125,8 @@ class IdeasController < ApplicationController
   # DELETE /ideas/1.json
   def destroy
     authorize! :destroy, @idea
+    # Destroy idea Activity
+    @idea.create_activity :destroy, owner: current_user
     @idea.destroy
     respond_to do |format|
       format.html {

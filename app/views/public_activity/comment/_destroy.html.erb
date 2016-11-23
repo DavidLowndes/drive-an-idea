@@ -1,0 +1,15 @@
+<div class=activity>
+  <li class="list-group-item">
+    <span class="glyphicon glyphicon-minus"></span>  
+    <% if a.trackable %>
+        
+    <% else %>
+       A comment that was on an open Idea has been removed.
+       <small class =text-muted>by 
+         <%= link_to a.owner.full_name, user_path(a.owner) %> 
+         <%= time_ago_in_words(a.updated_at) %> ago.
+       </small>
+    <% end %>
+    <small class="text-muted"></small>
+  </li>
+</div>
