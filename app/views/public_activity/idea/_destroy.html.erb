@@ -1,10 +1,12 @@
 <div class=activity>
   <li class="list-group-item">
-    <span class="glyphicon glyphicon-minus"></span>  
+    <span class="glyphicon glyphicon-minus"></span> 
+    <%# If an Activity has been created. There is no activity for destroy because it has been destroyed! %> 
     <% if a.trackable %>
       <small class="text-muted"> An Idea was deleted by <%= a.owner.full_name %> <%= time_ago_in_words(a.updated_at) %> ago.</small>
       <%= link_to a.trackable.text.html_safe, idea_path(a.trackable) %> 
       <small class="text-muted"><%= time_ago_in_words(a.updated_at) %> ago.</small>
+      <%# If an Idea was created but then deleted afterwards %>
     <% else %>
        An Idea has been deleted.
        <small class="text-muted">By <%= link_to a.owner.full_name, user_path(a.owner) %> <%= time_ago_in_words(a.created_at) %> ago.</small>

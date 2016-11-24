@@ -2,7 +2,7 @@ class User::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters
 
   # This is the method that automatically creates the user options for a
-  # new user after they sign up
+  # new user after they sign up. This can get funny after a db reset. What I did was comment it all out except new_user_session_path, then it threw an error for it. Then uncomment it all. Then it lets me in!
   def after_inactive_sign_up_path_for(resource)
     user = User.last
     opts = UserOption.where(user: user).first

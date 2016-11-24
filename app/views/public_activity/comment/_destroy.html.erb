@@ -1,8 +1,10 @@
 <div class=activity>
   <li class="list-group-item">
-    <span class="glyphicon glyphicon-minus"></span>  
+    <span class="glyphicon glyphicon-minus"></span> 
+    <%# If an Activity has been created. There is no activity for destroy because it has been destroyed! %> 
     <% if a.trackable %>
-        
+    
+    <%# If an Idea was created but then deleted afterwards %>
     <% else %>
        A comment that was on an open Idea has been removed.
        <small class =text-muted>by 

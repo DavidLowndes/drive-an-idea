@@ -1,9 +1,11 @@
 <div class=activity>
   <li class="list-group-item">
     <span class="glyphicon glyphicon-plus"></span>
+    <%# If an Activity has been created%>
     <% if a.trackable %>
       <small class="text-muted"> A new Idea was added by <%= link_to a.owner.full_name, user_path(a.owner) %> <%= time_ago_in_words(a.created_at) %> ago.</small>
       <%= link_to a.trackable.text.html_safe, idea_path(a.trackable) %> 
+      <%# If an Idea was created but then deleted afterwards %>
     <% else %>
         An Idea was created, however it has since been deleted. 
         <small class="text-muted">By <%= link_to a.owner.full_name, user_path(a.owner) %> <%= time_ago_in_words(a.created_at) %> ago.</small>

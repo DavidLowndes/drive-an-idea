@@ -17,11 +17,18 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+# Authorization
 gem 'cancancan', '~> 1.15'
+# Add html formatting to text
 gem 'trix', '~> 0.9.9'
+# Add Search Ability
 gem 'ransack'
 gem 'bootstrap-sass', '~> 3.3.6'
+# Add Activities
 gem 'public_activity', '~> 1.5'
+# Add Pagination
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
