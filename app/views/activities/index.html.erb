@@ -2,11 +2,13 @@
   <div class="row">
     <div class="well col-md-offset-1 col-md-10">
       <h1 align="center">Activities</h1>
+      <h6 align="center">Viewing <%= @activities.count %> activities.</h4>
     </div>
   </div>
   <%# Activities %>
   <% if @activities.any? %>
     <%= render_activities @activities %>
+    <%= will_paginate %>
   <% else %>
     <div class="row">
       <div class="well col-md-10 col-md-offset-1">

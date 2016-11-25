@@ -1,11 +1,11 @@
 # Comments Controller
 class CommentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_idea
   load_and_authorize_resource param_method: :my_sanitizer
   load_and_authorize_resource through: :current_user
 
   def create
-    @idea = Idea.find(params[:idea_id])
     @comment = @idea.comments.create(comment_params)
     @comment.user = current_user
     if @comment.save
@@ -36,14 +36,11 @@ class CommentsController < ApplicationController
     end
   end
   
-  def edit
-    @idea = Idea.find(params[:idea_id])
-    @comment = @idea.comments.find(params[:id])
+  def edit   
   end
   
   def update
     authorize! :update, @comment
-    @idea = Idea.find(params[:idea_id])
     respond_to do |format|
       if @comment.update(comment_params)
         # Update comment Activity
@@ -60,8 +57,6 @@ class CommentsController < ApplicationController
   end
   
   def destroy
-    @idea = Idea.find(params[:idea_id])
-    @comment = @idea.comments.find(params[:id])
     # Destroy comment Activity
     @comment.create_activity :destroy, owner: current_user
     @comment.destroy
@@ -73,6 +68,11 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:commenter, :body)
+  end
+  
+  def set_idea
+    @idea = Idea.find(params[:idea_id])
+    @comment = @idea.comments.find(params[:id])
   end
 
   def my_sanitizer

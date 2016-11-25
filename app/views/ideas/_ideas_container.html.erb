@@ -4,7 +4,6 @@
     <div class="well col-md-offset-1 col-md-10">
       <%# Title %>
       <h1 align="center"><%= title %></h1>
-    
       <div class="subtitle">Viewing <%= @ideas.count %> ideas</div>
     
       <% if search_action == :show %>
@@ -32,6 +31,11 @@
   <%# Ideas %>
   <% if @ideas.any? %>
     <%= render 'ideas/idea_list', obj: @ideas %>
+    
+    <div align="center">                              
+      <%= will_paginate %>
+    </div> 
+    
   <% else %>
     <div class="row">
       <div class="well col-md-10 col-md-offset-1">

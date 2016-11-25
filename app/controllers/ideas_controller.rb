@@ -1,16 +1,15 @@
 # Ideas Controller
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
+  before_action :set_search
 
   # GET /ideas
   # GET /ideas.json
   def index
-    @search = Idea.ransack(params[:q])
-    @ideas = @search.result.order(created_at: :desc)
+    @ideas = @search.result.order(created_at: :desc).paginate(page: params[:page],per_page: 5)
   end
 
   def alerted_ideas
-    @search = Idea.ransack(params[:q])
     @ideas = @search.result
                     .where(
                       id: current_user.alerts.where(active: 1).pluck(:idea_id)
@@ -18,37 +17,31 @@ class IdeasController < ApplicationController
   end
 
   def open_ideas
-    @search = Idea.ransack(params[:q])
-    @ideas = @search.result.order(created_at: :desc).select(&:open?)
+    @ideas = @search.result.order(created_at: :desc).select(&:open?).paginate(page: params[:page],per_page: 5)
   end
 
   def closed_ideas
-    @search = Idea.ransack(params[:q])
-    @ideas = @search.result.order(created_at: :desc).select(&:closed?)
+   @ideas = @search.result.order(created_at: :desc).select(&:closed?).paginate(page: params[:page],per_page: 5)
   end
 
   def followed_ideas
-    @search = Idea.ransack(params[:q])
     @ideas = @search.result.where(id: current_user.follows.pluck(:idea_id))
-                    .order(created_at: :desc)
+                    .order(created_at: :desc).paginate(page: params[:page],per_page: 5)
   end
 
   def not_followed_ideas
-    @search = Idea.ransack(params[:q])
     @ideas = @search.result.where.not(id: current_user.follows.pluck(:idea_id))
-                    .order(created_at: :desc)
+                    .order(created_at: :desc).paginate(page: params[:page],per_page: 5)
   end
 
   def escalated_ideas
-    @search = Idea.ransack(params[:q])
     @ideas = @search.result.order(created_at: :desc)
-                    .where(final_verdict: 'Escalated')
+                    .where(final_verdict: 'Escalated').paginate(page: params[:page],per_page: 5)
   end
 
   def discarded_ideas
-    @search = Idea.ransack(params[:q])
     @ideas = @search.result.order(created_at: :desc)
-                    .where(final_verdict: 'Discarded')
+                    .where(final_verdict: 'Discarded').paginate(page: params[:page],per_page: 5)
   end
 
   # GET /ideas/1
@@ -141,6 +134,10 @@ class IdeasController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_idea
     @idea = Idea.find(params[:id])
+  end
+  
+  def set_search
+    @search = Idea.ransack(params[:q])
   end
 
   # Never trust parameters from the scary internet,

@@ -13,7 +13,8 @@ class Idea < ApplicationRecord
   validates :open_days, presence: true,
                         numericality: { greater_than_or_equal_to: 0,
                                         less_than_or_equal_to: 31 }
-
+                                        
+                                      
   def closing_time
     # Get the date created, advance it by the specified number of days
     # and move the timer to the end of the day (23:59:59)

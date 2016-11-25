@@ -1,7 +1,8 @@
 # Application Controller
 class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
-  
+  # This allows arrays to be paginated throughout the app
+  require 'will_paginate/array'
   protect_from_forgery with: :exception
 
   # Changed to before action as filter will be removed in rails 5.1
