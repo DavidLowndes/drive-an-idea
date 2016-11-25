@@ -1,11 +1,12 @@
 # Comments Controller
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_idea
+  before_action :set_idea, except: :create
   load_and_authorize_resource param_method: :my_sanitizer
   load_and_authorize_resource through: :current_user
 
   def create
+    @idea = Idea.find(params[:idea_id])
     @comment = @idea.comments.create(comment_params)
     @comment.user = current_user
     if @comment.save
