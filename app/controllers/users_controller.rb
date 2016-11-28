@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def my_ideas
     @user = current_user
     @search = @user.ideas.ransack(params[:q])
-    @ideas = @search.result.order(created_at: :desc)
+    @ideas = @search.result.order(created_at: :desc).paginate(page: params[:page],per_page: 5)
   end
 
   def my_area
@@ -26,6 +26,9 @@ class UsersController < ApplicationController
     recent_comment_ids = @user.comments.order(created_at: :desc)
                               .pluck(:idea_id).uniq[0..4]
     @commented_ideas = Idea.find(recent_comment_ids)
+    @activities = PublicActivity::Activity.order("created_at desc")
+    .where(owner_id: current_user.friend_ids, owner_type: "User")
+    .paginate(page: params[:page],per_page: 5)
   end
 
   def show

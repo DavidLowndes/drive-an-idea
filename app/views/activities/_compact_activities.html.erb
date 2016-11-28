@@ -1,0 +1,11 @@
+<h4 align="center">Subscription Activity</h4>
+  <% if @activities.any? %>
+    <%= render_activities @activities %>
+  <div align="center"><%= will_paginate @activities %></div>
+<% else %>
+  <div class='well text-center my-area-scroller'>
+    <h3>
+      <small>There has been no activity yet!</small>
+    </h3>
+  </div>
+<% end %>
