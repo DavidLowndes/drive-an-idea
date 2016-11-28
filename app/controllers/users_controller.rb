@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @search = @user.ideas.ransack(params[:q])
-    @ideas = @search.result.order(created_at: :desc)
+    @ideas = @search.result.order(created_at: :desc).paginate(page: params[:page],per_page: 5)
   end
 
   def my_friends
