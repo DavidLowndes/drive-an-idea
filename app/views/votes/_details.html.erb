@@ -6,11 +6,9 @@
   </tr>
   <% @idea.votes.each do |vote| %>
     <tr>
-      <td><%= vote.user.full_name.present? ? vote.user.full_name
-                                           : vote.user.email %></td>
+      <td><%= vote.user.full_name %></td>
       <td>
-        <% case @idea.voting_style 
-           when 'Binary' %>
+        <% if @idea.voting_style == 'Binary' %>
           <% if vote.value == 1 %>
             <i class="fa fa-thumbs-up fa-lg" aria-hidden="true">
           <% else %>
