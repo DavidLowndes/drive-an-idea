@@ -3,7 +3,7 @@
     <span class="glyphicon glyphicon-asterisk"></span>
     <%# If an Activity has been created%>
     <% if a.trackable %>
-      <small class="text-muted"> An Idea was updated by <%= a.owner.full_name %> <%= time_ago_in_words(a.updated_at) %> ago.</small>
+      <small class="text-muted"> An Idea was updated by <%= link_to a.owner.full_name, user_path(a.owner) %> <%= time_ago_in_words(a.updated_at) %> ago.</small>
       <%= link_to a.trackable.text.html_safe, idea_path(a.trackable) %> 
       <%# If an Idea was created but then deleted afterwards %>
     <% else %>

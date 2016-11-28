@@ -33,7 +33,7 @@
     <%= render 'ideas/idea_list', obj: @ideas %>
     
     <div align="center">                              
-      <%= will_paginate %>
+      <%= will_paginate @ideas %>
     </div> 
     
   <% else %>

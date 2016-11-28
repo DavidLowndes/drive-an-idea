@@ -9,7 +9,7 @@
         <%# Activities %>
         <% if @activities.any? %>
           <%= render_activities @activities %>
-          <%= will_paginate %>  
+          <div align="center"><%= will_paginate %></div>
         <% else %>
           <div class="subtitle no-margin">No results!</div>
         <% end %>
