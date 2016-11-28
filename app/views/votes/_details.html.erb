@@ -9,10 +9,15 @@
       <td><%= vote.user.full_name.present? ? vote.user.full_name
                                            : vote.user.email %></td>
       <td>
-        <% if vote.value == 1 %>
-          <i class="fa fa-thumbs-up fa-lg" aria-hidden="true">
+        <% case @idea.voting_style 
+           when 'Binary' %>
+          <% if vote.value == 1 %>
+            <i class="fa fa-thumbs-up fa-lg" aria-hidden="true">
+          <% else %>
+            <i class="fa fa-thumbs-down fa-lg" aria-hidden="true">
+          <% end %>
         <% else %>
-          <i class="fa fa-thumbs-down fa-lg" aria-hidden="true">
+          <%= vote.value %>
         <% end %>
       </td>
     </tr>
