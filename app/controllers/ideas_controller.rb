@@ -13,7 +13,7 @@ class IdeasController < ApplicationController
     @ideas = @search.result
                     .where(
                       id: current_user.alerts.where(active: 1).pluck(:idea_id)
-                    ).order(created_at: :desc)
+                    ).order(created_at: :desc).paginate(page: params[:page],per_page: 5)
   end
 
   def open_ideas
