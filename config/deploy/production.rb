@@ -21,7 +21,8 @@ server '35.160.91.43', user: 'deploy', roles: %w{web app db}
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 
-
+set :rails_env, :production
+set :rvm_ruby_version, '2.3.3'
 
 # Configuration
 # =============
