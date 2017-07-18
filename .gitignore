@@ -25,3 +25,4 @@
 
 # Don't hack env variables please
 /config/application.yml
+config/database.yml\nconfig/secrets.yml
