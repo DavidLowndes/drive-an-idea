@@ -4,7 +4,7 @@ set :repo_url, 'https://github.com/DavidLowndes/drive-an-idea.git'
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/var/www/drive-an-idea/'
+set :deploy_to, '/home/ubuntu/drive-an-idea/'
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
