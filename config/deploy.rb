@@ -26,7 +26,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 set :passenger_restart_with_touch, true
 set :passenger_environment_variables, path: '/usr/lib/ruby/vendor_ruby/phusion_passenger/bin:$PATH'
 set :passenger_restart_command, '/usr/lib/ruby/vendor_ruby/phusion_passenger/bin/passenger-config restart-app'
-set :rvm_type, :system
+set :rvm_type, :user
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
