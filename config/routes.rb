@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :friendships
   resources :activities
+  resources :companies
 
   root 'pages#home'
 

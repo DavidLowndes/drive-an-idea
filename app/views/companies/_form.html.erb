@@ -1,0 +1,28 @@
+<%= form_for @company do |f| %>
+
+  <% if @company.errors.any? %>
+    <div align="center" id="error_explanation">
+      <h2><%= pluralize(idea.errors.count, "error") %> prohibited this company from being saved:</h2>
+
+      <ul>
+      <% @company.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class='row'>
+    <div class='col-md-6 form-group'>
+      <div class='control-label'>
+        <%= f.label :company_name, 'Company Name' %>
+      </div>
+      <%= f.text_field :company_name, class: 'form-control' %>
+    </div>    
+  </div>
+  
+  <div class='row col-md-6'>
+    <%= f.submit 'Submit', class: 'btn btn-md btn-primary' %>
+  </div>
+
+<% end %>

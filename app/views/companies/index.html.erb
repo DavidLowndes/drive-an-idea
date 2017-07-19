@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="well col-md-offset-1 col-md-10">
+    <h1 align="center" class="margin-bottom">Listing Companies</h1>
+    
+    
+    <div class='row'>
+      <div class='col-md-6'>
+          <% @companies.each do |company| %>
+            <ul>
+              <p><%= company.id %></p>
+              <p><%= company.company_name %></p>
+            </ul>
+          <% end %>
+      </div>
+    </div>
+    
+    <div class='row' align='right'>
+      <%= link_to 'New Company', new_company_path, class: 'btn btn-md btn-primary' %>
+    </div>
+    
+  </div>
+</div>
