@@ -56,12 +56,15 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
   config.action_mailer.smtp_settings = {
-    user_name:      ENV["MAILER_USERNAME"], 
-    password:       ENV["MAILER_PASSWORD"], 
-    address:       'email-smtp.us-west-2.amazonaws.com',
-    port:          '587',
-    :authentication => :login,
+    address: 'secure.emailsrvr.com',
+    port: 587,
+    domain: 'firstb2b.com',
+    user_name: ENV['MAIL_USER'],
+    password: ENV['MAIL_PASS'],
+    authentication: 'plain',
+    use_ssl: true,
     enable_starttls_auto: true
   }
 end
