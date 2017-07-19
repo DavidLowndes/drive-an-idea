@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <title>DriveAnIdea</title>
+    <style type='text/css'>
+    body, td { colour: #000000; font-size:14px; font-family:Verdana,Helvetica,Arial; }
+    .divider { background-color:#555555; height:2px; }
+    .episode h2 { margin-top:0; margin-bottom:8px; font-size:18px; }
+    .episode p { margin:8px 0; }
+    #footer { font-size:11px; color:#555555; }
+    #footer a { color:#555555;}
+    .table { background-color: #E1EDF7; }
+    </style> 
+  </head>
+  <body>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr><td align="center" valign="top">
+          <table width="650" id="main" border="0" cellpadding="0" cellspacing="20", class='table'>
+            <tr>
+              <td id="header" colspan="1">
+                <h1>DriveAnIdea</h1>
+              </td>
+              <td>
+                <h6>+ New Idea!</h6>
+              </td>
+            </tr>
+            <tr>
+              <td class="divider" colspan="2" bgcolor="#555555" height="2"></td>
+            </tr>
+            <tr class="episode">
+              <td>
+                <p><small class='text-muted'>Idea will close in:</small> <b><%= time_ago_in_words(@idea.closing_time) %></b></p>
+                <p><small>Idea created by: <%= get_username(@idea.user_id) %></small>
+              </td>
+              <td valign="top">                
+                <p><%= raw(@idea.text) %></p>
+                
+              </td>
+            </tr>
+            <tr>
+              <td class="divider" colspan="2" bgcolor="#555555" height="2"></td>
+            </tr>
+            <tr>
+              <td id="footer" colspan="2" align="center">
+                <p><%= link_to 'Click Here', idea_url(@idea) %> to review this idea & cast your vote.</p>
+                <p>&copy;2017 Electronic Commerce Group Ltd.</p>
+              </td>
+            </tr>
+          </table>
+        </td></tr>
+      </table>
+
+  </body>
+</html> 

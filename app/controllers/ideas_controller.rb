@@ -73,9 +73,14 @@ class IdeasController < ApplicationController
   def create
     @idea = Idea.new(idea_params)
     @idea.user = current_user
+    @company_users = User.where(company_id: @idea.user.company_id)
 
     respond_to do |format|
       if @idea.save
+        @company_users.each do |company_user|
+          IdeaMailer.send_idea(@idea, company_user).deliver
+        end
+        
         # Create Activity
         @idea.create_activity :create, owner: current_user
         # Create follow

@@ -92,6 +92,13 @@ Rails.application.configure do
     use_ssl: true,
     enable_starttls_auto: true
   }
+  
+  config.middleware.use ExceptionNotification::Rack,
+                        email: {
+                          email_prefix: '[DAI Live] ',
+                          sender_address: %(DriveAnIdea <support@firstb2b.com>),
+                          exception_recipients: %w(tobias.leyland@firstb2b.com david.lowndes@firstb2b.com)
+                        }
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
