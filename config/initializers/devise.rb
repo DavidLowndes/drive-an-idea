@@ -13,7 +13,7 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   # Drive An Idea - The below email needs to be 'Verified' in AWS to work. Currently only Tobias & David are verified.
-  config.mailer_sender = 'tobias.leyland@firstb2b.com'
+  config.mailer_sender = 'DriveAnIdea@firstb2b.com'
 
   # Configure the class responsible to send e-mails.
    config.mailer = 'Devise::Mailer'
