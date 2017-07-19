@@ -81,6 +81,7 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
   
+  config.action_mailer.default_url_options = { :host => 'http://ec2-35-160-252-189.us-west-2.compute.amazonaws.com/' }
   config.action_mailer.smtp_settings = {
     address: 'secure.emailsrvr.com',
     port: 587,
