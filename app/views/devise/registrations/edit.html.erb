@@ -17,6 +17,10 @@
         <%= f.label :last_name %>
         <%= f.text_field :last_name, class: "form-control" %>
       </div>
+      <div class='form-group'>
+        <%= f.label :company_id, 'Company' %>
+        <%= f.collection_select :company_id, Company.order(:company_name), :id, :company_name, {include_blank: 'Please Select'}, {class: 'form-control'} %>
+      </div>
       <div class="form-group">
         <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it', :default => "leave blank if you don't want to change it") %>)</i>
         <%= f.password_field :password, :autocomplete => "off", class: "form-control" %>

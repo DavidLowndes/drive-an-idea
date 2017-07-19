@@ -2,6 +2,7 @@ class CompaniesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_company, only: %i[show edit update destroy]
   before_action :set_search
+  load_and_authorize_resource
   
   def index
     @companies = @search.result.order(created_at: :desc).paginate(page: params[:page], per_page: 5)

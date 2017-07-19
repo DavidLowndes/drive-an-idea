@@ -25,11 +25,12 @@
             <% end %>  
           </ul>        
       </div>
-      
-      <div class='col-md-6' align='right'>
-        <%= link_to 'Edit', edit_company_path(@company), class: 'btn btn-md btn-success' %>
-        <%= link_to 'Delete', company_path(@company), method: :delete, class: 'btn btn-md btn-danger', data: { confirm: 'Are you sure?' } %>
-      </div>
+      <% if current_user.admin? %>
+        <div class='col-md-6' align='right'>
+          <%= link_to 'Edit', edit_company_path(@company), class: 'btn btn-md btn-success' %>
+          <%= link_to 'Delete', company_path(@company), method: :delete, class: 'btn btn-md btn-danger', data: { confirm: 'Are you sure?' } %>
+        </div>
+      <% end %>
     </div>
     
   </div>

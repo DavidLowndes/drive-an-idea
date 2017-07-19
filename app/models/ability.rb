@@ -24,6 +24,7 @@ class Ability
       can :create, Idea
       can :create, Comment
       can :read, :all
+      cannot %i[edit create update new destroy],[Company]
     end
   end
 end
