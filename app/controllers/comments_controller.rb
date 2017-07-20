@@ -8,13 +8,18 @@ class CommentsController < ApplicationController
   def create
     @idea = Idea.find(params[:idea_id])
     @comment = @idea.comments.create(comment_params)
-    @comment.user = current_user
+    @comment.user = current_user   
     if @comment.save
       # Create comment Activity
       @comment.create_activity :create, owner: current_user
       # Create follow
       Follow.create_follow(user: current_user, idea: @comment.idea)
-
+      # Send Email
+      @followed_users = Follow.where(idea_id: @idea.id)
+      @followed_users.each do |fuser|
+        user = User.find(fuser.user_id)
+        IdeaMailer.send_idea_comment(@comment, user, @idea).deliver_later
+      end
       # Refresh alerts for everyone
       User.all.each do |user|
         alert = user.alerts.where(idea: @comment.idea).first

@@ -1,6 +1,6 @@
 class IdeaMailer < ApplicationMailer
   default from: 'support@firstb2b.com'
-  helper :ideas # This allows helpers in the mailer.
+  helper :ideas, :comments # This allows helpers in the mailer.
 
   def send_idea(idea, company_user)
     @idea = idea
@@ -8,19 +8,21 @@ class IdeaMailer < ApplicationMailer
       mail(
         from: 'DriveAnIdea <support@firstb2b.com>',
         to: company_user.email,
-        subject: "A New Idea from DAI"
+        subject: "+ New Idea - DriveAnIdea"
       )
     
   end
 
-  def send_template(email_addr, email_template)
-    @email_addr = email_addr
-    @email_template = email_template
+  def send_idea_comment(comment, user, idea)
+    @comment = comment
+    @user = user
+    @idea = idea
 
     mail(
-      from: email_template.first.email_from,
-      subject: email_template.first.email_subject,
-      to: email_addr
-    ) # Helper Methods simply use the template ID to find the 'from' and 'subject'.
+    from: 'DriveAnIdea <support@firstb2b.com>',
+    to: user.email,
+    subject: "+ New Comment has been added to an Idea you follow.. - DriveAnIdea"
+    )
   end
+  
 end

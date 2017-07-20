@@ -7,4 +7,11 @@ class IdeaMailerPreview < ActionMailer::Preview
     IdeaMailer.send_idea(idea, company_user)
   end
   
+  def send_idea_comment
+    idea = Idea.first
+    comment = Comment.find_by(idea_id: idea.id)
+    fuser = User.find(idea.user_id)
+    IdeaMailer.send_idea_comment(comment, fuser, idea)
+  end
+  
 end
