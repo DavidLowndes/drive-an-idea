@@ -6,8 +6,8 @@
     <style type='text/css'>
     body, td { colour: #000000; font-size:14px; font-family:Verdana,Helvetica,Arial; }
     .divider { background-color:#555555; height:2px; }
-    .episode h2 { margin-top:0; margin-bottom:8px; font-size:18px; }
-    .episode p { margin:8px 0; }
+    .left_pane h2 { margin-top:0; margin-bottom:8px; font-size:18px; }
+    .left_pane p { margin:8px 0; }
     #footer { font-size:11px; color:#555555; }
     #footer a { color:#555555;}
     .table { background-color: #E1EDF7; }
@@ -28,7 +28,7 @@
             <tr>
               <td class="divider" colspan="2" bgcolor="#555555" height="2"></td>
             </tr>
-            <tr class="episode">
+            <tr class="left_pane">
               <td>
                 <p><small class='text-muted'>Idea will close in:</small> <b><%= time_ago_in_words(@idea.closing_time) %></b></p>
                 <p><small>Idea created by: <%= get_username(@idea.user_id) %></small>

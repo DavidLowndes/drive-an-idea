@@ -78,7 +78,7 @@ class IdeasController < ApplicationController
     respond_to do |format|
       if @idea.save
         @company_users.each do |company_user|
-          IdeaMailer.send_idea(@idea, company_user).deliver
+          IdeaMailer.send_idea(@idea, company_user).deliver_later
         end
         
         # Create Activity
