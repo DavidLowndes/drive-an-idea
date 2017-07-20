@@ -14,4 +14,10 @@ class IdeaMailerPreview < ActionMailer::Preview
     IdeaMailer.send_idea_comment(comment, fuser, idea)
   end
   
+  def send_vote_notification
+    idea = Idea.first
+    vote = Vote.find_by(idea_id: idea.id)
+    IdeaMailer.send_vote_notification(vote)
+  end
+  
 end

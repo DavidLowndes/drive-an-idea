@@ -1,6 +1,6 @@
 class IdeaMailer < ApplicationMailer
   default from: 'support@firstb2b.com'
-  helper :ideas, :comments # This allows helpers in the mailer.
+  helper :ideas # This allows helpers in the mailer.
 
   def send_idea(idea, company_user)
     @idea = idea
@@ -22,6 +22,19 @@ class IdeaMailer < ApplicationMailer
     from: 'DriveAnIdea <support@firstb2b.com>',
     to: user.email,
     subject: "+ New Comment has been added to an Idea you follow.. - DriveAnIdea"
+    )
+  end
+  
+  def send_vote_notification(vote)
+    @vote = vote
+    # Find Idea
+    @idea = Idea.find(vote.idea_id)
+    # Find User that owns the idea
+    @user = User.find(@idea.user_id)
+    mail(
+    from: 'DriveAnIdea <support@firstb2b.com>',
+    to: @user.email,
+    subject: "+ New Vote on your Idea! - DriveAnIdea"
     )
   end
   

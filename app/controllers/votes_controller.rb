@@ -16,7 +16,10 @@ class VotesController < ApplicationController
     vote = Vote.new(value: params[:value])
     vote.user = current_user
     vote.idea = Idea.find(params[:idea_id])
-    vote.save
+    
+    if vote.save
+      IdeaMailer.send_vote_notification(vote).deliver_later
+    end
 
     # Create follow for user and idea if it doesn't exist already
     Follow.create_follow(user: current_user, idea: vote.idea)
