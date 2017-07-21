@@ -5,6 +5,7 @@ class IdeaMailer < ApplicationMailer
   def send_idea(idea, company_user)
     @idea = idea
     @company_user = company_user
+
       mail(
         from: 'DriveAnIdea <support@firstb2b.com>',
         to: company_user.email,
@@ -31,11 +32,23 @@ class IdeaMailer < ApplicationMailer
     @idea = Idea.find(vote.idea_id)
     # Find User that owns the idea
     @user = User.find(@idea.user_id)
+
     mail(
     from: 'DriveAnIdea <support@firstb2b.com>',
     to: @user.email,
     subject: "+ New Vote on your Idea! - DriveAnIdea"
     )
+  end
+  
+  def send_idea_closed(idea)
+    @idea = idea
+    @votes = Vote.where(idea_id: @idea.id)
+    user = User.find(@idea.user_id)
+
+    mail(
+    from: 'DriveAnIdea <support@firstb2b.com>',
+    to: user.email,
+    subject: 'Your Idea has now closed. - DriveAnIdea')
   end
   
 end

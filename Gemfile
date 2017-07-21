@@ -31,6 +31,7 @@ gem 'public_activity'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'exception_notification'
+gem 'whenever', require: false
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

@@ -20,4 +20,9 @@ class IdeaMailerPreview < ActionMailer::Preview
     IdeaMailer.send_vote_notification(vote)
   end
   
+  def send_idea_closed
+    idea = Idea.first
+    IdeaMailer.send_idea_closed(idea)
+  end
+  
 end

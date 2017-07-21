@@ -21,7 +21,7 @@ class IdeasController < ApplicationController
   end
 
   def closed_ideas
-   @ideas = @search.result.order(created_at: :desc).select(&:closed?).paginate(page: params[:page],per_page: 5)
+   @ideas = @search.result.order(created_at: :desc).select(&:is_closed?).paginate(page: params[:page],per_page: 5)
   end
 
   def followed_ideas
@@ -80,7 +80,8 @@ class IdeasController < ApplicationController
         @company_users.each do |company_user|
           IdeaMailer.send_idea(@idea, company_user).deliver_later
         end
-        
+        # When the Idea closes, send email.
+        #IdeaMailer.send_idea_closed(@idea).deliver_later(wait: @idea.open_days.minutes)        
         # Create Activity
         @idea.create_activity :create, owner: current_user
         # Create follow

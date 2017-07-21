@@ -30,7 +30,7 @@ class Idea < ApplicationRecord
     closing_time.future? && !force_close?
   end
 
-  def closed?
+  def is_closed?
     # Is the closing date in the past? Idea is closed.
     closing_time.past? || force_close?
   end
@@ -48,7 +48,7 @@ class Idea < ApplicationRecord
   end
 
   def results_viewable?
-    real_time_voting? || closed?
+    real_time_voting? || is_closed?
   end
 
   def binary_voting_stats

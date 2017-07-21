@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170719103131) do
+ActiveRecord::Schema.define(version: 20170721103033) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "trackable_type"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20170719103131) do
     t.index ["idea_id"], name: "index_comments_on_idea_id"
   end
 
-  create_table "companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "company_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20170719103131) do
   end
 
   create_table "ideas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "text"
+    t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20170719103131) do
     t.integer "open_days"
     t.string "final_verdict", default: "Undecided"
     t.integer "force_close", default: 0
+    t.boolean "closed"
   end
 
   create_table "user_options", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
