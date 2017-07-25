@@ -1,5 +1,5 @@
 /.bundle
-
+/node_modules
 /log/*
 /tmp/*
 !/log/.keep
@@ -19,3 +19,5 @@ tmp/cache/*
 tmp/pids/*
 tmp/sockets/*
 tmp/.DS_Store
+yarn.lock
+package.json

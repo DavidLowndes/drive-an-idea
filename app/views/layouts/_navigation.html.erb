@@ -1,4 +1,4 @@
-<div class="navbar navbar-default navbar-static-top">
+<div class="navbar navbar-default navbar-static-top start-intro">
   <div class="container">
 	  <%= link_to 'Drive An Idea', root_path, id: 'logo', 
 	  class: "navbar-brand" %>
@@ -14,11 +14,11 @@
       <div class="navbar-collapse collapse navbar-responsive-collapse">
         <!-- Left Navbar -->
         <ul class="nav navbar-nav">
-          <li><%= link_to 'New Idea', new_idea_path %></li>
+          <li data-intro='Create a New Idea'><%= link_to 'New Idea', new_idea_path %></li>
             <li class="dropdown text-right"><!-- Dropdown Idea Menu-->
               <!-- Dropdown Link -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                 role="button" aria-haspopup="true" aria-expanded="false">
+                 role="button" aria-haspopup="true" aria-expanded="false" data-intro='View Open Ideas Here!'>
                 View Ideas
                 <span class="caret"></span>
               </a>
@@ -78,12 +78,12 @@
                 </li>
               </ul>
             </li><!-- /dropdown -->
-          <li><%= link_to 'Subscriptions', my_friends_path %></li>
-          <li><%= link_to 'Activities', activities_path %>
+          <li data-intro='View Your Subscriptions'><%= link_to 'Subscriptions', my_friends_path %></li>
+          <li data-intro='View Recent Activity'><%= link_to 'Activities', activities_path %>
         </ul>
         
         <!-- Right Navbar -->
-        <ul class="nav navbar-right col-md-4">
+        <ul class="nav navbar-right col-md-4" data-intro='Change Your Details'>
           
           <!-- Dropdown User Menu-->
           <li class="dropdown user-dropdown text-right">

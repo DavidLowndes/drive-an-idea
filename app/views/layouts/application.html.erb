@@ -46,24 +46,22 @@
 
     <%# Container %>
     <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <%# Error messages %>
-          <%= bootstrap_flash %>
-
-          <%# Body %>
-          <%= yield %>
-        </div>
-      </div><!--/row-->
-
-      <%# Footer %>
-      <footer class="footer">
-        <small>
-          Copyright &copy; <a href="http://www.firstb2b.com"> FirstB2B </a>
-        </small>
-      </footer>
+      <div class='new-idea-intro'>
+        
+        <%# Error messages %>
+        <%= bootstrap_flash %>
+        <%# Body %>
+        <%= yield %>
+        
+        <%# Footer %>
+        <footer class="footer">
+          <small>
+            Copyright &copy; <a href="http://www.firstb2b.com"> FirstB2B </a>
+          </small>
+        </footer>
+      </div>
       
-    </div> <!-- /container -->
+    </div> <%# /container %>
 
   </body>
 </html>

@@ -12,7 +12,7 @@
     </div>
   <% end %>
 
-  <div class="row form-group">
+  <div class="row form-group" data-intro='Scribble down your Idea'>
     <div class="control-label col-xs-1">
       <%= f.label :text, class: 'text-right hidden' %>
     </div>
@@ -29,7 +29,7 @@
     <% opts = current_user.user_option %>
   
     <%# Show voting style field %>
-    <div class="row form-group">
+    <div class="row form-group" data-intro='Choose a Voting Style'>
       <div class="control-label col-xs-3">
         <%= f.label :voting_style, class: 'text-right' %>
       </div>
@@ -46,7 +46,7 @@
     </div>
 
     <%# Active Days field %>
-    <div class="row form-group">
+    <div class="row form-group" data-intro='How long do you want your Idea to be Open?'>
       <div class="control-label col-xs-3">
         <%= f.label :open_days, 'Number of days open', class: 'text-right' %>
       </div>
@@ -108,7 +108,7 @@
 
   <%# Buttons %>
   <div class="row form-group">
-    <div class="col-sm-offset-1 col-sm-10 actions">
+    <div class="col-sm-offset-1 col-sm-10 actions" data-intro='Submit your Idea'>
       <%= f.submit class: 'btn btn-md btn-primary'%>
       <% if params[:action] == 'edit' %>
         <%# If editing idea, cancel should send back to show %>
